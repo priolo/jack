@@ -85,26 +85,27 @@ const cssRoot = (pos: TooltipPos, show: boolean = false): React.CSSProperties =>
 	whiteSpace: "pre-line",
 })
 
-const cssContent = (color:string): React.CSSProperties => ({
+const cssContent = (color:any): React.CSSProperties => ({
 	transform: 'translate(-50%, calc( -100% - 5px ) )',
 	fontSize: 11,
 	fontWeight: 700,
 	padding: '6px 8px',
 	borderRadius: 5,
-	backgroundColor: color,
-	color: "#393939",
+
+	color: color?.fg,
+	backgroundColor: color?.bg,
 	
 	boxShadow: layoutSo.state.theme.shadows[0],
 })
 
-const cssArrow = (pos: TooltipPos, color:string): React.CSSProperties => ({
+const cssArrow = (pos: TooltipPos, color:any): React.CSSProperties => ({
 	position: 'absolute',
 	...pos?.hook == TOOLTIP_HOOK.UP ? {
 		bottom: -10,
-		borderColor: `${color} transparent transparent transparent`
+		borderColor: `${color?.bg} transparent transparent transparent`
 	} : {
 		top: -10,
-		borderColor: `transparent transparent ${color} transparent`,
+		borderColor: `transparent transparent ${color?.bg} transparent`,
 	},
 	right: `calc( 50% - ${5 - (pos?.offset ?? 0)}px )`,
 	borderWidth: 5,

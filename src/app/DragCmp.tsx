@@ -26,13 +26,13 @@ const DragCmp: FunctionComponent = () => {
 	// HANDLERS
 
 	// RENDER
-	const variant = mouseSa.drag?.source?.view?.state?.colorVar ?? 0
 	const pos = mouseSa.position
-	const clsRoot = `var${variant} color-bg color-text ${cls.root} ${inShow ? cls.show : ""} ${hide ? cls.hide : ""}`
+	const color = mouseSa.color
+	const clsRoot = `${cls.root} ${inShow ? cls.show : ""} ${hide ? cls.hide : ""}`
 
 	return <div
 		className={clsRoot}
-		style={cssRoot(pos)}
+		style={cssRoot(pos, color)}
 	>
 		{mouseSa.drag?.source?.view?.getTitle() ?? "???"}
 	</div>
@@ -40,7 +40,8 @@ const DragCmp: FunctionComponent = () => {
 
 export default DragCmp
 
-const cssRoot = (pos: Position): React.CSSProperties => ({
+const cssRoot = (pos: Position, color: string): React.CSSProperties => ({
 	left: pos?.x,
 	top: pos?.y,
+	backgroundColor: color,
 })

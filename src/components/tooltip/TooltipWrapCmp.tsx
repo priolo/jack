@@ -1,7 +1,4 @@
-import layoutSo, { COLOR_VAR } from "@/stores/layout"
 import tooltipSo from "@/stores/tooltip"
-import { Color } from "@/types"
-import { useStore } from "@priolo/jon"
 import { FunctionComponent, useEffect, useId } from "react"
 
 
@@ -9,7 +6,6 @@ import { FunctionComponent, useEffect, useId } from "react"
 interface Props {
 	content?: React.ReactNode
 	disabled?: boolean
-	colorVar?: COLOR_VAR
 	style?: React.CSSProperties
 	className?: string
 	onMouseOver?: (enter: boolean) => void
@@ -20,7 +16,6 @@ interface Props {
 const TooltipWrapCmp: FunctionComponent<Props> = ({
 	content,
 	disabled,
-	colorVar,
 	style,
 	className,
 	onMouseOver,
@@ -29,12 +24,11 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 }) => {
 
 	// STORES
-	const tooltipSa = useStore(tooltipSo)
 
 	// HOOKS
 	const id = useId()
 	useEffect(() => {
-		if ( disabled ) handleLeave()
+		if (disabled) handleLeave()
 		return () => {
 			if (tooltipSo.state.content?.id != id) return
 			handleLeave()
@@ -44,22 +38,16 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 
 	// HANDLERS
 	const handleEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-		if ( disabled ) return
-
-		const elem = e.target as HTMLElement
-
-		let color = layoutSo.state.theme.palette.var[colorVar]?.bg
-		if ( !color ) {
-			const colorRef = e.currentTarget.querySelector('#colorRef')
-			const style = window.getComputedStyle(colorRef)
-			color = style.getPropertyValue('color') as Color
-		}
-		
-		const rect = elem.getBoundingClientRect()
+		if (disabled) return
+		const elem = e.target as Element
+		const style = window.getComputedStyle(elem)
 		tooltipSo.open({
 			content,
-			targetRect: rect,
-			color,
+			targetRect: elem.getBoundingClientRect(),
+			color: {
+				bg: style.getPropertyValue('--dialog-bg'),
+				fg: style.getPropertyValue('--dialog-fg'),
+			},
 			id,
 		})
 		onMouseOver?.(true)
@@ -78,7 +66,6 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 			onMouseLeave={handleLeave}
 			onClick={onClick}
 		>
-			<div id="colorRef" style={{ display: "none" }} className="color-fg" />
 			{children}
 		</div>
 	)

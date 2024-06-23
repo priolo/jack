@@ -8,6 +8,8 @@ import ListDialog from "../../components/dialogs/ListDialog"
 import TextInput from "../../components/input/TextInput"
 import StringUpRow from "../../components/rows/StringUpRow"
 import cls from "./View.module.css"
+import TooltipWrapCmp from "../../components/tooltip/TooltipWrapCmp"
+import EditorIcon from "../../icons/EditorIcon"
 
 
 
@@ -27,7 +29,7 @@ const Example2View: FunctionComponent<Props> = ({
 	const [text, setText] = useState("")
 
 	// HANDLER
-	const handleClick = ()=>{
+	const handleClick = () => {
 		store.alertOpen({
 			title: "BUCKET DELETION",
 			body: "This action is irreversible.\nAre you sure you want to delete the BUCKET?",
@@ -36,12 +38,15 @@ const Example2View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
+		icon={<EditorIcon/>}
 		className={cls.root}
 		store={store}
 	>
 		<div className="lyt-form">
 
-			<div>EXAMPLE 2</div>
+			<TooltipWrapCmp content="TOOLTIP!!!">
+				<div>EXAMPLE 2</div>
+			</TooltipWrapCmp>
 
 			<Button
 				onClick={handleClick}

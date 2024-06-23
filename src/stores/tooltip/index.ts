@@ -5,7 +5,7 @@ import { StoreCore, createStore } from "@priolo/jon"
 export interface TooltipContent {
 	content: React.ReactNode
 	targetRect: DOMRect
-	color?: string
+	color?: { bg?:string, fg?:string}
 	id?: string
 }
 

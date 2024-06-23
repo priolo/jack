@@ -46,8 +46,10 @@ const Header: FunctionComponent<Props> = ({
 		}
 	}
 	const handleDragStart: React.DragEventHandler = (e) => {
-		e.preventDefault();
+		e.preventDefault()
+		const style = window.getComputedStyle(e.target as Element)
 		mouseSo.setPosition({ x: e.clientX, y: e.clientY })
+		mouseSo.setColor(style.getPropertyValue('--dialog-bg'))
 		mouseSo.startDrag({ source: { view: store } })
 	}
 	const handleDetach = () => docSo.detach(store)

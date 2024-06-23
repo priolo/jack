@@ -4,7 +4,9 @@
 	--select-color: yellow;
 	--select-bg: green;
 	--cmp-bg: rgba(0, 0, 0, 0.05);
-	--dialog-bg: orange;
+
+	--dialog-bg: blue;
+	--dialog-fg: black;
 }
 
 .root input::selection {

@@ -6,6 +6,9 @@ import { deckCardsSo } from "./main"
 import example1Setup from "./stores/stacks/example1"
 import example2Setup from "./stores/stacks/example2"
 import { ViewStore } from "./stores/stacks/viewBase"
+import ZenCard from "./app/ZenCard"
+import DragCmp from "./app/DragCmp"
+import TooltipCmp from "./components/tooltip/TooltipCmp"
 
 
 
@@ -38,9 +41,15 @@ const App: FunctionComponent = () => {
 				>ADD 2</Button>
 			</div>
 
+			
+
 			<div style={cssDeck}>
 				<CardsGroup cardsStore={deckCardsSo} />
 			</div>
+
+			<ZenCard />
+			<DragCmp />
+			<TooltipCmp />
 
 		</div>
 	)

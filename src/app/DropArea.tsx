@@ -48,18 +48,22 @@ const DropArea: FunctionComponent<Props> = ({
 
 	// RENDER
 	const dragOver = mouseSa.drag?.destination?.index == index && mouseSa.drag?.destination?.group == groupDest
-	const variant = mouseSa.drag?.source?.view?.state?.colorVar ?? 0
 	const inExit = viewSa?.docAnim == DOC_ANIM.EXIT || viewSa?.docAnim == DOC_ANIM.EXITING
-	const clsRoot = `${cls.root} ${dragOver ? cls.in_dragover : ""} ${inExit ? cls.in_exit : ""} ${isLast ? cls.is_last : ""} var${variant}`
-	const clsLine = `${cls.line} ${dragOver ? "color-bg" : ""}`
-
+	const clsRoot = `${cls.root} ${dragOver ? cls.in_dragover : ""} ${inExit ? cls.in_exit : ""} ${isLast ? cls.is_last : ""}`
+	const clsLine = cls.line
+	const styLine: React.CSSProperties = { backgroundColor: dragOver ? mouseSa.color : null }
+	
 	return <div draggable={false}
 		className={clsRoot}
 		style={style}
 		onMouseOver={handleMouseOver}
 		onMouseLeave={handleMouseLeave}
 	>
-		<div className={clsLine} />
+		<div
+			style={styLine}
+			className={clsLine}
+
+		/>
 	</div>
 }
 
