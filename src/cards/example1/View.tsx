@@ -2,16 +2,16 @@ import FrameworkCard from "@/components/cards/FrameworkCard"
 import { Example1Store } from "@/stores/stacks/example1"
 import { createStore, useStore } from "@priolo/jon"
 import { FunctionComponent, useState } from "react"
-import Button from "../../JackTest"
+import IconButton from "../../components/buttons/IconButton"
 import Dialog from "../../components/dialogs/Dialog"
 import TextInput from "../../components/input/TextInput"
-import { Example1State } from "../../stores/stacks/example1"
-import cls from "./View.module.css"
-import { buildStore } from "../../stores/docs/utils/factory"
-import example2Setup, { Example2Store } from "../../stores/stacks/example2"
-import { ViewStore } from "../../stores/stacks/viewBase"
 import TooltipWrapCmp from "../../components/tooltip/TooltipWrapCmp"
+import DirectionRightIcon from "../../icons/DirectionRightIcon"
 import DoneIcon from "../../icons/DoneIcon"
+import { Example1State } from "../../stores/stacks/example1"
+import example2Setup, { Example2Store } from "../../stores/stacks/example2"
+import cls from "./View.module.css"
+import Button from "../../components/buttons/Button"
 
 
 
@@ -38,7 +38,7 @@ const Example1View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
-		icon={<DoneIcon/>}
+		icon={<DoneIcon />}
 		className={cls.root}
 		store={store}
 	>
@@ -69,9 +69,13 @@ const Example1View: FunctionComponent<Props> = ({
 
 			<TextInput value={text} onChange={text => setText(text)} />
 
-			<Button
+			<Button select
 				onClick={handleOpenLinked}
 			>OPEN</Button>
+
+			<IconButton effect
+				onClick={()=>console.log("icon button click")}
+			><DirectionRightIcon /></IconButton>
 
 		</div>
 

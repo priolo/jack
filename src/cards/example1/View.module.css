@@ -1,10 +1,13 @@
 .root {
 	background-color: rgb(34, 240, 37);
 	color: blue;
-	--select-color: yellow;
-	--select-bg: green;
+	/* button icon button */
+	--select-color: rgb(255, 0, 34);
+	--select-bg: rgb(151, 192, 62);
+	/* ombra perimetrale inputtext buttton */
 	--cmp-bg: rgba(0, 0, 0, 0.05);
-	
+
+	/* tooltip drag dialog */
 	--dialog-bg: orange;
 	--dialog-fg: black;
 }

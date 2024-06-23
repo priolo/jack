@@ -7,3 +7,7 @@
 	border-radius: 3px;
 }
 
+.select {
+	background-color: var(--select-color);
+	color: var(--select-bg);
+}

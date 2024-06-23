@@ -33,6 +33,7 @@ const RootCard: FunctionComponent<Props> = ({
 
 	// STORES
 	const viewSa = useStore(view)
+	const docsSa = useStore(docsSo)
 	useStoreNext(view.state.group, (state: CardsState, stateOld: CardsState) => state.focus != stateOld.focus)
 
 	// HOOKS
@@ -64,7 +65,7 @@ const RootCard: FunctionComponent<Props> = ({
 
 	// RENDER
 	if (!view) return null
-	const inZen = docsSo.state.zenCard == view
+	const inZen = docsSa.zenCard == view
 	const inAnimation = viewSa.docAnim == DOC_ANIM.EXITING || viewSa.docAnim == DOC_ANIM.SHOWING || viewSa.docAnim == DOC_ANIM.SIZING
 	const isCompact = !inZen && viewSa.size == VIEW_SIZE.COMPACT
 	const isResizable = !isCompact && !inZen

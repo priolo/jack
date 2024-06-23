@@ -13,7 +13,7 @@ interface Props {
 }
 
 /**
- * Lo STACK di una collezione di CONNECTIONs
+ *
  */
 const LinkButton: FunctionComponent<Props> = ({
 	icon,

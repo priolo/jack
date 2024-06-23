@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react"
-import classes from "./IconButton.module.css"
+import cls from "./IconButton.module.css"
 
 
 
@@ -28,9 +28,9 @@ const IconButton: FunctionComponent<Props> = ({
 	// HANDLER
 
 	// RENDER
-	const cls = `${classes.root} ${(mouseOver || select) ? "color-bg color-text" : ""} ${className}`
+	const clsRoot = `${cls.root} ${(mouseOver || select) ? cls.select : ""} ${className}`
 	return (
-		<div style={style} className={cls}
+		<div style={style} className={clsRoot}
 			onClick={onClick}
 			onMouseEnter={effect ? () => setMouseOver(true) : null}
 			onMouseLeave={effect ? () => setMouseOver(false) : null}
