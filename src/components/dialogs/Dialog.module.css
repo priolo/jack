@@ -3,8 +3,8 @@
 	flex-direction: column;
 	flex: 1;
 
+	background-color: var(--dialog-bg);
 	padding: 3px 15px 15px 25px;
-
 	border-radius: 0px 10px 10px 0px;
 	box-shadow: rgba(0, 0, 0, 0.3) 3px 10px 2px 1px;
 	max-height: calc(100% - 18px);

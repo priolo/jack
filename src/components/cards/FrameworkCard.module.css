@@ -6,10 +6,7 @@
 	display: flex;
 	flex-direction: column;
 
-	color: var(--text);
-	background-color: var(--bg-default);
 	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
-
 	transition: opacity 300ms;
 	border-radius: 5px;
 }
@@ -25,6 +22,7 @@
 
 .drag {
 	opacity: .5;
+	border: 2px dashed white;
 }
 
 
@@ -65,9 +63,12 @@
 	opacity: .5;
 }
 
+.focus {
+	outline: 2px solid var(--select-color);
+}
 
 
-
+/* ICON BUTTON */
 .btt {
 	position: absolute;
 	color: var(--var-0);
@@ -87,30 +88,12 @@
 
 
 
-:global(.var0).focus {
-	outline: 2px solid var(--bg-default);
-}
 
-:global(.var1).focus {
-	outline: 2px solid var(--var-1);
-}
 
-:global(.var2).focus {
-	outline: 2px solid var(--var-2);
-}
 
-:global(.var3).focus {
-	outline: 2px solid var(--var-3);
-}
-
-:global(.var4).focus {
-	outline: 2px solid var(--var-4);
-}
-
-:global(.var5).focus {
-	outline: 2px solid var(--var-5);
-}
-
-:global(.var6).focus {
-	outline: 2px solid var(--var-6);
+.dialog {
+	z-index: -1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
 }

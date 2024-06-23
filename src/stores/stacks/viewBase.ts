@@ -3,7 +3,7 @@ import { ANIM_TIME, DOC_ANIM, DOC_TYPE } from "@/types"
 import { delay } from "@/utils/time"
 import { LISTENER_CHANGE, StoreCore } from "@priolo/jon"
 import { CardsStore } from "../docs/cards"
-import { buildStore } from "../docs/utils/factory"
+import { buildStore, createUUID } from "../docs/utils/factory"
 import { COLOR_VAR } from "../layout"
 import { LoadBaseStore } from "./loadBase"
 import { VIEW_SIZE } from "./utils"
@@ -15,9 +15,9 @@ import { DragDoc } from "../mouse/utils"
 
 const viewSetup = {
 
-	state: {
+	state: ()=> ({
 		/** identificativo della VIEW */
-		uuid: <string>null,
+		uuid: <string>createUUID(),
 		/** tipo di VIEW */
 		type: DOC_TYPE.EMPTY,
 
@@ -59,7 +59,7 @@ const viewSetup = {
 		alert: <AlertState>{
 			open: false,
 		},
-	},
+	}),
 
 	getters: {
 		//#region OVERRIDABLE
@@ -208,7 +208,7 @@ const viewSetup = {
 	// }
 }
 
-export type ViewState = Partial<typeof viewSetup.state>
+export type ViewState = Partial<ReturnType<typeof viewSetup.state>>//Partial<typeof viewSetup.state>
 export type ViewGetters = typeof viewSetup.getters
 export type ViewActions = typeof viewSetup.actions
 export type ViewMutators = typeof viewSetup.mutators

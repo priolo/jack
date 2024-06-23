@@ -4,23 +4,24 @@ import docsSo from "@/stores/docs"
 import { VIEW_SIZE } from "@/stores/stacks/utils"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { DOC_ANIM } from "@/types"
+import { useStore, useStoreNext } from "@priolo/jon"
 import { FunctionComponent } from "react"
 import IconButton from "../buttons/IconButton"
 import ErrorBoundary from "./ErrorBoundary"
 import cls from "./FrameworkCard.module.css"
 import Header from "./Header"
 import SnackbarCmp from "./SnackbarCmp"
-import { useStore, useStoreNext } from "@priolo/jon"
 
 
 
 interface Props {
 	store: ViewStore
+
+	className?: string
 	style?: React.CSSProperties
 	styleBody?: React.CSSProperties
+
 	icon?: React.ReactNode
-	/** la variante colora il bg */
-	variantBg?: boolean
 	actionsRender?: React.ReactNode
 	iconizedRender?: React.ReactNode
 	children: React.ReactNode
@@ -29,9 +30,11 @@ interface Props {
 /** struttura standard di una CARD */
 const FrameworkCard: FunctionComponent<Props> = ({
 	store,
+
+	className,
 	style,
 	styleBody,
-	variantBg,
+	
 	icon,
 	actionsRender,
 	iconizedRender,
@@ -50,11 +53,11 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	const inZen = docsSo.state.zenCard == store
 	const inRoot = inZen || !store.state.parent
 	const haveFocus = !inZen && store.state.group.state.focus == store
-	const variant = store.state.colorVar
 	const isIconized = store.state.size == VIEW_SIZE.COMPACT
 	const inDrag = store.state.docAnim == DOC_ANIM.DRAGGING
+	const dialogId = `dialog_${store.state.uuid}`
 
-	const clsRoot = `var${variant} ${cls.root} ${variantBg ? "color-bg color-text" : ""} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""}`
+	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""} ${className}`
 	const clsChildren = `${cls.children} ${store.state.disabled ? cls.disabled : ""}`
 
 	return <div className={clsRoot} style={style} >
@@ -73,7 +76,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 
 					{!inRoot && (
 						<IconButton
-							className={`${cls.btt} color-bg ${cls.hovershow}`}
+							className={`${cls.btt} ${cls.hovershow}`}
 							onClick={handleDetach}
 						><DetachIcon /></IconButton>
 					)}
@@ -91,6 +94,12 @@ const FrameworkCard: FunctionComponent<Props> = ({
 			</>}
 
 		</ErrorBoundary>
+
+		{/* DIALOG PORTAL */}
+		<div
+			className={cls.dialog}
+			id={dialogId}
+		/>
 
 		<SnackbarCmp view={store} />
 	</div>

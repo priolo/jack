@@ -69,8 +69,7 @@ const RootCard: FunctionComponent<Props> = ({
 	const isCompact = !inZen && viewSa.size == VIEW_SIZE.COMPACT
 	const isResizable = !isCompact && !inZen
 	const haveLinked = !inZen && !!view.state.linked
-	const variant = view.state.colorVar
-	const dialogId = `dialog_${view.state.uuid}`
+	//const dialogId = `dialog_${view.state.uuid}`
 
 	// styles
 	const clsAnimation = inAnimation ? cls.animation : ""
@@ -78,7 +77,6 @@ const RootCard: FunctionComponent<Props> = ({
 
 
 
-	const color = layoutSo.state.theme.palette.var[variant]
 	const ani = view.state.docAnim
 	const width = view.getWidth()
 	const styContainerDoc: React.CSSProperties = {
@@ -87,11 +85,9 @@ const RootCard: FunctionComponent<Props> = ({
 		maxWidth: view.state.widthMax,
 		minWidth: view.state.widthMin,
 	}
-	if ( ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT ) {
+	if (ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT) {
 		styContainerDoc.width = 0
 		styContainerDoc.transform = `translate(${-width}px, 0px)`
-	} else if ( ani == DOC_ANIM.DRAGGING ) {
-		styContainerDoc.border = `2px dashed ${color.bg}`
 	}
 
 
@@ -126,11 +122,11 @@ const RootCard: FunctionComponent<Props> = ({
 			<div className={cls.desk}>
 
 				{/* DIALOG */}
-				<div
-					className={`var${variant} ${cls.dialog}`}
+				{/* <div
+					className={cls.dialog}
 					style={{ zIndex: deep - 1 }}
 					id={dialogId}
-				/>
+				/> */}
 
 				{/* LINKED */}
 				{!inZen && haveLinked && <div >

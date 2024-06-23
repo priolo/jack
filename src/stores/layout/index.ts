@@ -76,7 +76,6 @@ const setup = {
 	},
 
 	actions: {
-
 	},
 
 	mutators: {

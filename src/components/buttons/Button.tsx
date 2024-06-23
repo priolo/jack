@@ -38,7 +38,7 @@ const Button: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-	const clsRoot = `${(mouseOver || select) ? `color-bg color-text ${cls.select}` : ""} ${cls.root} ${disabled ? cls.disabled : ""} ${className}`
+	const clsRoot = `${cls.root} ${(mouseOver || select) ? cls.select : ""} ${disabled ? cls.disabled : ""} ${className}`
 
 	return (
 		<div style={style} className={clsRoot}

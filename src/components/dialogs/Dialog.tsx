@@ -1,5 +1,4 @@
 import CloseIcon from "@/icons/CloseIcon"
-import { CnnDetailState } from "@/stores/stacks/connection/detail"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useEffect, useMemo, useState } from "react"
@@ -41,6 +40,7 @@ export interface DialogProps {
  */
 const Dialog: FunctionComponent<DialogProps> = ({
 	store,
+
 	open,
 	title,
 	width,
@@ -58,7 +58,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 }) => {
 
 	// STORE
-	const state = useStore(store) as CnnDetailState
+	const state = useStore(store)
 
 	// HOOKs
 	const [ref, setRef] = useState<HTMLDivElement>(null)
@@ -130,7 +130,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 	// HANDLER
 
 	// RENDER
-	const clsRoot = `color-bg color-text ${cls.root} ${fullHeight ? cls.full_height : ""}`
+	const clsRoot = `${cls.root} ${fullHeight ? cls.full_height : ""}`
 
 	return refDialog && createPortal(
 		<div className={clsRoot}
@@ -164,4 +164,5 @@ export default Dialog
 const cssRoot = (width: number | string, top: number): React.CSSProperties => ({
 	width,
 	marginTop: top,
+	transform: `translateX(calc(100% - 3px))`,
 })

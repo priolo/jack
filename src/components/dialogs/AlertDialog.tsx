@@ -45,10 +45,7 @@ const AlertDialog: FunctionComponent<Props> = ({
 
 		<div className="bars-alert-bg" style={{ height: 20 }} />
 
-		<div
-			className="var-dialog"
-			style={{ display: "flex", gap: 15, marginTop: 10 }}
-		>
+		<div style={{ display: "flex", gap: 15, marginTop: 10 }}>
 			<Button
 				children={alert.labelOk}
 				onClick={() => handleClose(true)}
