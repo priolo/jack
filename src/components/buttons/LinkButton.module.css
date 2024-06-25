@@ -12,8 +12,8 @@
 }
 
 .selected {
-	color: var(--text);
-	background-color: var(--bg-default);
+	color: var(--cmp-select-fg);
+	background-color: var(--cmp-select-bg);
 }
 
 .extra {
@@ -25,6 +25,8 @@
 	transition: opacity 300ms, transform 300ms ease-in-out;
 	opacity: 0;
 	transform: translate(-10px, 0px);
+
+	
 }
 
 .root:hover .extra {

@@ -15,8 +15,9 @@
 }
 
 .row.selected {
+	color: var(--cmp-select-fg);
+	background-color: var(--cmp-select-bg);
 }
-
 
 .cell {
 	border-right: 2px solid rgba(255, 255, 255, .2);

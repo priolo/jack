@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import classes from "./FloatButton.module.css"
+import cls from "./FloatButton.module.css"
 
 
 
@@ -21,17 +21,16 @@ const FloatButton: FunctionComponent<Props> = ({
 	// HOOK
 
 	// HANDLER
-	const handleClick = (e) => {
+	const handleClick = (e:React.MouseEvent<HTMLDivElement>) => {
 		if ( disabled ) return
 		onClick?.(e)
 	}
 
-
 	// RENDER
-	const cls = `${classes.root} ${disabled ? classes.disabled : "color-bg color-text"}`
+	const clsRoot = `${cls.root} ${disabled ? cls.disabled : ""}`
 	return (
 		<div style={style} 
-			className={cls}
+			className={clsRoot}
 			onClick={handleClick}
 		>
 			{children}

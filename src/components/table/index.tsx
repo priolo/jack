@@ -51,7 +51,7 @@ const Table: FunctionComponent<Props> = ({
 			return items.sort((i1, i2) => {
 				const v1 = getValueString(i1, propMain)
 				const v2 = getValueString(i2, propMain)
-				return v1.localeCompare(v2)
+				return v1?.toString()?.localeCompare?.(v2?.toString())
 			})
 		}
 		return items.sort((i1, i2) => {
@@ -91,7 +91,7 @@ const Table: FunctionComponent<Props> = ({
 				const selected = isSelected(item)
 				const mainText = getValueString(item, propMain)
 
-				const clsSelected = selected ? `color-bg color-text ${cls.selected}` : ""
+				const clsSelected = selected ? cls.selected : ""
 				const clsRow = `${cls.row} ${clsSelected} hover-container`
 				const clsCell = `${cls.cell}`
 				const clsCellMain = `${clsCell} ${cls.main}`
@@ -132,4 +132,3 @@ const Table: FunctionComponent<Props> = ({
 }
 
 export default Table
-

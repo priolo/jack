@@ -6,6 +6,10 @@
 	border-radius: 5px 0px 0px 5px;
 	padding: 4px 0px 4px 8px;
 }
+.root.selected {
+	color: var(--cmp-select-fg);
+	background-color: var(--cmp-select-bg);
+}
 
 .label {
 	display: flex;
@@ -24,3 +28,4 @@
 	font-weight: 400;
 	opacity: 0.9;
 }
+

@@ -2,12 +2,12 @@
 	background-color: rgb(34, 240, 37);
 	color: blue;
 	/* button icon button */
-	--select-color: rgb(255, 0, 34);
-	--select-bg: rgb(151, 192, 62);
+	--cmp-select-bg: rgb(255, 0, 34);
+	--cmp-select-fg: rgb(192, 62, 177);
 	/* ombra perimetrale inputtext buttton */
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
-	/* tooltip drag dialog */
+	/* tooltip drag dialog float-button*/
 	--dialog-bg: orange;
 	--dialog-fg: black;
 }

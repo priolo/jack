@@ -14,6 +14,8 @@
 	height: 25px;
 	border-radius: 50%;
 
+	background-color: var(--dialog-bg);
+	color: var(--dialog-fg);
 	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
 }
 

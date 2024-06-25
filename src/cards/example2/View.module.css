@@ -1,8 +1,9 @@
 .root {
 	background-color: red;
 	color: blue;
-	--select-color: yellow;
-	--select-bg: green;
+	
+	--cmp-select-bg: yellow;
+	--cmp-select-fg: green;
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
 	--dialog-bg: blue;

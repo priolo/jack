@@ -93,7 +93,7 @@ const VTable: FunctionComponent<Props> = ({
 				return <div style={{ display: "flex", flexDirection: "column" }}>
 					{!!propMain && (
 						<div
-							style={cssRowMain(selected)} className={`hover-container ${selected ? "color-bg-l1 color-text" : ""}`}
+							style={cssRowMain(selected)} className={`hover-container ${selected ? cls.selected : ""}`}
 							onClick={() => handleSelect(item)}
 						>
 							<td colSpan={colspan} style={{ padding: "5px 2px", overflowWrap: 'anywhere' }}>
@@ -104,7 +104,7 @@ const VTable: FunctionComponent<Props> = ({
 					)}
 
 					<div
-						style={cssRow(selected)} className={selected ? "color-bg color-text" : null}
+						style={cssRow(selected)} className={selected ? cls.selected : null}
 						onClick={() => handleSelect(item)}
 					>
 						{props.map((prop, index) => (
@@ -118,52 +118,6 @@ const VTable: FunctionComponent<Props> = ({
 		/>
 
 	</div>
-	/*
-		return <table className={cls.root} style={style}>
-	
-			<Header
-				props={props}
-				order={propOrder}
-				orderType={typeOrder}
-				onOrderChange={handleOrderChange}
-			/>
-	
-			<tbody>
-				{itemsSort.map((item, index) => {
-					const id = getId(item)
-					const selected = isSelected(item)
-					const mainText = getValueString(item, propMain)
-	
-					return <React.Fragment key={id}>
-	
-						{!!propMain && (
-							<tr
-								style={cssRowMain(selected)} className={`hover-container ${selected ? "color-bg-l1 color-text" : ""}`}
-								onClick={() => handleSelect(item)}
-							>
-								<td colSpan={colspan} style={{ padding: "5px 2px", overflowWrap: 'anywhere' }}>
-									{mainText}
-								</td>
-								<CopyButton absolute value={mainText} />
-							</tr>
-						)}
-	
-						<tr
-							style={cssRow(selected)} className={selected ? "color-bg color-text" : null}
-							onClick={() => handleSelect(item)}
-						>
-							{props.map((prop, index) => (
-								<td key={index} style={cssRowCellNumber}>
-									{getValueString(item, prop)}
-								</td>
-							))}
-						</tr>
-	
-					</React.Fragment>
-				})}
-			</tbody>
-		</table>
-		*/
 }
 
 export default VTable

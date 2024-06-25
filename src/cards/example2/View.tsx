@@ -10,6 +10,10 @@ import StringUpRow from "../../components/rows/StringUpRow"
 import cls from "./View.module.css"
 import TooltipWrapCmp from "../../components/tooltip/TooltipWrapCmp"
 import EditorIcon from "../../icons/EditorIcon"
+import FloatButton from "../../components/buttons/FloatButton"
+import SendIcon from "../../icons/SendIcon"
+import LinkButton from "../../components/buttons/LinkButton"
+import Table from "../../components/table"
 
 
 
@@ -27,6 +31,7 @@ const Example2View: FunctionComponent<Props> = ({
 	// HOOKs
 	const [index, setIndex] = useState(-1)
 	const [text, setText] = useState("")
+	const [idSelected, setIdSelected] = useState(null)
 
 	// HANDLER
 	const handleClick = () => {
@@ -38,7 +43,7 @@ const Example2View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
-		icon={<EditorIcon/>}
+		icon={<EditorIcon />}
 		className={cls.root}
 		store={store}
 	>
@@ -63,6 +68,36 @@ const Example2View: FunctionComponent<Props> = ({
 			<TextInput value={text} onChange={text => setText(text)} />
 
 			<AlertDialog store={store} />
+
+			<FloatButton
+				style={{ position: "relative" }}
+				onClick={() => console.log("click float")}
+				disabled={false}
+			><SendIcon /></FloatButton>
+
+			<LinkButton
+				icon={<SendIcon />}
+				tooltip="KVENTRIES"
+				selected={true}
+				onClick={() => console.log("click link button")}
+				renderExtra={<div>CIAO</div>}
+			/>
+
+			<Table
+				items={[
+					{ id: 1, name: "Ivano"},
+					{ id: 2, name: "Edoardo"},
+					{ id: 3, name: "Alfredo"},
+				]}
+				props={[
+					{ label: "ID", getValue: item => item.id, isMain: true },
+					{ label: "NAME", getValue: item => item.name},
+				]}
+				selectId={idSelected}
+				onSelectChange={item=>setIdSelected(item.id)}
+				getId={item => item.id}
+				singleRow={true}
+			/>
 
 		</div>
 

@@ -16,6 +16,6 @@
 
 .select {
 	border-color: transparent;
-	background-color: var(--select-color);
-	color: var(--select-bg);
+	background-color: var(--cmp-select-bg);
+	color: var(--cmp-select-fg);
 }

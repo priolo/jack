@@ -64,7 +64,7 @@
 }
 
 .focus {
-	outline: 2px solid var(--select-color);
+	outline: 2px solid var(--cmp-select-bg);
 }
 
 

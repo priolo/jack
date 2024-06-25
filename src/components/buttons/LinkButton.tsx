@@ -32,7 +32,7 @@ const LinkButton: FunctionComponent<Props> = ({
 	// RENDER
 	const clsSelect = selected ? cls.selected : ""
 	const clsRoot = `${cls.root} ${clsSelect}`
-	const clsExtra = `${selected ? cls.selected : "color-bg color-text"} ${cls.extra}`
+	const clsExtra = `${selected ? cls.selected : ""} ${cls.extra}`
 
 	return (
 		<TooltipWrapCmp content={tooltip}

@@ -5,18 +5,16 @@
 	height: 28px;
 	position: sticky;
 	top: 0px;
-	background-color: #5b5b5b;
+	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 1;
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px 0px;
 }
 
-
 .cell {
-	border-right: 2px solid #3e3e3e;
-	border-top: 2px solid #3e3e3e;
+	border-right: 2px solid rgba(0, 0, 0, 0.5);
+	border-top: 2px solid rgba(0, 0, 0, 0.5);
 	padding: 3px 5px;
 }
-
 
 .cellContainer {
 	display: flex;
