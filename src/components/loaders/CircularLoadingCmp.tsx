@@ -23,7 +23,9 @@ const CircularLoadingCmp: FunctionComponent<Props> = ({
 				stroke="currentColor"
 				strokeWidth="15"
 			/>
-			<circle className="ani-rot-loop color-fg"
+			<circle 
+				style={{ color: "var(--cmp-select-bg)"}}
+				className="ani-rot-loop color-fg"
 				cx="60"
 				cy="60"
 				r={radius}

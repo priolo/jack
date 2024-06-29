@@ -130,7 +130,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 	// HANDLER
 
 	// RENDER
-	const clsRoot = `${cls.root} ${fullHeight ? cls.full_height : ""}`
+	const clsRoot = `${cls.root} ${fullHeight ? cls.full_height : ""} jack-card-dialog`
 
 	return refDialog && createPortal(
 		<div className={clsRoot}

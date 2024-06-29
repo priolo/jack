@@ -22,8 +22,6 @@ interface OptionSelect {
 	mode: LOAD_MODE
 }
 
-
-
 const options: OptionSelect[] = [
 	{ label: "MANUAL", polling: 0, mode: LOAD_MODE.MANUAL },
 	{ label: "PARENT", polling: 0, mode: LOAD_MODE.PARENT },
@@ -112,13 +110,13 @@ const OptionsCmp: FunctionComponent<Props> = ({
 				onTimeout={handleTimeout}
 			/>
 
-			<div className={`${cls.btt} ${cls.btt_hover} color-fg`}>
+			<div className={`${cls.btt} ${cls.btt_hover}`}>
 				<IconButton
 					onClick={() => setDialogOpen(true)}
 				><ArrowRightIcon /></IconButton>
 			</div>
 
-			<div className={`${cls.circle} ani-color ${mouseEnter ? "color-fg" : ""}`}
+			<div className={`${cls.circle} ani-color ${mouseEnter ? cls.enter : ""}`}
 				onClick={handleCircleClick}
 			>
 				{inLoading ? (

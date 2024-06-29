@@ -28,7 +28,7 @@ const CircularIndicatorCmp: FunctionComponent<Props> = ({
 				stroke="currentColor"
 				strokeWidth="15"
 			/>
-			<circle className="color-fg"
+			<circle
 				cx="60"
 				cy="60"
 				r={radius}
@@ -38,7 +38,7 @@ const CircularIndicatorCmp: FunctionComponent<Props> = ({
 				strokeDasharray={circonference}
 				strokeDashoffset={offset}
 
-				style={{ transition: `stroke-dashoffset ${animTime}ms` }}
+				style={{ transition: `stroke-dashoffset ${animTime}ms`, color: "var(--cmp-select-bg)" }}
 				transform="rotate(-90 60 60)"
 			/>
 		</svg>

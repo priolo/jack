@@ -1,6 +1,6 @@
 import { createStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
-import CardsGroup from "./app/CardsGroups"
+import CardsGroup from "./app/CardsGroup"
 import Button from "./components/buttons/Button"
 import { deckCardsSo } from "./main"
 import example1Setup from "./stores/stacks/example1"
@@ -8,7 +8,8 @@ import example2Setup from "./stores/stacks/example2"
 import { ViewStore } from "./stores/stacks/viewBase"
 import ZenCard from "./app/ZenCard"
 import DragCmp from "./app/DragCmp"
-import TooltipCmp from "./components/tooltip/TooltipCmp"
+import TooltipCmp from "./app/tooltip/TooltipCmp"
+import PolymorphicCard from "./cards/PolymorphicCard"
 
 
 
@@ -44,7 +45,10 @@ const App: FunctionComponent = () => {
 			
 
 			<div style={cssDeck}>
-				<CardsGroup cardsStore={deckCardsSo} />
+				<CardsGroup 
+					cardsStore={deckCardsSo} 
+					Render={PolymorphicCard}
+				/>
 			</div>
 
 			<ZenCard />

@@ -51,8 +51,8 @@
 .lbl-prop-title {
 	font-size: 13px;
 	font-weight: 800;
-	border-bottom: 1px solid rgb(0 0 0 / 32%);
-	border-top: 1px solid rgb(0 0 0 / 32%);
+	border-bottom: 1px solid currentColor;
+	border-top: 1px solid currentColor;
 	padding: 3px;
 	text-align: center;
 	margin-top: 3px;

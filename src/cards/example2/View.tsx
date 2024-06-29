@@ -8,7 +8,7 @@ import ListDialog from "../../components/dialogs/ListDialog"
 import TextInput from "../../components/input/TextInput"
 import StringUpRow from "../../components/rows/StringUpRow"
 import cls from "./View.module.css"
-import TooltipWrapCmp from "../../components/tooltip/TooltipWrapCmp"
+import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import EditorIcon from "../../icons/EditorIcon"
 import FloatButton from "../../components/buttons/FloatButton"
 import SendIcon from "../../icons/SendIcon"
@@ -65,7 +65,11 @@ const Example2View: FunctionComponent<Props> = ({
 				onSelect={(index) => setIndex(index)}
 			/>
 
-			<TextInput value={text} onChange={text => setText(text)} />
+			<TextInput 
+				multiline={true}
+				value={text} 
+				onChange={text => setText(text)} 
+			/>
 
 			<AlertDialog store={store} />
 

@@ -14,7 +14,7 @@ import { ViewStore } from "@/stores/stacks/viewBase"
 import { useStore } from "@priolo/jon"
 import React, { FunctionComponent, useMemo, useState } from "react"
 import IconButton from "../buttons/IconButton"
-import TooltipWrapCmp from "../tooltip/TooltipWrapCmp"
+import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import cls from "./Header.module.css"
 
 

@@ -1,0 +1,35 @@
+.root {
+	pointer-events: none;
+	z-index: 99999;
+	position: absolute;
+
+	transition-property: opacity, transform;
+	transition-duration: 300ms;
+	transition-timing-function: cubic-bezier(0.000, 0.350, 0.225, 1.175);
+
+	white-space: pre-line;
+
+	/* hide */
+	transform: translate(0, 5px);
+	opacity: 0;
+}
+
+.root.show {
+	transform: translate(0, -5px);
+	opacity: 1;
+}
+
+.root .content {
+	transform: translate(-50%, calc(-100% - 5px));
+	font-size: 11px;
+	font-weight: 700;
+	padding: 6px 8px;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
+}
+
+.root .arrow {
+	position: absolute;
+	border-width: 5px;
+	border-style: solid;
+}

@@ -1,4 +1,4 @@
-import TooltipWrapCmp from "@/components/tooltip/TooltipWrapCmp"
+import TooltipWrapCmp from "@/app/tooltip/TooltipWrapCmp"
 import IconButton from "@/components/buttons/IconButton"
 import CopyIcon from "@/icons/CopyIcon"
 import { FunctionComponent } from "react"
@@ -37,6 +37,7 @@ const CopyButton: FunctionComponent<Props> = ({
 
 	// RENDER
 	label = navigator?.clipboard == null ? "CLIPBOARD NOT AVAILABLE.\nHave you given permission?" : label
+	
 	return (
 		<TooltipWrapCmp
 			className={`${absolute ? `${cls.absolute} hover-show` : ""} ${className}`}

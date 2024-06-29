@@ -38,7 +38,9 @@ const Button: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-	const clsRoot = `${cls.root} ${(mouseOver || select) ? cls.select : ""} ${disabled ? cls.disabled : ""} ${className}`
+	const clsSelect = mouseOver || select ? `${cls.select} jack-cmp-select` : ""
+	const clsDisabled = disabled ? `${cls.disabled} jack-cmp-disabled` : ""
+	const clsRoot = `jack-cmp jack-cmp-button ${cls.root} ${clsSelect} ${clsDisabled} ${className}`
 
 	return (
 		<div style={style} className={clsRoot}

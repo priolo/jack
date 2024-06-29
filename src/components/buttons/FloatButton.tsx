@@ -4,6 +4,7 @@ import cls from "./FloatButton.module.css"
 
 
 interface Props {
+	className?: string
 	onClick?: (e: React.MouseEvent) => void
 	children?: React.ReactNode
 	disabled?: boolean
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const FloatButton: FunctionComponent<Props> = ({
+	className,
 	onClick,
 	children,
 	disabled,
@@ -27,7 +29,9 @@ const FloatButton: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-	const clsRoot = `${cls.root} ${disabled ? cls.disabled : ""}`
+	const clsDisabled = disabled ? `${cls.disabled} jack-cmp-disabled` : ""
+	const clsRoot = `jack-cmp jack-cmp-float ${cls.root} ${clsDisabled} ${className}`
+
 	return (
 		<div style={style} 
 			className={clsRoot}

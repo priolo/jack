@@ -1,8 +1,8 @@
-import layoutSo from "@/stores/layout"
 import tooltipSo from "@/stores/tooltip"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useEffect, useRef, useState } from "react"
 import { Position } from "../../stores/mouse/utils"
+import cls from "./TooltipCmp.module.css"
 
 
 
@@ -21,14 +21,14 @@ const TooltipCmp: FunctionComponent = () => {
 
 	// STORES
 	const tooltipSa = useStore(tooltipSo)
-	
+
 	// HOOKS
 	const ref = useRef(null)
 	const [position, setPosition] = useState<TooltipPos>(null)
-	
+
 	useEffect(() => {
 		const targetRect = tooltipSo.state.content?.targetRect
-		if (!tooltipSa.show || !targetRect || !ref.current ) return
+		if (!tooltipSa.show || !targetRect || !ref.current) return
 
 		const contentRect = ref.current.getBoundingClientRect()
 		const pos: TooltipPos = {
@@ -53,13 +53,24 @@ const TooltipCmp: FunctionComponent = () => {
 	const content = tooltipSa.content?.content
 	const show = tooltipSa.show
 	const color = tooltipSa.content?.color
+	const clsRoot = `${cls.root} ${show ? cls.show : ""}`
 
 	return (
-		<div ref={ref} style={cssRoot(position, show)}>
-			{content && (
-				<div style={cssContent(color)}>
+		<div 
+			ref={ref} 
+			style={cssRoot(position)}
+			className={clsRoot} 			
+		>
+			{!!content && (
+				<div 
+					style={cssContent(color)}
+					className={cls.content}
+				>
 					{content}
-					<div style={cssArrow(position, color)} />
+					<div 
+						style={cssArrow(position, color)} 
+						className={`${cls.arrow} ${cls[position?.hook]}`}
+					/>
 				</div>
 			)}
 		</div>
@@ -69,37 +80,16 @@ const TooltipCmp: FunctionComponent = () => {
 export default TooltipCmp
 
 const cssRoot = (pos: TooltipPos, show: boolean = false): React.CSSProperties => ({
-	pointerEvents: "none",
-	zIndex: 99999,
-	position: 'absolute',
-
 	left: pos ? pos.position.x + pos.offset : null,
 	top: pos ? pos.position.y : null,
-
-	transitionProperty: 'opacity, transform',
-	transitionDuration: "300ms",
-	transitionTimingFunction: layoutSo.state.theme.transitions[0],
-	transform: show ? 'translate(0, -5px)' : 'translate(0, 5px)',
-	opacity: show ? 1 : 0,
-
-	whiteSpace: "pre-line",
 })
 
-const cssContent = (color:any): React.CSSProperties => ({
-	transform: 'translate(-50%, calc( -100% - 5px ) )',
-	fontSize: 11,
-	fontWeight: 700,
-	padding: '6px 8px',
-	borderRadius: 5,
-
+const cssContent = (color: any): React.CSSProperties => ({
 	color: color?.fg,
 	backgroundColor: color?.bg,
-	
-	boxShadow: layoutSo.state.theme.shadows[0],
 })
 
-const cssArrow = (pos: TooltipPos, color:any): React.CSSProperties => ({
-	position: 'absolute',
+const cssArrow = (pos: TooltipPos, color: any): React.CSSProperties => ({
 	...pos?.hook == TOOLTIP_HOOK.UP ? {
 		bottom: -10,
 		borderColor: `${color?.bg} transparent transparent transparent`
@@ -108,6 +98,4 @@ const cssArrow = (pos: TooltipPos, color:any): React.CSSProperties => ({
 		borderColor: `transparent transparent ${color?.bg} transparent`,
 	},
 	right: `calc( 50% - ${5 - (pos?.offset ?? 0)}px )`,
-	borderWidth: 5,
-	borderStyle: 'solid',
 })

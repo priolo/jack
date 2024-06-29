@@ -91,8 +91,8 @@ const Table: FunctionComponent<Props> = ({
 				const selected = isSelected(item)
 				const mainText = getValueString(item, propMain)
 
-				const clsSelected = selected ? cls.selected : ""
-				const clsRow = `${cls.row} ${clsSelected} hover-container`
+				const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
+				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} hover-container`
 				const clsCell = `${cls.cell}`
 				const clsCellMain = `${clsCell} ${cls.main}`
 

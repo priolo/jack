@@ -8,6 +8,7 @@ interface Props {
 	children?: React.ReactNode
 	effect?: boolean
 	select?: boolean
+	disabled?: boolean
 	className?: string
 	style?: React.CSSProperties
 }
@@ -15,6 +16,7 @@ interface Props {
 const IconButton: FunctionComponent<Props> = ({
 	onClick,
 	select,
+	disabled,
 	children,
 	effect,
 	className = "",
@@ -28,7 +30,10 @@ const IconButton: FunctionComponent<Props> = ({
 	// HANDLER
 
 	// RENDER
-	const clsRoot = `${cls.root} ${(mouseOver || select) ? cls.select : ""} ${className}`
+	const clsSelect = mouseOver || select ? `${cls.select} jack-cmp-select` : ""
+	const clsDisabled = disabled ? `${cls.disabled} jack-cmp-disabled` : ""
+	const clsRoot = `jack-cmp jack-cmp-button ${cls.root} ${clsSelect} ${clsDisabled} ${className}`
+
 	return (
 		<div style={style} className={clsRoot}
 			onClick={onClick}

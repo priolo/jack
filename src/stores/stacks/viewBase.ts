@@ -15,51 +15,53 @@ import { DragDoc } from "../mouse/utils"
 
 const viewSetup = {
 
-	state: ()=> ({
-		/** identificativo della VIEW */
-		uuid: <string>createUUID(),
-		/** tipo di VIEW */
-		type: DOC_TYPE.EMPTY,
+	state: () => {
+		return {
+			/** identificativo della VIEW */
+			uuid: <string>createUUID(),
+			/** tipo di VIEW */
+			type: <string>null,
 
-		/** indica se la VIEW è draggabile o no */
-		draggable: true,
-		/** indica se la VIEW si puo' rimuovere dal DOCK */
-		unclosable: false,
-		/** indica se è possibile pinnare questa CARD  */
-		pinnable: true,
-		/** si puo' draggare dentro qualcosa */
-		droppable: false,
-		/** indica lo STATO di visualizzaizone */
-		size: VIEW_SIZE.NORMAL,
-		sizeForce: false,
-		/** indica che la card è temporaneamente disabilitata */
-		disabled: false,
+			/** indica se la VIEW è draggabile o no */
+			draggable: true,
+			/** indica se la VIEW si puo' rimuovere dal DOCK */
+			unclosable: false,
+			/** indica se è possibile pinnare questa CARD  */
+			pinnable: true,
+			/** si puo' draggare dentro qualcosa */
+			droppable: false,
+			/** indica lo STATO di visualizzaizone */
+			size: VIEW_SIZE.NORMAL,
+			sizeForce: false,
+			/** indica che la card è temporaneamente disabilitata */
+			disabled: false,
 
-		/** il width "normale" */
-		width: 300,
-		widthMin: 40,
-		widthMax: 600,
-		/** colore caratteristico della  VIEW */
-		colorVar: COLOR_VAR.DEFAULT,
-		/** il corrente stato di animazione */
-		docAnim: DOC_ANIM.EXIT,
-		/** disabilita qualsiasi animazione */
-		docAniDisabled: false,
+			/** il width "normale" */
+			width: 300,
+			widthMin: 40,
+			widthMax: 600,
+			/** colore caratteristico della  VIEW */
+			//colorVar: COLOR_VAR.DEFAULT,
+			/** il corrente stato di animazione */
+			docAnim: DOC_ANIM.EXIT,
+			/** disabilita qualsiasi animazione */
+			docAniDisabled: false,
 
-		/** la sua VIEW PARENT */
-		parent: <ViewStore>null,
-		/** la sua VIEW LINKED */
-		linked: <ViewStore>null,
-		/** il GROUP dove è visualizzata questa CARD */
-		group: <CardsStore>null,
+			/** la sua VIEW PARENT */
+			parent: <ViewStore>null,
+			/** la sua VIEW LINKED */
+			linked: <ViewStore>null,
+			/** il GROUP dove è visualizzata questa CARD */
+			group: <CardsStore>null,
 
-		snackbar: <SnackbarState>{
-			open: false,
-		},
-		alert: <AlertState>{
-			open: false,
-		},
-	}),
+			snackbar: <SnackbarState>{
+				open: false,
+			},
+			alert: <AlertState>{
+				open: false,
+			},
+		}
+	},
 
 	getters: {
 		//#region OVERRIDABLE

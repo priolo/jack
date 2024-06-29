@@ -90,9 +90,10 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 	}
 
 	const TagInput = multiline ? "textarea" : "input"
+	const clsRoot = `jack-cmp jack-cmp-text-input ${cls.root} ${className ?? ""}`
 
 	return <TagInput ref={inputRef as any}
-		className={`${cls.root} ${className ?? ""}`}
+		className={clsRoot}
 		style={style}
 		placeholder={placeholder}
 		autoFocus={autoFocus}

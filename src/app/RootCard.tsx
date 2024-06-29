@@ -10,9 +10,9 @@ import { createPortal } from "react-dom"
 import ResizerCmp from "./ResizerCmp"
 import cls from "./RootCard.module.css"
 import layoutSo from "../stores/layout"
+import { RenderProps } from "./CardsGroup"
 
 
-interface RenderProps { view: ViewStore }
 
 interface Props {
 	view?: ViewStore

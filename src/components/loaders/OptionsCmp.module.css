@@ -14,6 +14,9 @@
 	align-items: center;
 	justify-content: center;
 }
+.circle.enter {
+	color: var(--cmp-select-bg)
+}
 
 .divider {
 	border-bottom: 1px dashed black;
@@ -23,6 +26,7 @@
 .btt {
 	width: 0px;
 	transition: width 400ms;
+	color: var(--cmp-select-bg)
 }
 
 .root:hover .btt_hover {

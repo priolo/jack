@@ -7,7 +7,7 @@
 	/* ombra perimetrale inputtext buttton */
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
-	/* tooltip drag dialog float-button*/
+	/* tooltip drag */
 	--dialog-bg: orange;
 	--dialog-fg: black;
 }
@@ -15,4 +15,26 @@
 .root input::selection {
 	background: purple;
 	color: brown;
+}
+
+/* 
+.root :global(.jack-card-dialog) {
+	background-color: #AA00FF;
+	color: #FF0000;
+} */
+
+
+.root :global(.jack-cmp):global(.jack-cmp-select) {
+	background-color: blue;
+	color: green;
+}
+
+
+.root :global(.jack-cmp-float) {
+	background-color: blue;
+	color: green;
+}
+.root :global(.jack-cmp-float):global(.jack-cmp-disabled) {
+	background-color: purple;
+	color: black;
 }
