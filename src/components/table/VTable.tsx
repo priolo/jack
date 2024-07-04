@@ -2,7 +2,7 @@ import React, { CSSProperties, FunctionComponent, useMemo, useState } from "reac
 import { Virtuoso } from "react-virtuoso"
 import CopyButton from "../buttons/CopyButton"
 import { ORDER_TYPE } from "./Header"
-import cls from "./Table.module.css"
+import cls from "./VTable.module.css"
 import VHeader from "./VHeader"
 
 
@@ -12,7 +12,6 @@ export interface ItemProp {
 	flex?: number,
 	getValue?: (item: any) => any
 	getShow?: (item: any) => string
-
 	notOrderable?: boolean
 }
 
@@ -21,6 +20,8 @@ interface Props {
 	propMain?: ItemProp
 	items?: any[]
 	selectId?: string
+	/** stessa riga per propMain e props */
+	singleRow?: boolean
 	onSelectChange?: (item: any) => void
 	getId?: (item: any) => string
 	style?: React.CSSProperties
@@ -31,6 +32,7 @@ const VTable: FunctionComponent<Props> = ({
 	propMain,
 	items = [],
 	selectId,
+	singleRow,
 	onSelectChange,
 	getId = (item) => item.toString(),
 	style,
@@ -65,105 +67,63 @@ const VTable: FunctionComponent<Props> = ({
 
 	// RENDER
 	const isSelected = (item: any) => getId(item) == selectId
-	const colspan = props.length
 	function getValueString(item: any, prop: ItemProp): string {
 		if (!prop) return
 		return prop.getShow?.(item) ?? prop.getValue?.(item)
 	}
 
 
-	return <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-		<VHeader
-			props={props}
-			order={propOrder}
-			orderType={typeOrder}
-			onOrderChange={handleOrderChange}
-		/>
-		<Virtuoso
-			className={cls.root}
-			style={{ ...style, width: "100%" }}
-			data={itemsSort}
-			totalCount={itemsSort.length}
-			itemContent={(index, item) => {
+	return (
+		<div className={cls.root}>
 
-				//const id = getId(item)
-				const selected = isSelected(item)
-				const mainText = getValueString(item, propMain)
+			<VHeader
+				props={props}
+				order={propOrder}
+				orderType={typeOrder}
+				onOrderChange={handleOrderChange}
+			/>
 
-				return <div style={{ display: "flex", flexDirection: "column" }}>
-					{!!propMain && (
-						<div
-							style={cssRowMain(selected)} className={`hover-container ${selected ? cls.selected : ""}`}
-							onClick={() => handleSelect(item)}
-						>
-							<td colSpan={colspan} style={{ padding: "5px 2px", overflowWrap: 'anywhere' }}>
-								{mainText}
-							</td>
-							<CopyButton absolute value={mainText} />
-						</div>
-					)}
+			<Virtuoso
+				className={cls.virtuoso}
+				style={style}
+				data={itemsSort}
+				totalCount={itemsSort.length}
+				itemContent={(index, item) => {
+					//const id = getId(item)
+					const selected = isSelected(item)
+					const mainText = getValueString(item, propMain)
 
-					<div
-						style={cssRow(selected)} className={selected ? cls.selected : null}
+					const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
+					const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} hover-container`
+					const clsCellMain = `${cls.cell} ${cls.main}`
+
+					return <div
+						className={clsRow}
 						onClick={() => handleSelect(item)}
 					>
-						{props.map((prop, index) => (
-							<div key={index} style={{...cssRowCellNumber, flex: prop.flex ?? 1}}>
-								{getValueString(item, prop)}
-							</div>
-						))}
-					</div>
-				</div>
-			}}
-		/>
 
-	</div>
+						{!!propMain && (
+							<div className={clsCellMain}>
+								{mainText}
+								<CopyButton absolute value={mainText} />
+							</div>
+						)}
+
+						<div className={cls.row2}>
+							{props.map((prop, index) => (
+								<div key={index}
+									style={{ flex: prop.flex ?? 1 }}
+									className={cls.cell}
+								>{getValueString(item, prop)}</div>
+							))}
+						</div>
+					</div>
+
+				}}
+			/>
+
+		</div>
+	)
 }
 
 export default VTable
-
-
-
-const cssTable: CSSProperties = {
-
-}
-
-const cssRowMain = (select: boolean): CSSProperties => ({
-
-	position: "relative",
-	cursor: "pointer",
-	fontSize: '12px',
-	...select ? {
-		opacity: 1,
-		fontWeight: '600',
-	} : {
-		opacity: 0.8,
-	},
-})
-
-const cssRow = (select: boolean): CSSProperties => ({
-	display: "flex",
-	cursor: "pointer",
-	backgroundColor: !select ? "rgba(0, 0, 0, 0.5)" : null,
-})
-
-const cssRowCell: CSSProperties = {
-	fontSize: 12,
-	fontWeight: 600,
-	borderRight: '2px solid rgba(255,255,255,.2)',
-	padding: "3px 5px",
-}
-const cssRowCellNumber: CSSProperties = {
-	...cssRowCell,
-	fontFamily: "monospace",
-	fontSize: 12,
-	fontWeight: 600,
-	textAlign: "right",
-}
-const cssRowCellString: CSSProperties = {
-	...cssRowCell,
-	overflow: "hidden",
-	whiteSpace: "nowrap",
-	textOverflow: "ellipsis",
-	maxWidth: 0,
-}

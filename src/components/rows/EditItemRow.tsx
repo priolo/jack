@@ -6,7 +6,9 @@ import { RenderRowBaseProps } from "../lists/EditList"
 import ListRow from "../lists/ListRow"
 
 
-
+/** 
+ * ListRow con l'aggiunta bottone "close" (onChange(null))
+ */
 const EditItemRow: FunctionComponent<RenderRowBaseProps<any>> = ({
 	item,
 	isSelect,

@@ -12,10 +12,10 @@
 	--dialog-fg: black;
 }
 
-.root input::selection {
+/* .root :global(.jack-cmp-text-input)::selection {
 	background: purple;
 	color: brown;
-}
+} */
 
 /* 
 .root :global(.jack-card-dialog) {

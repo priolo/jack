@@ -1,4 +1,35 @@
 .root {
 	height: auto;
 	word-break: break-all;
+
+	resize: none;
+
+	border: none;
+	min-width: 0;
+	color: currentColor;
+	background-color: rgb(0 0 0 / 6%);
+
+	font-family: 'Inter Variable', sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+
+	padding: 4px 3px 3px 3px;
+	border-radius: 3px;
+}
+
+.root:focus {
+	outline: none;
+}
+
+.root:disabled {
+	opacity: 0.6;
+}
+
+.root::placeholder {
+	opacity: .6;
+}
+
+.root::selection {
+	background: var(--cmp-select-bg);
+	color: var(--cmp-select-fg);
 }

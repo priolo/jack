@@ -25,8 +25,8 @@
 	text-align: right;
 }
 .cell.main {
-	text-align: left;
 	padding: 5px 2px;
+	text-align: left;
 	overflow-wrap: anywhere;
 }
 

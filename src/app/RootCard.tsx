@@ -7,10 +7,9 @@ import { DOC_ANIM } from "@/types"
 import { useStore, useStoreNext } from "@priolo/jon"
 import React, { FunctionComponent, useEffect, useMemo } from "react"
 import { createPortal } from "react-dom"
+import { RenderProps } from "./CardsGroup"
 import ResizerCmp from "./ResizerCmp"
 import cls from "./RootCard.module.css"
-import layoutSo from "../stores/layout"
-import { RenderProps } from "./CardsGroup"
 
 
 
@@ -74,7 +73,7 @@ const RootCard: FunctionComponent<Props> = ({
 
 	// styles
 	const clsAnimation = inAnimation ? cls.animation : ""
-	const clsRoot = `${cls.root} ${clsAnimation} ${className}`
+	const clsRoot = `${cls.root} ${clsAnimation} ${className} jack-card`
 
 
 
@@ -130,13 +129,13 @@ const RootCard: FunctionComponent<Props> = ({
 				/> */}
 
 				{/* LINKED */}
-				{!inZen && haveLinked && <div >
+				{!inZen && haveLinked && (
 					<RootCard
 						deep={deep - 2}
 						view={view.state.linked}
 						Render={Render}
 					/>
-				</div>}
+				)}
 
 			</div>
 		</div>

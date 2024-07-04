@@ -34,14 +34,15 @@ const DragCmp: FunctionComponent = () => {
 		className={clsRoot}
 		style={cssRoot(pos, color)}
 	>
-		{mouseSa.drag?.source?.view?.getTitle() ?? "???"}
+		{mouseSa.drag?.source?.view?.getTitle() ?? "..."}
 	</div>
 }
 
 export default DragCmp
 
-const cssRoot = (pos: Position, color: string): React.CSSProperties => ({
+const cssRoot = (pos: Position, color: { bg: string, fg: string}): React.CSSProperties => ({
 	left: pos?.x,
 	top: pos?.y,
-	backgroundColor: color,
+	color: color?.fg,
+	backgroundColor: color?.bg,
 })

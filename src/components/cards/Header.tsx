@@ -49,7 +49,10 @@ const Header: FunctionComponent<Props> = ({
 		e.preventDefault()
 		const style = window.getComputedStyle(e.target as Element)
 		mouseSo.setPosition({ x: e.clientX, y: e.clientY })
-		mouseSo.setColor(style.getPropertyValue('--dialog-bg'))
+		mouseSo.setColor({
+			bg: style.getPropertyValue('--dialog-bg'),
+			fg: style.getPropertyValue('--dialog-fg'),
+		})
 		mouseSo.startDrag({ source: { view: store } })
 	}
 	const handleDetach = () => docSo.detach(store)

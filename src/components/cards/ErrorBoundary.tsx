@@ -1,5 +1,8 @@
-import React, { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ErrorInfo, ReactNode } from "react";
 import Button from "../buttons/Button";
+import cls from "./ErrorBoundary.module.css";
+
+
 
 interface Props {
 	children?: ReactNode;
@@ -30,27 +33,26 @@ class ErrorBoundary extends Component<Props, State> {
 	}
 
 	public render() {
-		
-		if (this.state.hasError) return <div style={cssMagContainer}>
-			{!!this.state.error ? <>
-				<div className="lbl-dialog-title">{this.state.error.message}</div>
-				<div className="lbl-dialog-text">{this.state.error.stack}</div>
-			</> : (
-				<div> ERRORE SCONOSCIUTO! </div>
-			)}
-			<Button
-				onClick={this.handleClickReload}
-			>RESET</Button>
-		</div>
+
+		if (this.state.hasError) return (
+			<div className={cls.root}>
+
+				{!!this.state.error ? <>
+					<div className={cls.title}>{this.state.error.message}</div>
+					<div className={cls.text}>{this.state.error.stack}</div>
+				</> : (
+					<div> ERRORE SCONOSCIUTO! </div>
+				)}
+
+				<Button
+					onClick={this.handleClickReload}
+				>RESET</Button>
+
+			</div>
+		)
 
 		return this.props.children;
 	}
 }
 
 export default ErrorBoundary;
-
-const cssMagContainer: React.CSSProperties = {
-	padding: 10,
-	height: '100%',
-	overflowY: 'auto'
-}

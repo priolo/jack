@@ -21,6 +21,15 @@
 	margin-bottom: 10px;
 	align-items: center;
 }
+.title .text {
+	flex: 1;
+	margin-right: 5px;
+	font-size: 16px;
+	font-weight: 800;
+	font-family: "Darker Grotesque";
+}
+
+
 
 .body {
 	display: flex;

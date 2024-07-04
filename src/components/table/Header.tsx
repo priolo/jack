@@ -45,7 +45,6 @@ const Header: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-
 	return (
 		<thead >
 			<tr className={cls.row}>

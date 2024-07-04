@@ -2,7 +2,7 @@ import { createStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
 import CardsGroup from "./app/CardsGroup"
 import Button from "./components/buttons/Button"
-import { deckCardsSo } from "./main"
+import { deckCards2So, deckCardsSo } from "./main"
 import example1Setup from "./stores/stacks/example1"
 import example2Setup from "./stores/stacks/example2"
 import { ViewStore } from "./stores/stacks/viewBase"
@@ -10,6 +10,7 @@ import ZenCard from "./app/ZenCard"
 import DragCmp from "./app/DragCmp"
 import TooltipCmp from "./app/tooltip/TooltipCmp"
 import PolymorphicCard from "./cards/PolymorphicCard"
+import { DOC_TYPE } from "./types"
 
 
 
@@ -28,6 +29,11 @@ const App: FunctionComponent = () => {
 		const view = createStore(example2Setup) as ViewStore
 		deckCardsSo.add({ view })
 	}
+	const handleAdd3 = () => {
+		const view = createStore(example2Setup) as ViewStore
+		view.state.type = DOC_TYPE.EXAMPLE3
+		deckCardsSo.add({ view })
+	}
 
 	// RENDER
 	return (
@@ -40,6 +46,9 @@ const App: FunctionComponent = () => {
 				<Button
 					onClick={handleAdd2}
 				>ADD 2</Button>
+				<Button
+					onClick={handleAdd3}
+				>ADD 3</Button>
 			</div>
 
 			
@@ -47,6 +56,13 @@ const App: FunctionComponent = () => {
 			<div style={cssDeck}>
 				<CardsGroup 
 					cardsStore={deckCardsSo} 
+					Render={PolymorphicCard}
+				/>
+			</div>
+
+			<div style={cssDeck2}>
+				<CardsGroup 
+					cardsStore={deckCards2So} 
 					Render={PolymorphicCard}
 				/>
 			</div>
@@ -66,7 +82,8 @@ const cssRoot: React.CSSProperties = {
 	position: "relative",
 	height: "100%",
 	display: "flex",
-	backgroundColor: "blue",
+	backgroundColor: "gray",
+	
 }
 
 const cssDeck: React.CSSProperties = {
@@ -74,4 +91,13 @@ const cssDeck: React.CSSProperties = {
 	display: "flex",
 	overflowX: "auto",
 	padding: "10px 0px 10px 0px",
+	backgroundColor: "blue",
+}
+
+const cssDeck2: React.CSSProperties = {
+	flex: 1,
+	display: "flex",
+	overflowX: "auto",
+	padding: "10px 0px 10px 0px",
+	backgroundColor: "#0F0FF0",
 }

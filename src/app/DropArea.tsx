@@ -51,7 +51,7 @@ const DropArea: FunctionComponent<Props> = ({
 	const inExit = viewSa?.docAnim == DOC_ANIM.EXIT || viewSa?.docAnim == DOC_ANIM.EXITING
 	const clsRoot = `${cls.root} ${dragOver ? cls.in_dragover : ""} ${inExit ? cls.in_exit : ""} ${isLast ? cls.is_last : ""}`
 	const clsLine = cls.line
-	const styLine: React.CSSProperties = { backgroundColor: dragOver ? mouseSa.color : null }
+	const styLine: React.CSSProperties = { backgroundColor: dragOver ? mouseSa.color?.bg : null }
 	
 	return <div draggable={false}
 		className={clsRoot}

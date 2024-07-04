@@ -3,6 +3,7 @@ import Dialog from "@/components/dialogs/Dialog"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
+import cls from "./Dialog.module.css"
 
 
 
@@ -39,7 +40,7 @@ const AlertDialog: FunctionComponent<Props> = ({
 
 		<div className="lbl-prop-title">DANGER</div>
 
-		<div className="lbl-dialog-text">
+		<div className={cls.text}>
 			{alert.body}
 		</div>
 

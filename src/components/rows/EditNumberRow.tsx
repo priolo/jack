@@ -6,7 +6,10 @@ import NumberInput from "../input/NumberInput"
 import { RenderRowBaseProps } from "../lists/EditList"
 
 
-
+/**
+ * row con NumberInput
+ * gestione tastiera, bottone clear
+ */
 const EditNumberRow: FunctionComponent<RenderRowBaseProps<number>> = ({
 	item,
 	isSelect,

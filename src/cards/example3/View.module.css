@@ -10,10 +10,6 @@
 	--dialog-fg: black;
 }
 
-.root ::-webkit-scrollbar-thumb:hover {
-	background: lightblue;
-}
-
 
 .root input::selection,
 .root textarea::selection {

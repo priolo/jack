@@ -139,7 +139,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 		>
 			{title != null ? (
 				<div className={cls.title}>
-					<div className="lbl-dialog-title" style={{ flex: 1, marginRight: 5 }}>
+					<div className={cls.text}>
 						{title}
 					</div>
 					<IconButton onClick={(e) => onClose(e)}>

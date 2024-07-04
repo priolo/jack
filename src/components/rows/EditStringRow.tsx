@@ -6,7 +6,10 @@ import TextInput from "../input/TextInput"
 import { RenderRowBaseProps } from "../lists/EditList"
 
 
-
+/**
+ * row con TextInput multiline
+ * gestione tastiera, bottone clear
+ */
 const EditStringRow: FunctionComponent<RenderRowBaseProps<string>> = ({
 	item,
 	isSelect,

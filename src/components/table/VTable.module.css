@@ -1,0 +1,54 @@
+
+.root {
+	display: flex; 
+	flex-direction: column;
+	flex: 1;
+
+	font-size: 12px;
+	font-family: monospace;
+	font-weight: 600;
+}
+.root .virtuoso {
+	width: 100%;
+}
+
+
+/* tuttla row */
+.row {
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+}
+.row.selected {
+	color: var(--cmp-select-fg);
+}
+
+/* la "seconda" row senza il main */
+.row2 {
+	display: flex;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.selected .row2 {
+	background-color: var(--cmp-select-bg);
+	opacity: 0.9;
+}
+
+
+.cell {
+	border-right: 2px solid rgba(255, 255, 255, .2);
+	padding: 3px 5px;
+	text-align: right;
+}
+.cell.main {
+	padding: 5px 2px;
+	text-align: left;
+	overflow-wrap: anywhere;
+	opacity: 0.8;
+}
+.selected .cell.main {
+	opacity: 1;
+	font-weight: 600;
+	background-color: var(--cmp-select-bg);
+}
+

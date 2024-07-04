@@ -1,0 +1,19 @@
+.root {
+	padding: 10px;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.title {
+	font-size: 16px;
+	font-weight: 800;
+	font-family: "Darker Grotesque";
+}
+
+.text {
+	flex: 1;
+	margin-right: 5px;
+	font-size: 16px;
+	font-weight: 800;
+	font-family: "Darker Grotesque";
+}

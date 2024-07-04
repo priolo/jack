@@ -9,7 +9,6 @@ export interface ItemProp {
 	label?: string
 	getValue?: (item: any) => any
 	getShow?: (item: any) => string
-
 	isMain?: boolean
 }
 
@@ -93,8 +92,7 @@ const Table: FunctionComponent<Props> = ({
 
 				const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
 				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} hover-container`
-				const clsCell = `${cls.cell}`
-				const clsCellMain = `${clsCell} ${cls.main}`
+				const clsCellMain = `${cls.cell} ${cls.main}`
 
 				return <React.Fragment key={id}>
 
@@ -118,7 +116,7 @@ const Table: FunctionComponent<Props> = ({
 					>
 						{propToShow.map((prop, index) => !(!singleRow && prop.isMain) && (
 							<td key={index}
-								className={prop.isMain ? clsCellMain : clsCell}
+								className={prop.isMain ? clsCellMain :  cls.cell}
 							>
 								{getValueString(item, prop)}
 							</td>

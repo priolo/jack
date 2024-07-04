@@ -4,14 +4,17 @@ import { createStore } from '@priolo/jon';
 import cardsSetup, { CardsStore } from './stores/docs/cards';
 
 
+import './css/global.css';
+
+
 
 import './css/colors.css';
 import './css/colors-var.css';
 import './css/index.css';
-import './css/input.css';
+//import './css/input.css';
 import './css/label.css';
-import './css/textarea.css';
-import './css/scrollbar.css';
+//import './css/textarea.css';
+//import './css/scrollbar.css';
 import './css/animation.css';
 import './css/button.css';
 import './css/interaction.css';
@@ -20,7 +23,7 @@ import './css/monaco.css';
 
 
 export const deckCardsSo = createStore(cardsSetup) as CardsStore
-
+export const deckCards2So = createStore(cardsSetup) as CardsStore
 
 
 

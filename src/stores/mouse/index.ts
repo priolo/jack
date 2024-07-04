@@ -10,7 +10,7 @@ const setup = {
 	state: {
 		drag: <DragDoc>null,
 		position: <Position>null,
-		color: <string>null,
+		color: <{ fg: string, bg: string }>null,
 	},
 
 	getters: {
@@ -63,7 +63,7 @@ const setup = {
 	mutators: {
 		setDrag: (drag: DragDoc) => ({ drag }),
 		setPosition: (position: Position) => ({ position }),
-		setColor: (color: string) => ({ color }),
+		setColor: (color: { fg: string, bg: string }) => ({ color }),
 	},
 }
 

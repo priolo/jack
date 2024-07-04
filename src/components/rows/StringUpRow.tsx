@@ -3,6 +3,9 @@ import { RenderRowBaseProps } from "../lists/EditList"
 
 
 
+/**
+ * semplice stringa readonly in uppercase
+ */
 const StringUpRow: FunctionComponent<RenderRowBaseProps<any>> = ({
 	item,
 	isSelect,

@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from "react"
 import ListRow from "./ListRow"
+import { RenderRowBaseProps } from "./EditList"
 
 
-
-export interface RenderRowBaseProps<T> {
-	item: T
-	isSelect?: boolean
-}
 
 interface Props<T> {
 	items: T[]

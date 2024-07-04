@@ -1,16 +1,20 @@
-
 .row {
 	font-size: 10px;
 	font-weight: 600;
 	height: 28px;
 	position: sticky;
 	top: 0px;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: #5b5b5b;
 	z-index: 1;
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px 0px;
 }
 
+.virtuoso.row {
+	display: flex;
+}
+
 .cell {
+	text-align: right;
 	border-right: 2px solid rgba(0, 0, 0, 0.5);
 	border-top: 2px solid rgba(0, 0, 0, 0.5);
 	padding: 3px 5px;
@@ -18,9 +22,10 @@
 
 .cellContainer {
 	display: flex;
-	align-items: center; 
+	align-items: center;
 	justify-content: flex-end;
 }
+
 .main .cellContainer {
 	flex-direction: row-reverse;
 }
