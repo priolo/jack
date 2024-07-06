@@ -1,11 +1,12 @@
 import { StoreCore, createStore } from "@priolo/jon"
+import { ColorVar } from "../../types/global"
 
 
 
 export interface TooltipContent {
 	content: React.ReactNode
 	targetRect: DOMRect
-	color?: { bg?:string, fg?:string}
+	color?: ColorVar
 	id?: string
 }
 

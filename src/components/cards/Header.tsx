@@ -22,12 +22,14 @@ import cls from "./Header.module.css"
 interface Props {
 	icon?: React.ReactNode
 	store?: ViewStore
+	extraRender?: React.ReactNode
 }
 
 /** Tipico HEADER con icona e titolo. Lo trovi nel tipico FrameworkCard */
 const Header: FunctionComponent<Props> = ({
 	icon,
 	store,
+	extraRender,
 }) => {
 
 	// STORE
@@ -78,15 +80,6 @@ const Header: FunctionComponent<Props> = ({
 		//e.stopPropagation()
 		docSo.focus(store)
 	}
-	const handleToggleIconize = () => {
-		if (!inMenu) {
-			//store.state.group.remove({ view: store })
-			menuSo.add({ view: store })
-		}
-		// else {
-		// 	menuCardsSo.remove({ view: store })
-		// }
-	}
 	const handleComprime = () => {
 		findParent(store, (view) => view.setSize(VIEW_SIZE.COMPACT))
 	}
@@ -115,7 +108,6 @@ const Header: FunctionComponent<Props> = ({
 	//const showBttAnchor = !inZen && inRoot && (enter || inDrawer)
 	const showDetachable = !inZen && !inRoot && enter
 	const showBttClose = !store.state.unclosable
-	const showBttPin = !inZen && inRoot && enter && store.state.pinnable
 	const showBttExpand = !inZen && allCompact && !inRoot && enter
 	const showBttComprime = !inZen && !allCompact && !inRoot && enter
 
@@ -133,8 +125,8 @@ const Header: FunctionComponent<Props> = ({
 		>
 
 			{/* ICON */}
-			<div 
-				onClick={!inZen ? handleSizeClick : undefined} 
+			<div
+				onClick={!inZen ? handleSizeClick : undefined}
 				className={cls.icon}
 			>
 				<TooltipWrapCmp
@@ -148,7 +140,7 @@ const Header: FunctionComponent<Props> = ({
 				</TooltipWrapCmp>
 			</div>
 
-
+			{/* NOT ICON */}
 			{!isCompact && <>
 
 				<div className={clsTitle}
@@ -176,11 +168,6 @@ const Header: FunctionComponent<Props> = ({
 								onClick={handleComprime}
 							><DirectionLeftIcon /></IconButton>
 						)}
-						{showBttPin && (
-							<IconButton
-								onClick={handleToggleIconize}
-							><IconizedIcon /></IconButton>
-						)}
 						{/* {showBttAnchor && (
 							<IconButton
 								onClick={handleMoveInDrawer}
@@ -191,11 +178,15 @@ const Header: FunctionComponent<Props> = ({
 								onClick={handleDetach}
 							><DetachIcon /></IconButton>
 						)}
+
+						{enter && (extraRender)}
+
 						{showBttClose && (
 							<IconButton
 								onClick={handleClose}
 							><CloseIcon /></IconButton>
 						)}
+
 					</div>
 					{/* {haveLinkDetachable && <IconButton
 						onClick={handleLinkDetach}

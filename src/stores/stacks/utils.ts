@@ -4,14 +4,14 @@ export enum VIEW_SIZE {
 	ICONIZED,
 }
 
-export enum VIEW_PARAMS {
-	POSITION = "pos",
-}
+// export enum VIEW_PARAMS {
+// 	POSITION = "pos",
+// }
 
-export enum VIEW_VARIANTS {
-	DEFAULT = "",
-	LINK = "_link",
-}
+// export enum VIEW_VARIANTS {
+// 	DEFAULT = "",
+// 	LINK = "_link",
+// }
 
 export enum LOAD_MODE {
 	MANUAL,

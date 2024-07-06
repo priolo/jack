@@ -12,6 +12,7 @@ import { Example1State } from "../../stores/stacks/example1"
 import example2Setup, { Example2Store } from "../../stores/stacks/example2"
 import cls from "./View.module.css"
 import Button from "../../components/buttons/Button"
+import Header from "../../components/cards/Header"
 
 
 
@@ -38,7 +39,7 @@ const Example1View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
-		icon={<DoneIcon />}
+		headerRender={<Header store={store} icon={<DoneIcon />} />}
 		className={cls.root}
 		store={store}
 	>

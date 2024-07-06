@@ -1,6 +1,7 @@
 import { StoreCore, createStore } from "@priolo/jon"
 import { DOC_ANIM } from "../docs/types"
 import { DragDoc, Position } from "./utils"
+import { ColorVar } from "../../types/global"
 
 
 
@@ -10,7 +11,7 @@ const setup = {
 	state: {
 		drag: <DragDoc>null,
 		position: <Position>null,
-		color: <{ fg: string, bg: string }>null,
+		color: <ColorVar>null,
 	},
 
 	getters: {
@@ -63,7 +64,7 @@ const setup = {
 	mutators: {
 		setDrag: (drag: DragDoc) => ({ drag }),
 		setPosition: (position: Position) => ({ position }),
-		setColor: (color: { fg: string, bg: string }) => ({ color }),
+		setColor: (color: ColorVar) => ({ color }),
 	},
 }
 

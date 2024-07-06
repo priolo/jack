@@ -16,6 +16,8 @@ export { default as CardsGroup } from '@/app/CardsGroup';
 
 // COMPONENTS
 export { default as FrameworkCard } from "@/components/cards/FrameworkCard"
+export { default as Header } from "@/components/cards/Header"
+
 export { default as Table } from "@/components/table/index"
 export { default as VTable } from "@/components/table/VTable"
 export { default as ResizerCmp, RESIZER_DIRECTION } from "@/app/ResizerCmp"
@@ -76,7 +78,8 @@ export type { TIMER_STATE } from "@/components/loaders/TimerCmp"
 // STORES
 export { default as viewSetup, } from "@/stores/stacks/viewBase"
 export type { ViewStore, ViewState, ViewActions, ViewGetters, ViewMutators } from "@/stores/stacks/viewBase"
-export { VIEW_SIZE } from '@/stores/stacks/utils';
+export { VIEW_SIZE, LOAD_STATE } from '@/stores/stacks/utils';
+export type { ColorVar } from "@/types/global"
 
 export { default as loadBaseSetup } from '@/stores/stacks/loadBase';
 export type { LoadBaseState, LoadBaseStore } from '@/stores/stacks/loadBase';

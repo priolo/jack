@@ -21,3 +21,7 @@ export type Color = `#${string}`
 /** una string che rappresenta un uuid */
 export type Uuid = string
 
+export type ColorVar = {
+	fg?: Color | string,
+	bg?: Color | string,
+}

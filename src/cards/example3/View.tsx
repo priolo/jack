@@ -14,6 +14,8 @@ import FloatButton from "../../components/buttons/FloatButton"
 import SendIcon from "../../icons/SendIcon"
 import LinkButton from "../../components/buttons/LinkButton"
 import Table from "../../components/table"
+import Header from "../../components/cards/Header"
+
 
 
 
@@ -43,7 +45,7 @@ const Example2View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
-		icon={<EditorIcon />}
+		headerRender={<Header store={store} icon={<EditorIcon />} />}
 		className={cls.root}
 		store={store}
 	>

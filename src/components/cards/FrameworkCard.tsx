@@ -9,7 +9,6 @@ import { FunctionComponent } from "react"
 import IconButton from "../buttons/IconButton"
 import ErrorBoundary from "./ErrorBoundary"
 import cls from "./FrameworkCard.module.css"
-import Header from "./Header"
 import SnackbarCmp from "./SnackbarCmp"
 
 
@@ -21,7 +20,7 @@ interface Props {
 	style?: React.CSSProperties
 	styleBody?: React.CSSProperties
 
-	icon?: React.ReactNode
+	headerRender?:React.ReactNode
 	actionsRender?: React.ReactNode
 	iconizedRender?: React.ReactNode
 	children: React.ReactNode
@@ -35,7 +34,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	style,
 	styleBody,
 	
-	icon,
+	headerRender,
 	actionsRender,
 	iconizedRender,
 	children,
@@ -62,11 +61,13 @@ const FrameworkCard: FunctionComponent<Props> = ({
 
 	return <div className={clsRoot} style={style} >
 
-		<Header store={store} icon={icon} />
+		{/* <Header store={store} icon={icon} /> */}
+		{headerRender}
 
 		<ErrorBoundary>
 
 			{isIconized ? <>
+
 				<div
 					className={`${cls.actions} ${cls.hovercontainer}`}
 				>
@@ -83,7 +84,9 @@ const FrameworkCard: FunctionComponent<Props> = ({
 
 				</div>
 				{iconizedRender}
+
 			</> : <>
+
 				<div className={cls.actions}>
 					{actionsRender}
 				</div>
@@ -91,6 +94,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 				<div className={clsChildren} style={styleBody}>
 					{children}
 				</div>
+
 			</>}
 
 		</ErrorBoundary>
