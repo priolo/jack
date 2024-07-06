@@ -21,7 +21,7 @@ interface Props extends DialogProps {
 
 const ListDialog: FunctionComponent<Props> = ({
 	items,
-	RenderRow = ({ item }) => <div className="list-row">{item?.toString() ?? ""}</div>,
+	RenderRow = ({ item }) => <div className="jack-list-row">{item?.toString() ?? ""}</div>,
 	select,
 	style,
 	readOnly,

@@ -40,7 +40,7 @@ const CopyButton: FunctionComponent<Props> = ({
 	
 	return (
 		<TooltipWrapCmp
-			className={`${absolute ? `${cls.absolute} hover-show` : ""} ${className}`}
+			className={`${absolute ? `${cls.absolute} jack-hover-hide` : ""} ${className}`}
 			style={style}
 			content={label}
 		>

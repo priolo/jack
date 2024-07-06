@@ -91,7 +91,7 @@ const Table: FunctionComponent<Props> = ({
 				const mainText = getValueString(item, propMain)
 
 				const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
-				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} hover-container`
+				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} jack-hover-container`
 				const clsCellMain = `${cls.cell} ${cls.main}`
 
 				return <React.Fragment key={id}>

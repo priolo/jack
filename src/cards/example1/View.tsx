@@ -43,7 +43,7 @@ const Example1View: FunctionComponent<Props> = ({
 		store={store}
 	>
 
-		<div className="lyt-form">
+		<div className="jack-lyt-form">
 
 			<TooltipWrapCmp content="TOOLTIP 1!!!">
 				<div>EXAMPLE 1</div>

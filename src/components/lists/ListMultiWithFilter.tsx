@@ -53,7 +53,7 @@ const ListMultiWithFilter: FunctionComponent<Props> = ({
 	const haveValue = search?.length > 0
 	const allSelect = selects.length == items.length
 
-	if (!items || items.length == 0) return <div className="lbl-empty lbl-disabled">EMPTY LIST</div>
+	if (!items || items.length == 0) return <div className="jack-lbl-empty">EMPTY LIST</div>
 
 	return <div style={{ display: "flex", flexDirection: "column" }}>
 

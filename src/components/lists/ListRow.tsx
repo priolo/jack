@@ -26,7 +26,9 @@ function ListRow<T>({
 	// HANDLERS
 
 	// RENDER
-	const clsRoot = `${cls.root} ${!readOnly ? "cliccable" : ""} ${isSelect ? cls.select : ""}`
+	const clsReadonly = !readOnly ? cls.cliccable : ""
+	const clsSelected = isSelect ? cls.select : ""
+	const clsRoot = `${cls.root} ${clsReadonly} ${clsSelected}`
 
 	return <div
 		className={clsRoot}

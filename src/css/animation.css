@@ -1,4 +1,4 @@
-@keyframes ani-rotation-loop {
+@keyframes jack-ani-rotation-loop {
 	from {
 		transform: rotate(0deg);
 	}
@@ -7,11 +7,11 @@
 	}
 }
 
-.ani-rot-loop {
+.jack-ani-rot-loop {
 	transform-origin: center;
-	animation: ani-rotation-loop 1s linear infinite;
+	animation: jack-ani-rotation-loop 1s linear infinite;
 }
 
-.ani-color {
+.jack-ani-color {
 	transition: color 300ms;
 }

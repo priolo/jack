@@ -23,7 +23,7 @@ const PasswordInput: FunctionComponent<Props> = ({
 	// HANDLER
 
 	// RENDER
-	return <div className="cmp-h">
+	return <div className="jack-cmp-h">
 		<TextInput
 			{...props}
 			type={hide ? "password" : null}

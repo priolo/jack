@@ -28,12 +28,12 @@ const Box: FunctionComponent<Props> = ({
 
 	// RENDER
 	return (
-		<div className={`hover-container ${cls.root} ${className}`}
+		<div className={`jack-hover-container ${cls.root} ${className}`}
 			style={style}
 		>
 			{preRender}
 			{children}
-			{!readOnly && <div className={`hover-show ${cls.enter}`}>
+			{!readOnly && <div className={`jack-hover-hide ${cls.enter}`}>
 				{enterRender}
 			</div>}
 		</div>

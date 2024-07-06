@@ -6,9 +6,12 @@
 	display: flex;
 	flex-direction: column;
 
-	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
 	transition: opacity 300ms;
 	border-radius: 5px;
+
+	color: var(--card-fg);
+	background-color: var(--card-bg);
+	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
 }
 
 .iconized {
@@ -68,12 +71,12 @@
 }
 
 
-/* ICON BUTTON */
+/* EXTRAIBLE BUTTON */
 .btt {
+	color: var(--cmp-select-fg);
+	background-color: var(--cmp-select-bg);
 	position: absolute;
-	color: var(--var-0);
 	border-radius: 50%;
-
 	transition: top 300ms ease-out, opacity 200ms linear;
 	top: 0px;
 	opacity: 0;

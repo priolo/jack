@@ -1,7 +1,7 @@
 .root {
-	background-color: red;
-	color: black;
-	
+	--card-fg: black;
+	--card-bg: red;
+
 	--cmp-select-bg: yellow;
 	--cmp-select-fg: green;
 	--cmp-bg: rgba(0, 0, 0, 0.05);

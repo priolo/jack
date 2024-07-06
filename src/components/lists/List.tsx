@@ -20,7 +20,7 @@ interface Props<T> {
 /** lista generica non editabile */
 function List<T>({
 	items,
-	RenderRow = ({ item }) => <div className="list-row">{item?.toString() ?? ""}</div>,
+	RenderRow = ({ item }) => <div className="jack-list-row">{item?.toString() ?? ""}</div>,
 	RenderRow2,
 	readOnly,
 	height,
@@ -40,7 +40,7 @@ function List<T>({
 	}
 
 	// RENDER
-	if (!items || items.length == 0) return <div className="lbl-empty lbl-disabled">EMPTY LIST</div>
+	if (!items || items.length == 0) return <div className="jack-lbl-empty">EMPTY LIST</div>
 	const isSelect = (index: number) => typeof select == "number" && select == index
 
 	return <div

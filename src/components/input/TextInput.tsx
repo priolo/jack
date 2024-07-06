@@ -81,7 +81,7 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 	if (readOnly) {
 		if ( type == "password" ) value = "***"
 		return (
-			<div className={`lbl-readonly ${className ?? ""}`}
+			<div className={`jack-lbl-readonly ${className ?? ""}`}
 				style={style}
 			>
 				{value ?? ""}

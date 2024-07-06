@@ -119,8 +119,10 @@ const Header: FunctionComponent<Props> = ({
 	const showBttExpand = !inZen && allCompact && !inRoot && enter
 	const showBttComprime = !inZen && !allCompact && !inRoot && enter
 
-	const clsTitle = `${cls.title} ${store.state.size == VIEW_SIZE.COMPACT ? cls.compact : ""}`
-	const clsRoot = `${cls.root} ${store.state.size == VIEW_SIZE.COMPACT ? cls.compact : ""}`
+	const clsCompact = store.state.size == VIEW_SIZE.COMPACT ? cls.compact : ""
+	const clsRoot = `${cls.root} ${clsCompact}`
+	const clsTitle = `${cls.titleBox} ${clsCompact}`
+
 
 	return (
 		<div className={clsRoot}
@@ -130,32 +132,33 @@ const Header: FunctionComponent<Props> = ({
 			onMouseLeave={() => setEnter(false)}
 		>
 
-			{!!store.state.type && (
-				<div onClick={!inZen ? handleSizeClick : undefined} className="cliccable"
-					style={{ margin: 8, alignSelf: "center" }}
+			{/* ICON */}
+			<div 
+				onClick={!inZen ? handleSizeClick : undefined} 
+				className={cls.icon}
+			>
+				<TooltipWrapCmp
+					disabled={!isCompact}
+					content={<div>
+						<div className={cls.title}>{title}</div>
+						<div className={cls.subtitle}>{subTitle}</div>
+					</div>}
 				>
-					<TooltipWrapCmp
-						disabled={!isCompact}
-						content={<div>
-							<div className="lbl-header-title">{title}</div>
-							<div className="lbl-header-subtitle">{subTitle}</div>
-						</div>}
-					>
-						{icon}
-					</TooltipWrapCmp>
-				</div>
-			)}
+					{icon}
+				</TooltipWrapCmp>
+			</div>
+
 
 			{!isCompact && <>
 
 				<div className={clsTitle}
 					onDoubleClick={handleDClick}
 				>
-					<div className="lbl-header-title draggable"
+					<div className={`${cls.title} ${cls.draggable}`}
 						onClick={!inZen ? handleFocus : undefined}
 					>{title}</div>
 					{subTitle && (
-						<div className="lbl-header-subtitle">
+						<div className={cls.subtitle}>
 							{subTitle}
 						</div>
 					)}

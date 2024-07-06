@@ -1,22 +1,49 @@
-
 .root {
 	display: flex;
 	height: 41px;
 	align-items: flex-start;
 }
 
-.root.compact{
+.root .icon {
+	cursor: pointer;
+	margin: 8px;
+	align-self: center;
+}
+
+.root.compact {
 	flex-direction: column;
 }
 
-.title {
+.titleBox {
 	display: flex;
 	flex: 1;
 	flex-direction: column;
 	width: 0px;
 }
 
-.title.compact {
+.title {
+	font-size: 16px;
+	font-weight: 800;
+	font-family: "Darker Grotesque";
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.title.draggable {
+	cursor: grab;
+}
+
+.subtitle {
+	font-size: 12px;
+	font-weight: 700;
+	opacity: .7;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.titleBox.compact {
 	writing-mode: vertical-lr;
 	flex-direction: column-reverse;
 	align-self: center;

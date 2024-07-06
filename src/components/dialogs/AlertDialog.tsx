@@ -38,13 +38,13 @@ const AlertDialog: FunctionComponent<Props> = ({
 		onClose={() => handleClose(false)}
 	>
 
-		<div className="lbl-prop-title">DANGER</div>
+		<div className="jack-lbl-prop-title">DANGER</div>
 
 		<div className={cls.text}>
 			{alert.body}
 		</div>
 
-		<div className="bars-alert-bg" style={{ height: 20 }} />
+		<div className="jack-bars-alert-bg" style={{ height: 20 }} />
 
 		<div style={{ display: "flex", gap: 15, marginTop: 10 }}>
 			<Button

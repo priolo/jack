@@ -1,4 +1,4 @@
-import { EditorRefProps } from "@/components/editor"
+import { EditorRefProps } from "@/components/__editor"
 import { MSG_FORMAT } from "@/utils/editor"
 import { StoreCore } from "@priolo/jon"
 import { ViewState, ViewStore } from "./viewBase"

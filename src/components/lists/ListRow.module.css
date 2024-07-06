@@ -7,6 +7,10 @@
 	word-break: break-all;
 }
 
+.root.cliccable {
+	cursor: pointer;
+}
+
 .select {
 	background-color: rgba(0,0,0,.2);
 }

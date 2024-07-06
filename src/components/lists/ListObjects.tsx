@@ -85,7 +85,7 @@ function ListObjects<T>({
 				>
 					<RenderLabel item={item} index={index} />
 				</Component>
-			) : readOnly ? <div className="lbl-empty lbl-disabled">EMPTY LIST</div> : null}
+			) : readOnly ? <div className="jack-lbl-empty">EMPTY LIST</div> : null}
 
 			{/* NEW BUTTON */}
 			{!readOnly && (

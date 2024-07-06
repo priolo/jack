@@ -29,8 +29,10 @@ const Component: FunctionComponent<Props> = ({
 	// HANDLER
 
 	// RENDER
-	const isCliccable = !!onClick
-	const clsRoot = `hover-container ${cls.root} ${isCliccable ? "cliccable" : ""} ${selected ? cls.selected : ""} ${readOnly ? cls.readonly : ""}`
+	const clsCliccable = !!onClick ? cls.cliccable : ""
+	const clsSelected = selected ? cls.selected : ""
+	const clsReadonly = readOnly ? cls.readonly : ""
+	const clsRoot = `jack-hover-container ${cls.root} ${clsCliccable} ${clsSelected} ${clsReadonly}`
 
 	return (
 		<div className={clsRoot}
@@ -39,7 +41,7 @@ const Component: FunctionComponent<Props> = ({
 		>
 			{preRender}
 			{children}
-			<div className="hover-hide hover-show" style={{ position: "absolute", top: 4, right: 4 }}>
+			<div className="jack-hover-hide" style={{ position: "absolute", top: 4, right: 4 }}>
 				{enterRender}
 			</div>
 		</div>
