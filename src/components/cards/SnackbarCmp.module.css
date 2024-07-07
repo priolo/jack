@@ -12,7 +12,9 @@
 	border-radius: 7px;
 
 	transition: bottom 300ms cubic-bezier(0.5, 0, 0, 1), opacity 300ms linear;
-	background-color: var(--text-bg);
+
+	color: var(--dialog-fg);
+	background-color: var(--dialog-bg);
 	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
 }
 
@@ -42,21 +44,13 @@
 	color: var(--text);
 }
 
-.info {
-	color: var(--var-2);
-}
+.info {}
 
-.success {
-	color: var(--var-3);
-}
+.success {}
 
-.warn {
-	color: var(--var-1);
-}
+.warn {}
 
-.error {
-	color: var(--var-5);
-}
+.error {}
 
 /* #endregion */
 

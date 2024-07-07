@@ -1,3 +1,8 @@
+:root {
+	--jack-z-resizer: 100;
+	--jack-z-zen: 101;
+}
+
 .jack-bars-alert-bg {
 	background: repeating-linear-gradient(135deg, transparent, transparent 7px, currentColor 7px, currentColor 15px)
 }

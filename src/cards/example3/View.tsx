@@ -12,7 +12,7 @@ import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import EditorIcon from "../../icons/EditorIcon"
 import FloatButton from "../../components/buttons/FloatButton"
 import SendIcon from "../../icons/SendIcon"
-import LinkButton from "../../components/buttons/LinkButton"
+import LinkButton from "../../components/buttons/__LinkButton"
 import Table from "../../components/table"
 import Header from "../../components/cards/Header"
 

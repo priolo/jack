@@ -24,7 +24,7 @@
 	user-select: none;
 	cursor: w-resize;
 	margin-right: -5px;
-	z-index: var(--z-resizer);
+	z-index: var(--jack-z-resizer);
 }
 
 .dialog {

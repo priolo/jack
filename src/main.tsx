@@ -9,7 +9,7 @@ import '@/css/label.css';
 
 
 
-import './css/colors.css';
+//import './css/colors.css';
 import './css/colors-var.css';
 import './css/index.css';
 //import './css/input.css';

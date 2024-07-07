@@ -1,15 +1,13 @@
-import layoutSo from "@/stores/layout"
-import { ANIM_TIME, DOC_ANIM, DOC_TYPE } from "@/types"
+import { ANIM_TIME, DOC_ANIM } from "@/types"
 import { delay } from "@/utils/time"
-import { LISTENER_CHANGE, StoreCore } from "@priolo/jon"
+import { StoreCore } from "@priolo/jon"
+import docsSo from "../docs"
 import { CardsStore } from "../docs/cards"
 import { buildStore, createUUID } from "../docs/utils/factory"
-import { COLOR_VAR } from "../layout"
+import { forEachViews } from "../docs/utils/manage"
+import { DragDoc } from "../mouse/utils"
 import { LoadBaseStore } from "./loadBase"
 import { VIEW_SIZE } from "./utils"
-import { forEachViews } from "../docs/utils/manage"
-import docsSo from "../docs"
-import { DragDoc } from "../mouse/utils"
 
 
 

@@ -14,7 +14,7 @@
 	pointer-events: none;
 }
 
-.select {
+.selected {
 	border-color: transparent;
 	color: var(--cmp-select-fg);
 	background-color: var(--cmp-select-bg);

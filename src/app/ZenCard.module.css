@@ -6,7 +6,7 @@
 	height: 100%;
 	width: 100%;
 
-	z-index: var(--z-zen);
+	z-index: var(--jack-z-zen);
 	background: rgba(0, 0, 0, .9);
 	/* backdrop-filter: blur(5px); */
 
