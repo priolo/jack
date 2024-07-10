@@ -1,8 +1,14 @@
 :root {
 	--jack-z-resizer: 100;
 	--jack-z-zen: 101;
+	--jack-framework-actions-fg: #dedede;
+	--jack-framework-actions-bg: rgb(0 0 0 / 50%);
 }
 
 .jack-bars-alert-bg {
 	background: repeating-linear-gradient(135deg, transparent, transparent 7px, currentColor 7px, currentColor 15px)
+}
+
+.jack-framework-actions .jack-cmp:not(.jack-cmp-select) {
+	color: var(--jack-framework-actions-fg)
 }

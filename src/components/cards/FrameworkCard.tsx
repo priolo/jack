@@ -69,25 +69,26 @@ const FrameworkCard: FunctionComponent<Props> = ({
 			{isIconized ? <>
 
 				<div
-					className={`${cls.actions} ${cls.hovercontainer}`}
+					className={`${cls.actions} ${cls.hovercontainer} jack-framework-actions`}
 				>
 					<IconButton
 						onClick={handleClose}
 					><CloseIcon /></IconButton>
 
 					{!inRoot && (
-						<IconButton
+						<IconButton style={{ color: "var(--card-fg)"}}
 							className={`${cls.btt} ${cls.hovershow}`}
 							onClick={handleDetach}
 						><DetachIcon /></IconButton>
 					)}
 
 				</div>
+
 				{iconizedRender}
 
 			</> : <>
 
-				<div className={cls.actions}>
+				<div className={`${cls.actions} jack-framework-actions`}>
 					{actionsRender}
 				</div>
 
