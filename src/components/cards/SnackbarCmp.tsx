@@ -1,6 +1,7 @@
 import CloseIcon from "@/icons/CloseIcon"
 import InfoIcon from "@/icons/InfoIcon"
 import SkullIcon from "@/icons/SkullIcon"
+import SuccessIcon from "@/icons/SuccessIcon"
 import WarnIcon from "@/icons/WarnIcon"
 import { VIEW_SIZE } from "@/stores/stacks/utils"
 import { MESSAGE_TYPE, ViewState, ViewStore } from "@/stores/stacks/viewBase"
@@ -9,7 +10,6 @@ import { FunctionComponent, useEffect, useMemo, useState } from "react"
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import IconButton from "../buttons/IconButton"
 import cls from "./SnackbarCmp.module.css"
-import SuccessIcon from "@/icons/SuccessIcon"
 
 
 

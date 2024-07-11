@@ -12,7 +12,6 @@ import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import EditorIcon from "../../icons/EditorIcon"
 import FloatButton from "../../components/buttons/FloatButton"
 import SendIcon from "../../icons/SendIcon"
-import LinkButton from "../../components/buttons/__LinkButton"
 import Table from "../../components/table"
 import Header from "../../components/cards/Header"
 
@@ -80,14 +79,6 @@ const Example2View: FunctionComponent<Props> = ({
 				onClick={() => console.log("click float")}
 				disabled={false}
 			><SendIcon /></FloatButton>
-
-			<LinkButton
-				icon={<SendIcon />}
-				tooltip="KVENTRIES"
-				selected={true}
-				onClick={() => console.log("click link button")}
-				renderExtra={<div>CIAO</div>}
-			/>
 			
 			<div style={{ height: 400, overflowY: "auto" }}>
 				<Table

@@ -82,7 +82,7 @@ const cardsSetup = {
 				delete docsSo.state.cardOptions[parent.state.type]
 				return
 			} else {
-				docsSo.state.cardOptions[parent.state.type] = view.state.type
+				docsSo.state.cardOptions[parent.state.type] = view.state.type as any
 			}
 
 			// imposto la view

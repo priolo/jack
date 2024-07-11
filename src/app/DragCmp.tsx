@@ -4,6 +4,7 @@ import { FunctionComponent, useEffect, useState } from "react"
 import { Position } from "../stores/mouse/utils"
 import { ANIM_TIME } from "../types"
 import cls from "./DragCmp.module.css"
+import { ColorVar } from "../types/global"
 
 
 
@@ -40,7 +41,7 @@ const DragCmp: FunctionComponent = () => {
 
 export default DragCmp
 
-const cssRoot = (pos: Position, color: { bg: string, fg: string}): React.CSSProperties => ({
+const cssRoot = (pos: Position, color: ColorVar): React.CSSProperties => ({
 	left: pos?.x,
 	top: pos?.y,
 	color: color?.fg,

@@ -2,8 +2,8 @@
 .jack-lbl-prop-title {
 	font-size: 13px;
 	font-weight: 800;
-	border-bottom: 1px solid currentColor;
-	border-top: 1px solid currentColor;
+	border-bottom: 1px solid color-mix(in srgb, currentColor 60%, transparent);
+	border-top: 1px solid color-mix(in srgb, currentColor 60%, transparent);
 	padding: 3px;
 	text-align: center;
 	margin-top: 3px;

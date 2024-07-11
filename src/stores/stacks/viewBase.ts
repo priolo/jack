@@ -75,7 +75,6 @@ const viewSetup = {
 			return {
 				uuid: store.state.uuid,
 				type: store.state.type,
-				//position: store.state.position,
 				size: store.state.size,
 				linked: store.state.linked?.getSerialization(),
 			}
@@ -100,15 +99,6 @@ const viewSetup = {
 		setSerialization: (state: any, store?: ViewStore) => {
 			store.state.uuid = state.uuid
 			store.state.size = state.size
-			// recursion
-			const linkedState = state.linked
-			if (!!state.linked) delete state.linked
-			if (linkedState) {
-				const linkedStore = buildStore({ type: linkedState.type, group: store.state.group })
-				linkedStore.setSerialization(linkedState)
-				store.setLinked(linkedStore)
-				linkedStore.onLinked()
-			}
 		},
 		//#endregion
 
