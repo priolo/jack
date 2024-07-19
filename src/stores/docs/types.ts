@@ -12,7 +12,7 @@ export enum DOC_ANIM {
 	DRAGGING = "dragging",
 	EXITING = "exiting",
 	SHOWING = "showing",
-	SIZING = "iconize",
+	SIZING = "sizing",
 }
 
 export enum EDIT_STATE {

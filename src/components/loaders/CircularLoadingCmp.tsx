@@ -15,7 +15,7 @@ const CircularLoadingCmp: FunctionComponent<Props> = ({
 
 	return (
 		<svg width="120" height="120" viewBox="0 0 120 120" style={style}>
-			<circle className="ani-color"
+			<circle className="jack-ani-color"
 				cx="60"
 				cy="60"
 				r={radius}

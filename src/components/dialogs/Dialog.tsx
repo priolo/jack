@@ -43,7 +43,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 
 	open,
 	title,
-	width,
+	width = "fit-content",
 	fullHeight,
 	top = null,
 	style,
@@ -164,5 +164,5 @@ export default Dialog
 const cssRoot = (width: number | string, top: number): React.CSSProperties => ({
 	width,
 	marginTop: top,
-	transform: `translateX(calc(100% - 3px))`,
+	//transform: `translateX(calc(100% - 3px))`,
 })

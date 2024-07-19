@@ -64,20 +64,14 @@ const RootCard: FunctionComponent<Props> = ({
 
 	// RENDER
 	if (!view) return null
+	const ani = view.state.docAnim
 	const inZen = docsSa.zenCard == view
-	const inAnimation = viewSa.docAnim == DOC_ANIM.EXITING || viewSa.docAnim == DOC_ANIM.SHOWING || viewSa.docAnim == DOC_ANIM.SIZING
 	const isCompact = !inZen && viewSa.size == VIEW_SIZE.COMPACT
 	const isResizable = !isCompact && !inZen
 	const haveLinked = !inZen && !!view.state.linked
-	//const dialogId = `dialog_${view.state.uuid}`
 
 	// styles
-	const clsAnimation = inAnimation ? cls.animation : ""
-	const clsRoot = `${cls.root} ${clsAnimation} ${className} jack-card`
-
-
-
-	const ani = view.state.docAnim
+	const clsRoot = `${cls.root} ${cls[ani] ?? ""} ${className} jack-card`
 	const width = view.getWidth()
 	const styContainerDoc: React.CSSProperties = {
 		zIndex: deep,
@@ -85,12 +79,6 @@ const RootCard: FunctionComponent<Props> = ({
 		maxWidth: view.state.widthMax,
 		minWidth: view.state.widthMin,
 	}
-	if (ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT) {
-		styContainerDoc.width = 0
-		styContainerDoc.transform = `translate(${-width}px, 0px)`
-	}
-
-
 
 	const card = (
 		<div draggable={false}
@@ -120,13 +108,6 @@ const RootCard: FunctionComponent<Props> = ({
 			}
 
 			<div className={cls.desk}>
-
-				{/* DIALOG */}
-				{/* <div
-					className={cls.dialog}
-					style={{ zIndex: deep - 1 }}
-					id={dialogId}
-				/> */}
 
 				{/* LINKED */}
 				{!inZen && haveLinked && (

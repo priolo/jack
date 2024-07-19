@@ -1,7 +1,12 @@
 :root {
+	/** Z-index del componente RESIZE */
 	--jack-z-resizer: 100;
+	/** Z-index della CARD ZEN */
 	--jack-z-zen: 101;
+
+	/** il FG da usare per i componenti che sono dentro a FRAMEWORK-ACTIONS */
 	--jack-framework-actions-fg: #dedede;
+	/** il background che contiene il set di ACTIONS di un FRAMEWORK dentro la CARD */
 	--jack-framework-actions-bg: rgb(0 0 0 / 50%);
 }
 

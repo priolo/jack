@@ -4,16 +4,20 @@
 }
 
 /* indica che sta facendo un animazione */
-.root.animation {
+.root.showing, .root.exiting {
 	overflow-x: hidden;
 }
+
 /* se il parent sta facendo un animazione */
-.animation .doc {
+.root.showing .doc, .root.exiting .doc, .root.sizing .doc {
 	transition: transform 300ms, width 300ms;
 	transition-timing-function: cubic-bezier(0.000, 0.350, 0.225, 1.175);
 }
 
-
+.root.exiting .doc, .root.exit .doc {
+	width: 0px;
+	transform: translateX(-100%);
+}
 
 
 

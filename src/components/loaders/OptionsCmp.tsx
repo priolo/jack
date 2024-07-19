@@ -111,12 +111,12 @@ const OptionsCmp: FunctionComponent<Props> = ({
 			/>
 
 			<div className={`${cls.btt} ${cls.btt_hover}`}>
-				<IconButton
+				<IconButton style={{ color: "var(--cmp-select-bg)" }}
 					onClick={() => setDialogOpen(true)}
 				><ArrowRightIcon /></IconButton>
 			</div>
 
-			<div className={`${cls.circle} ani-color ${mouseEnter ? cls.enter : ""}`}
+			<div className={`${cls.circle} jack-ani-color ${mouseEnter ? cls.enter : ""}`}
 				onClick={handleCircleClick}
 			>
 				{inLoading ? (

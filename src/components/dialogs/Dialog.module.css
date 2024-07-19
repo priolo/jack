@@ -2,14 +2,15 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+	overflow-y: auto;
 
 	padding: 3px 15px 15px 25px;
 	border-radius: 0px 10px 10px 0px;
 	box-shadow: rgba(0, 0, 0, 0.3) 3px 10px 2px 1px;
-	max-height: calc(100% - 18px);
+	/* max-height: calc(100% - 18px); */
 
-	color: var(--cmp-select-fg);
-	background-color: var(--cmp-select-bg);
+	color: var(--dialog-fg);
+	background-color: var(--dialog-bg);
 }
 
 .full_height {
@@ -32,6 +33,8 @@
 
 
 .body {
+	flex: 1;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	overflow-y: auto;

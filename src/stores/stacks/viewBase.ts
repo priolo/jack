@@ -1,9 +1,9 @@
 import { ANIM_TIME, DOC_ANIM } from "@/types"
 import { delay } from "@/utils/time"
-import { StoreCore } from "@priolo/jon"
+import { LISTENER_CHANGE, StoreCore } from "@priolo/jon"
 import docsSo from "../docs"
 import { CardsStore } from "../docs/cards"
-import { buildStore, createUUID } from "../docs/utils/factory"
+import { createUUID } from "../docs/utils/factory"
 import { forEachViews } from "../docs/utils/manage"
 import { DragDoc } from "../mouse/utils"
 import { LoadBaseStore } from "./loadBase"
@@ -184,6 +184,8 @@ const viewSetup = {
 		setSnackbar: (snackbar: SnackbarState) => ({ snackbar }),
 		setAlert: (alert: AlertState) => ({ alert }),
 	},
+
+	onListenerChange: (store: ViewStore, type: LISTENER_CHANGE) => { },
 
 	// // [II] da sistemare trovare un modo per avere puntualmente la connection SE la CARD è collegata con una connection
 	// onListenerChange: (store: ViewStore, type: LISTENER_CHANGE) => {
