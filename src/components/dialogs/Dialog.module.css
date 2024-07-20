@@ -1,3 +1,7 @@
+
+
+
+
 .root {
 	display: flex;
 	flex-direction: column;
@@ -11,6 +15,9 @@
 
 	color: var(--dialog-fg);
 	background-color: var(--dialog-bg);
+
+	--cmp-select-bg: var(--dialog-fg);
+	--cmp-select-fg: var(--dialog-bg);
 }
 
 .full_height {

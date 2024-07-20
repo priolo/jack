@@ -75,12 +75,12 @@ const FrameworkCard: FunctionComponent<Props> = ({
 						onClick={handleClose}
 					><CloseIcon /></IconButton>
 
-					{!inRoot && (
+					{/* {!inRoot && (
 						<IconButton style={{ color: "var(--card-fg)"}}
-							className={`${cls.btt} ${cls.hovershow}`}
+							className={`${cls.btt_detach}`}
 							onClick={handleDetach}
 						><DetachIcon /></IconButton>
-					)}
+					)} */}
 
 				</div>
 

@@ -72,17 +72,19 @@
 
 
 /* EXTRAIBLE BUTTON */
-.btt {
-	color: var(--cmp-select-fg);
-	background-color: var(--cmp-select-bg);
+.btt_detach {
 	position: absolute;
 	border-radius: 50%;
-	transition: top 300ms ease-out, opacity 200ms linear;
 	top: 0px;
 	opacity: 0;
+
+	color: var(--cmp-select-fg);
+	background-color: var(--cmp-select-bg);
+
+	transition: top 300ms ease-out, opacity 200ms linear;
 }
 
-.hovercontainer:hover .hovershow {
+.btt_detach {
 	top: -9px;
 	opacity: 1;
 }
