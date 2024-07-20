@@ -22,4 +22,3 @@ export enum EDIT_STATE {
 }
 
 export const ANIM_TIME = 200
-export const ANIM_TIME_CSS = 200

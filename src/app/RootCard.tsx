@@ -47,7 +47,6 @@ const RootCard: FunctionComponent<Props> = ({
 	const handleMouseOver = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		if (mouseSo.state.drag?.source?.view == null || mouseSo.state.drag?.source?.view == view) return
-		console.log("handleMouseOver ")
 		mouseSo.setDrag({
 			source: { ...mouseSo.state.drag.source },
 			destination: { view },
@@ -55,7 +54,6 @@ const RootCard: FunctionComponent<Props> = ({
 	}
 	const handleMouseLeave = () => {
 		if (mouseSo.state.drag?.source?.view == null) return
-		console.log("handleMouseLeave ")
 		mouseSo.setDrag({
 			source: { ...mouseSo.state.drag.source },
 			destination: null
@@ -77,7 +75,11 @@ const RootCard: FunctionComponent<Props> = ({
 		zIndex: deep,
 		width,
 		maxWidth: view.state.widthMax,
-		minWidth: view.state.widthMin,
+		minWidth: isCompact ? view.state.widthCompact : view.state.widthMin,
+	}
+	if (ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT) {
+		styContainerDoc.width = 0
+		styContainerDoc.transform = `translate(-100%, 0px)`
 	}
 
 	const card = (
@@ -93,6 +95,7 @@ const RootCard: FunctionComponent<Props> = ({
 			<div style={styContainerDoc} className={cls.doc}>
 				<Render view={view} />
 			</div>
+
 			{isResizable
 				? <ResizerCmp
 					className={cls.resizer}
@@ -107,18 +110,15 @@ const RootCard: FunctionComponent<Props> = ({
 				)
 			}
 
-			<div className={cls.desk}>
+			{/* LINKED */}
+			{!inZen && haveLinked && (
+				<RootCard className={cls.desk}
+					deep={deep - 2}
+					view={view.state.linked}
+					Render={Render}
+				/>
+			)}
 
-				{/* LINKED */}
-				{!inZen && haveLinked && (
-					<RootCard
-						deep={deep - 2}
-						view={view.state.linked}
-						Render={Render}
-					/>
-				)}
-
-			</div>
 		</div>
 	)
 

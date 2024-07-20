@@ -40,6 +40,7 @@
 	align-items: center;
 	justify-content: flex-end;
 
+	overflow-x: hidden;
 	background-color: var(--jack-framework-actions-bg);
 }
 

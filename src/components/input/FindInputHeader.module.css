@@ -1,6 +1,6 @@
 .root {
 	flex: 1;
-	background-color: var(--bg-default);
+	background-color: var(--card-bg);
 	display: flex;
 	align-items: center;
 	padding: 1px 2px;

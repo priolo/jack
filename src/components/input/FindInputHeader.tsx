@@ -31,7 +31,8 @@ const FindInputHeader: FunctionComponent<Props> = ({
 
 	return (
 		<div
-			className={`${cls.root} ${haveValue ? "color-br" : ""}`}
+			className={cls.root}
+			//className={`${cls.root} ${haveValue ? "color-br" : ""}`}
 			style={style}
 		>
 			<TextInput

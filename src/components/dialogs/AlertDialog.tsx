@@ -3,7 +3,6 @@ import Dialog from "@/components/dialogs/Dialog"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
-import cls from "./Dialog.module.css"
 
 
 
@@ -40,13 +39,13 @@ const AlertDialog: FunctionComponent<Props> = ({
 
 		<div className="jack-lbl-prop-title">DANGER</div>
 
-		<div className={cls.text}>
+		<div style={{ fontSize: 13, fontWeight: 500 }}>
 			{alert.body}
 		</div>
 
-		<div className="jack-bars-alert-bg" style={{ height: 20 }} />
+		<div className="jack-bars-alert-bg" style={{ height: 20, margin: "10px 0px" }} />
 
-		<div style={{ display: "flex", gap: 15, marginTop: 10 }}>
+		<div style={{ display: "flex", gap: 15 }}>
 			<Button
 				children={alert.labelOk}
 				onClick={() => handleClose(true)}

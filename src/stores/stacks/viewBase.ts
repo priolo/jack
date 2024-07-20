@@ -36,8 +36,9 @@ const viewSetup = {
 
 			/** il width "normale" */
 			width: 300,
-			widthMin: 40,
+			widthMin: 80,
 			widthMax: 600,
+			widthCompact: 40,
 			/** colore caratteristico della  VIEW */
 			//colorVar: COLOR_VAR.DEFAULT,
 			/** il corrente stato di animazione */
@@ -66,7 +67,7 @@ const viewSetup = {
 		/** restituisce il width effettivo */
 		getWidth: (_: void, store?: ViewStore) => {
 			if (docsSo.state.zenCard == store) return store.state.widthMax
-			if (store.state.size == VIEW_SIZE.COMPACT) return store.state.widthMin
+			if (store.state.size == VIEW_SIZE.COMPACT) return store.state.widthCompact
 			return store.state.width
 		},
 		getTitle: (_: void, store?: ViewStore): string => null,

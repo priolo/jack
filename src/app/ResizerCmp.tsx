@@ -12,6 +12,7 @@ interface Props {
 	className?: string
 	style?: React.CSSProperties
 	direction?: RESIZER_DIRECTION
+	resizeDisabled?: boolean
 	onStart?: (pos: number) => number
 	onMove?: (pos: number, diff?: number) => void
 	onStop?: () => void
@@ -24,6 +25,7 @@ const ResizerCmp: FunctionComponent<Props> = ({
 	className,
 	style,
 	direction = RESIZER_DIRECTION.HORIZONTAL,
+	resizeDisabled,
 	onStart,
 	onMove,
 	onStop,
@@ -58,7 +60,7 @@ const ResizerCmp: FunctionComponent<Props> = ({
 		style={style}
 		children={children}
 		draggable={false}
-		onMouseDown={handleDown}
+		onMouseDown={!resizeDisabled ? handleDown : undefined}
 		onDoubleClick={onDClick}
 	/>
 }

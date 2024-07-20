@@ -18,12 +18,13 @@
   "homepage": "https://github.com/priolo/jack",
   "repository": {
     "type": "git",
-    "url": "https://github.com/priolo/jon.git"
+    "url": "https://github.com/priolo/jack.git"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build --sourcemap -w -d",
-    "test": "vitest"
+    "test": "vitest",
+    "pub": "npm publish --access public"
   },
   "dependencies": {
     "react-virtuoso": "^4.7.11",
