@@ -47,17 +47,11 @@ const RootCard: FunctionComponent<Props> = ({
 	const handleMouseOver = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		if (mouseSo.state.drag?.source?.view == null || mouseSo.state.drag?.source?.view == view) return
-		mouseSo.setDrag({
-			source: { ...mouseSo.state.drag.source },
-			destination: { view },
-		})
+		mouseSo.setDrag({ ...mouseSo.state.drag, destination: { view } })
 	}
 	const handleMouseLeave = () => {
 		if (mouseSo.state.drag?.source?.view == null) return
-		mouseSo.setDrag({
-			source: { ...mouseSo.state.drag.source },
-			destination: null
-		})
+		mouseSo.setDrag({ ...mouseSo.state.drag, destination: null })
 	}
 
 	// RENDER

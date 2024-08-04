@@ -75,6 +75,8 @@ export type { TIMER_STATE } from "@/components/loaders/TimerCmp";
 
 
 // STORES
+export { default as mouseSo } from "@/stores/mouse"
+
 export { LOAD_STATE, VIEW_SIZE } from '@/stores/stacks/utils';
 export { default as viewSetup } from "@/stores/stacks/viewBase";
 export type { ViewActions, ViewGetters, ViewMutators, ViewState, ViewStore } from "@/stores/stacks/viewBase";

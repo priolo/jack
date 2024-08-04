@@ -3,8 +3,11 @@ import { ViewStore } from "../stacks/viewBase"
 
 
 interface DragSource {
+	/** gruppo provenienza */
 	group?: CardsStore
+	/** view di provenienza */
 	view?: ViewStore
+	/**  */
 	index?: number
 }
 

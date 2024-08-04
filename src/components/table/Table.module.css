@@ -12,6 +12,7 @@
 .row {
 	position: relative;
 	cursor: pointer;
+	opacity: .8;
 }
 
 .row.selected {

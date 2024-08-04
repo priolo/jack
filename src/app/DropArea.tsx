@@ -33,17 +33,11 @@ const DropArea: FunctionComponent<Props> = ({
 	// HANDLERS
 	const handleMouseOver = (_: DragEvent<HTMLDivElement>) => {
 		if (!mouseSa.drag?.source?.view) return
-		mouseSo.setDrag({
-			source: { ...mouseSa.drag.source },
-			destination: { group: groupDest, index },
-		})
+		mouseSo.setDrag({ ...mouseSa.drag, destination: { group: groupDest, index } })
 	}
 	const handleMouseLeave = () => {
 		if (!mouseSa.drag?.source?.view) return
-		mouseSo.setDrag({
-			source: { ...mouseSa.drag.source },
-			destination: null,
-		})
+		mouseSo.setDrag({ ...mouseSo.state.drag, destination: null })
 	}
 
 	// RENDER
