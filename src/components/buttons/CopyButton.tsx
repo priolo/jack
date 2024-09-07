@@ -18,7 +18,7 @@ const CopyButton: FunctionComponent<Props> = ({
 	value,
 	absolute,
 	label = "COPY",
-	className,
+	className = "",
 	style,
 }) => {
 
@@ -37,7 +37,7 @@ const CopyButton: FunctionComponent<Props> = ({
 
 	// RENDER
 	label = navigator?.clipboard == null ? "CLIPBOARD NOT AVAILABLE.\nHave you given permission?" : label
-	
+
 	return (
 		<TooltipWrapCmp
 			className={`${absolute ? `${cls.absolute} jack-hover-hide` : ""} ${className}`}

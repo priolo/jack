@@ -25,5 +25,7 @@ genericamente per bottoni disabilitati
 */
 .disabled {
 	cursor: default;
+	background-color: hsl(from var(--cmp-select-bg) h 0 l);
+	color: hsl(from var(--cmp-select-fg) h 0 l);
 }
 

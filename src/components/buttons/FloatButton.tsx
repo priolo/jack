@@ -12,7 +12,7 @@ interface Props {
 }
 
 const FloatButton: FunctionComponent<Props> = ({
-	className,
+	className = "",
 	onClick,
 	children,
 	disabled,
@@ -23,8 +23,8 @@ const FloatButton: FunctionComponent<Props> = ({
 	// HOOK
 
 	// HANDLER
-	const handleClick = (e:React.MouseEvent<HTMLDivElement>) => {
-		if ( disabled ) return
+	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+		if (disabled) return
 		onClick?.(e)
 	}
 
@@ -33,7 +33,7 @@ const FloatButton: FunctionComponent<Props> = ({
 	const clsRoot = `jack-cmp jack-cmp-float ${cls.root} ${clsDisabled} ${className}`
 
 	return (
-		<div style={style} 
+		<div style={style}
 			className={clsRoot}
 			onClick={handleClick}
 		>
