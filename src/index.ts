@@ -20,6 +20,7 @@ export { default as Header } from "@/components/cards/Header";
 
 export { RESIZER_DIRECTION, default as ResizerCmp } from "@/app/ResizerCmp";
 export { default as Box } from "@/components/format/Box";
+export { default as Component } from "@/components/format/Component";
 export { default as Options } from "@/components/Options";
 export { default as Table } from "@/components/table/index";
 export { default as VTable } from "@/components/table/VTable";
