@@ -33,8 +33,6 @@ const SnackbarCmp: FunctionComponent<Props> = ({
 		if (open) {
 			setHide(false)
 			if (timeout) timeoutId = setTimeout(handleClose, timeout)
-		} else {
-			setTimeout(() => setHide(true), 300)
 		}
 		return () => clearTimeout(timeoutId)
 	}, [open])
@@ -42,12 +40,10 @@ const SnackbarCmp: FunctionComponent<Props> = ({
 	// HANDLER
 	const handleClose = () => {
 		view.setSnackbar({ ...view.state.snackbar, open: false })
+		setTimeout(() => setHide(true), 300)
 	}
 
 	// RENDER
-	const inRoot = !view.state.parent
-	const clsRootFrame = viewSa.size == VIEW_SIZE.COMPACT ? cls.root_icon : cls.root
-	const clsRoot = `${clsRootFrame} ${open ? cls.open : cls.close} ${hide ? cls.hide : ""} ${cls[type]}`
 	const icon = useMemo(() => ({
 		[MESSAGE_TYPE.INFO]: <InfoIcon className={cls.icon} />,
 		[MESSAGE_TYPE.SUCCESS]: <SuccessIcon className={cls.icon} />,
@@ -55,11 +51,13 @@ const SnackbarCmp: FunctionComponent<Props> = ({
 		[MESSAGE_TYPE.ERROR]: <SkullIcon className={cls.icon} />,
 	}[type]), [type])
 
+	const inRoot = !view.state.parent
+	const clsBox = `${viewSa.size == VIEW_SIZE.COMPACT ? cls.box_icon : cls.box} ${!inRoot ? cls.linked : ""} ${open ? cls.open : cls.close} ${cls[type]}`
+
 	if (viewSa.size == VIEW_SIZE.COMPACT) {
-		const stl = { marginLeft: !inRoot ? 3 : null }
 		return (
-			<TooltipWrapCmp content={title}>
-				<div className={clsRoot} style={stl}
+			<TooltipWrapCmp content={title} className={cls.root_icon}>
+				<div className={clsBox} 
 					onClick={handleClose}
 				>{icon}</div>
 			</TooltipWrapCmp>
@@ -67,17 +65,21 @@ const SnackbarCmp: FunctionComponent<Props> = ({
 	}
 
 	return (
-		<div className={clsRoot}>
-			<div className={cls.header}>
-				{icon}
-				<div className={cls.title}>{title}</div>
-				<div style={{ flex: 1 }} />
-				<IconButton onClick={handleClose}>
-					<CloseIcon />
-				</IconButton>
-			</div>
-			<div className={cls.body}>
-				{body}
+		<div className={cls.root}>
+			<div className={clsBox}>
+				{!hide && <>
+					<div className={cls.header}>
+						{icon}
+						<div className={cls.title}>{title}</div>
+						<div style={{ flex: 1 }} />
+						<IconButton onClick={handleClose}>
+							<CloseIcon />
+						</IconButton>
+					</div>
+					<div className={cls.body}>
+						{body}
+					</div>
+				</>}
 			</div>
 		</div>
 	)

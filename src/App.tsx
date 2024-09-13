@@ -60,12 +60,12 @@ const App: FunctionComponent = () => {
 				/>
 			</div>
 
-			<div style={cssDeck2}>
+			{/* <div style={cssDeck2}>
 				<CardsGroup 
 					cardsStore={deckCards2So} 
 					Render={PolymorphicCard}
 				/>
-			</div>
+			</div> */}
 
 			<ZenCard />
 			<DragCmp />

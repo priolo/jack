@@ -107,6 +107,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 		/>
 
 		<SnackbarCmp view={store} />
+		
 	</div>
 }
 

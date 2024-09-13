@@ -13,6 +13,7 @@ import example2Setup, { Example2Store } from "../../stores/stacks/example2"
 import cls from "./View.module.css"
 import Button from "../../components/buttons/Button"
 import Header from "../../components/cards/Header"
+import { MESSAGE_TYPE } from "../../stores/stacks/viewBase"
 
 
 
@@ -35,6 +36,12 @@ const Example1View: FunctionComponent<Props> = ({
 	const handleOpenLinked = () => {
 		const newStore = createStore(example2Setup) as Example2Store
 		store.state.group.addLink({ view: newStore, parent: store, anim: true })
+	}
+	const handleIconClick = () => {
+		console.log("icon button click")
+		store.setSnackbar({
+			open: true, title: "TITLE", body: "!!body!!", type: MESSAGE_TYPE.ERROR
+		})
 	}
 
 	// RENDER
@@ -75,7 +82,7 @@ const Example1View: FunctionComponent<Props> = ({
 			>OPEN</Button>
 
 			<IconButton effect
-				onClick={()=>console.log("icon button click")}
+				onClick={handleIconClick}
 			><DirectionRightIcon /></IconButton>
 
 		</div>
