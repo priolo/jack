@@ -1,13 +1,12 @@
 import Button from "@/components/buttons/Button"
 import FrameworkCard from "@/components/cards/FrameworkCard"
-import { Example2State, Example2Store } from "@/stores/stacks/example2"
+import { Example2State, Example2Store } from "@/examples/example2"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useState } from "react"
 import AlertDialog from "../../components/dialogs/AlertDialog"
 import ListDialog from "../../components/dialogs/ListDialog"
 import TextInput from "../../components/input/TextInput"
 import StringUpRow from "../../components/rows/StringUpRow"
-import cls from "./View.module.css"
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import EditorIcon from "../../icons/EditorIcon"
 import FloatButton from "../../components/buttons/FloatButton"
@@ -17,11 +16,14 @@ import Header from "../../components/cards/Header"
 
 
 
-
 interface Props {
 	store?: Example2Store
 }
 
+/**
+ * no css
+ * table with 200 items
+ */
 const Example2View: FunctionComponent<Props> = ({
 	store,
 }) => {
@@ -45,7 +47,6 @@ const Example2View: FunctionComponent<Props> = ({
 	// RENDER
 	return <FrameworkCard
 		headerRender={<Header store={store} icon={<EditorIcon />} />}
-		className={cls.root}
 		store={store}
 	>
 		<div className="jack-lyt-form">

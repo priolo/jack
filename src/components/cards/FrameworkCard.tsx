@@ -20,7 +20,7 @@ interface Props {
 	style?: React.CSSProperties
 	styleBody?: React.CSSProperties
 
-	headerRender?:React.ReactNode
+	headerRender?: React.ReactNode
 	actionsRender?: React.ReactNode
 	iconizedRender?: React.ReactNode
 	children: React.ReactNode
@@ -33,7 +33,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	className,
 	style,
 	styleBody,
-	
+
 	headerRender,
 	actionsRender,
 	iconizedRender,
@@ -87,15 +87,14 @@ const FrameworkCard: FunctionComponent<Props> = ({
 				{iconizedRender}
 
 			</> : <>
-
-				<div className={`${cls.actions} jack-framework-actions`}>
-					{actionsRender}
-				</div>
-
+				{!!actionsRender && (
+					<div className={`${cls.actions} jack-framework-actions`}>
+						{actionsRender}
+					</div>
+				)}
 				<div className={clsChildren} style={styleBody}>
 					{children}
 				</div>
-
 			</>}
 
 		</ErrorBoundary>
@@ -107,7 +106,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 		/>
 
 		<SnackbarCmp view={store} />
-		
+
 	</div>
 }
 

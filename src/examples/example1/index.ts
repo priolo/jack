@@ -1,8 +1,8 @@
 import { COLOR_VAR } from "@/stores/layout"
 import viewSetup, { ViewStore } from "@/stores/stacks/viewBase"
 import { StoreCore, mixStores } from "@priolo/jon"
-import { ViewState } from "../viewBase"
-import { DOC_TYPE } from "../../docs/types"
+import { ViewState } from "../../stores/stacks/viewBase"
+import { DOC_TYPE } from "../../stores/docs/types"
 
 
 

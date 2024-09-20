@@ -8,8 +8,8 @@ import TextInput from "../../components/input/TextInput"
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import DirectionRightIcon from "../../icons/DirectionRightIcon"
 import DoneIcon from "../../icons/DoneIcon"
-import { Example1State } from "../../stores/stacks/example1"
-import example2Setup, { Example2Store } from "../../stores/stacks/example2"
+import { Example1State } from "."
+import example2Setup, { Example2Store } from "../example2"
 import cls from "./View.module.css"
 import Button from "../../components/buttons/Button"
 import Header from "../../components/cards/Header"
@@ -47,6 +47,7 @@ const Example1View: FunctionComponent<Props> = ({
 	// RENDER
 	return <FrameworkCard
 		headerRender={<Header store={store} icon={<DoneIcon />} />}
+		actionsRender={<div />}
 		className={cls.root}
 		store={store}
 	>

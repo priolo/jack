@@ -1,6 +1,6 @@
 import Button from "@/components/buttons/Button"
 import FrameworkCard from "@/components/cards/FrameworkCard"
-import { Example2State, Example2Store } from "@/stores/stacks/example2"
+import { Example2State, Example2Store } from "@/examples/example2"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useState } from "react"
 import AlertDialog from "../../components/dialogs/AlertDialog"

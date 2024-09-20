@@ -8,6 +8,21 @@
 	--jack-framework-actions-fg: #dedede;
 	/** il background che contiene il set di ACTIONS di un FRAMEWORK dentro la CARD */
 	--jack-framework-actions-bg: rgb(0 0 0 / 50%);
+
+	
+	--card-fg: #dedede;
+	--card-bg: #3E3E3E;
+	
+	/* button icon button */
+	--cmp-select-fg: #393939;
+	--cmp-select-bg: #EBFB35;
+	
+	/* ombra perimetrale inputtext buttton */
+	--cmp-bg: rgba(0, 0, 0, 0.05);
+
+	/* tooltip drag dialog float-button*/
+	--dialog-fg: #393939;
+	--dialog-bg: #EBFB35;
 }
 
 .jack-bars-alert-bg {
@@ -17,3 +32,4 @@
 .jack-framework-actions .jack-cmp:not(.jack-cmp-select) {
 	color: var(--jack-framework-actions-fg)
 }
+
