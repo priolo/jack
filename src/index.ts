@@ -91,3 +91,5 @@ export type { LoadBaseState, LoadBaseStore } from '@/stores/stacks/loadBase';
 
 
 
+// ICONS
+export * from "@/icons"
