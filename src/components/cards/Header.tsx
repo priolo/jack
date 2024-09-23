@@ -143,7 +143,7 @@ const Header: FunctionComponent<Props> = ({
 				<div className={clsTitle}
 					onDoubleClick={handleDClick}
 				>
-					<div className={`${cls.title} ${cls.draggable}`}
+					<div className={`${cls.title} ${cls.draggable} jack-title`}
 						onClick={!inZen ? handleFocus : undefined}
 					>{title}</div>
 					{subTitle && (

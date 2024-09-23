@@ -33,4 +33,9 @@
 	opacity: .6;
 }
 
-
+/* title */
+.jack-title {
+	font-size: 14px;
+	font-weight: 800;
+	font-family: sans-serif;
+}

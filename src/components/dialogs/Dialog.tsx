@@ -138,7 +138,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 			style={cssRoot(width, y)}
 		>
 			{title != null ? (
-				<div className={cls.title}>
+				<div className={`${cls.title} jack-title`}>
 					<div className={cls.text}>
 						{title}
 					</div>

@@ -4,16 +4,9 @@
 	overflow-y: auto;
 }
 
-.title {
-	font-size: 16px;
-	font-weight: 800;
-	font-family: var(--jack-title-ff);
-}
-
 .text {
 	flex: 1;
 	margin-right: 5px;
 	font-size: 16px;
 	font-weight: 800;
-	font-family: var(--jack-title-ff);
 }

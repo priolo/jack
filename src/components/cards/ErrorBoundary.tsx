@@ -38,7 +38,7 @@ class ErrorBoundary extends Component<Props, State> {
 			<div className={cls.root}>
 
 				{!!this.state.error ? <>
-					<div className={cls.title}>{this.state.error.message}</div>
+					<div className={`jack-title`}>{this.state.error.message}</div>
 					<div className={cls.text}>{this.state.error.stack}</div>
 				</> : (
 					<div> ERRORE SCONOSCIUTO! </div>

@@ -24,7 +24,6 @@
 	--dialog-fg: #393939;
 	--dialog-bg: #EBFB35;
 
-	--jack-title-ff: Georgia, 'Times New Roman', Times, serif;
 }
 
 .jack-bars-alert-bg {
@@ -34,4 +33,3 @@
 .jack-framework-actions .jack-cmp:not(.jack-cmp-select) {
 	color: var(--jack-framework-actions-fg)
 }
-

@@ -22,9 +22,6 @@
 }
 
 .title {
-	font-size: 16px;
-	font-weight: 800;
-	font-family: var(--jack-title-ff);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
