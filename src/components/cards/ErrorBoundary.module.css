@@ -7,7 +7,7 @@
 .title {
 	font-size: 16px;
 	font-weight: 800;
-	font-family: "Darker Grotesque";
+	font-family: var(--jack-title-ff);
 }
 
 .text {
@@ -15,5 +15,5 @@
 	margin-right: 5px;
 	font-size: 16px;
 	font-weight: 800;
-	font-family: "Darker Grotesque";
+	font-family: var(--jack-title-ff);
 }
