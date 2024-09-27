@@ -73,7 +73,12 @@ const RootCard: FunctionComponent<Props> = ({
 	}
 	if (ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT) {
 		styContainerDoc.width = 0
+		styContainerDoc.minWidth = 0
 		styContainerDoc.transform = `translate(-100%, 0px)`
+		styContainerDoc.overflowX = "hidden"
+	}
+	if (ani == DOC_ANIM.SHOWING) {
+		styContainerDoc.minWidth = 0
 	}
 
 	const card = (

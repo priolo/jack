@@ -21,4 +21,4 @@ export enum EDIT_STATE {
 	EDIT,
 }
 
-export const ANIM_TIME = 200
+export const ANIM_TIME = 250
