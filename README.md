@@ -1,6 +1,6 @@
 ![logo](./res/logo.png)  
 
-This library is derived from the NUI project.  
+This library is derived from the [NUI project](https://natsnui.app/).  
 It aims to be an alternative system to the typical management layout with menus and details.  
 In Jack a CARD represents an entity.  
 This CARD can be connected to another entity, moved to make order or displayed simultaneously with 
@@ -14,6 +14,8 @@ These characteristics are specific to the UX and are independent of the entity i
 ## [Documentation](https://priolo.github.io/jack-doc/)
 
 ## [NUI](https://natsnui.app/)
+
+## [JON](https://github.com/priolo/JON)
 
 ## ROADMAP
 
