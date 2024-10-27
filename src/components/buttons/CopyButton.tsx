@@ -36,7 +36,7 @@ const CopyButton: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-	label = navigator?.clipboard == null ? "CLIPBOARD NOT AVAILABLE.\nHave you given permission?" : label
+	//label = navigator?.clipboard == null ? "CLIPBOARD NOT AVAILABLE.\nHave you given permission?" : label
 
 	return (
 		<TooltipWrapCmp

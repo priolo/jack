@@ -50,7 +50,7 @@ const Table: FunctionComponent<Props> = ({
 			return items.sort((i1, i2) => {
 				const v1 = getValueString(i1, propMain)
 				const v2 = getValueString(i2, propMain)
-				return v1?.toString()?.localeCompare?.(v2?.toString())
+				return v1?.toString()?.localeCompare?.(v2?.toString()) ?? 0
 			})
 		}
 		return items.sort((i1, i2) => {
