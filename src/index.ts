@@ -77,11 +77,13 @@ export type { TIMER_STATE } from "@/components/loaders/TimerCmp";
 
 // STORES
 export { default as mouseSo } from "@/stores/mouse"
+export type { DragDoc, Position } from "@/stores/mouse/utils";
 
 export { LOAD_STATE, VIEW_SIZE } from '@/stores/stacks/utils';
 export { DOC_ANIM } from '@/stores/docs/types';
 export { default as viewSetup } from "@/stores/stacks/viewBase";
 export type { ViewActions, ViewGetters, ViewMutators, ViewState, ViewStore } from "@/stores/stacks/viewBase";
+export { MESSAGE_TYPE } from '@/stores/stacks/viewBase';
 export type { ColorVar } from "@/types/global";
 
 export { default as cardsSetup } from '@/stores/docs/cards';

@@ -2,6 +2,7 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -14,4 +15,30 @@
 
 .jack-ani-color {
 	transition: color 300ms;
+}
+
+
+
+
+
+@keyframes jack-ani-loading-loop {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: 40px 0;
+	}
+}
+.jack-ani-loading {
+	background: linear-gradient(45deg,
+			var(--cmp-select-bg) 25%,
+			color-mix(in srgb, var(--cmp-select-bg), black 15%) 25%,
+			color-mix(in srgb, var(--cmp-select-bg), black 15%) 50%,
+			var(--cmp-select-bg) 50%,
+			var(--cmp-select-bg) 75%,
+			color-mix(in srgb, var(--cmp-select-bg), black 15%) 75%,
+			color-mix(in srgb, var(--cmp-select-bg), black 15%));
+	background-size: 40px 40px;
+	animation: jack-ani-loading-loop 3s linear infinite;
 }

@@ -186,7 +186,7 @@ const viewSetup = {
 		setAlert: (alert: AlertState) => ({ alert }),
 	},
 
-	onListenerChange: (store: ViewStore, type: LISTENER_CHANGE) => { },
+	//onListenerChange: (store: ViewStore, type: LISTENER_CHANGE) => { },
 
 	// // [II] da sistemare trovare un modo per avere puntualmente la connection SE la CARD è collegata con una connection
 	// onListenerChange: (store: ViewStore, type: LISTENER_CHANGE) => {

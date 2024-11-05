@@ -18,6 +18,7 @@ export interface TextInputProps {
 	onFocus?: (e: React.FocusEvent<HTMLInput>) => void
 	onBlur?: (e: React.FocusEvent<HTMLInput>) => void
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInput>) => void
+	onKeyEnter?: (event: React.KeyboardEvent<HTMLInput>) => void
 }
 
 const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
@@ -36,6 +37,7 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 		onFocus,
 		onBlur,
 		onKeyDown,
+		onKeyEnter,
 	},
 	ref: any
 ) => {
@@ -76,6 +78,10 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 		e.target.select()
 		onFocus?.(e)
 	}
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInput>) => {
+		if (e.key == "Enter") onKeyEnter?.(e)
+		onKeyDown?.(e)
+	}
 
 	// RENDER
 	if (readOnly) {
@@ -103,7 +109,7 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 		onChange={handleChange}
 		onFocus={handleFocus}
 		onBlur={onBlur}
-		onKeyDown={onKeyDown}
+		onKeyDown={handleKeyDown}
 		rows={rows}
 		type={type}
 	/>
