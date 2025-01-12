@@ -1,7 +1,7 @@
 import { deepEqual } from "@/utils/object"
 import { StoreCore, createStore } from "@priolo/jon"
 import { ViewStore } from "../stacks/viewBase"
-import { forEachViews, getById } from "./utils/manage"
+import { forEachViews, getById } from "./utils"
 
 
 

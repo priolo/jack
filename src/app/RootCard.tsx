@@ -1,7 +1,7 @@
 import docsSo from "@/stores/docs"
 import { CardsState } from "@/stores/docs/cards"
 import mouseSo from "@/stores/mouse"
-import { VIEW_SIZE } from "@/stores/stacks/utils"
+import { VIEW_SIZE } from "@/stores/stacks/types"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { DOC_ANIM } from "@/types"
 import { useStore, useStoreNext } from "@priolo/jon"
@@ -56,14 +56,14 @@ const RootCard: FunctionComponent<Props> = ({
 
 	// RENDER
 	if (!view) return null
-	const ani = view.state.docAnim
+	const animation = view.state.docAnim
 	const inZen = docsSa.zenCard == view
 	const isCompact = !inZen && viewSa.size == VIEW_SIZE.COMPACT
 	const isResizable = !isCompact && !inZen
 	const haveLinked = !inZen && !!view.state.linked
 
 	// styles
-	const clsRoot = `${cls.root} ${cls[ani] ?? ""} ${className} jack-card`
+	const clsRoot = `${cls.root} ${cls[animation] ?? ""} ${className} jack-card`
 	const width = view.getWidth()
 	const styContainerDoc: React.CSSProperties = {
 		zIndex: deep,
@@ -71,13 +71,13 @@ const RootCard: FunctionComponent<Props> = ({
 		maxWidth: view.state.widthMax,
 		minWidth: isCompact ? view.state.widthCompact : view.state.widthMin,
 	}
-	if (ani == DOC_ANIM.EXITING || ani == DOC_ANIM.EXIT) {
+	if (animation == DOC_ANIM.EXITING || animation == DOC_ANIM.EXIT) {
 		styContainerDoc.width = 0
 		styContainerDoc.minWidth = 0
 		styContainerDoc.transform = `translate(-100%, 0px)`
 		styContainerDoc.overflowX = "hidden"
 	}
-	if (ani == DOC_ANIM.SHOWING) {
+	if (animation == DOC_ANIM.SHOWING) {
 		styContainerDoc.minWidth = 0
 	}
 

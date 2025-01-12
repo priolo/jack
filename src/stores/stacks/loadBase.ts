@@ -1,5 +1,5 @@
 import { StoreCore } from "@priolo/jon"
-import { LOAD_MODE, LOAD_STATE } from "./utils"
+import { LOAD_MODE, LOAD_STATE } from "./types"
 import { ViewState, ViewStore } from "./viewBase"
 
 

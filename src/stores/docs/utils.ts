@@ -1,5 +1,5 @@
 import { deepEqual } from "@/utils/object";
-import { ViewStore } from "../../stacks/viewBase";
+import { ViewStore } from "../stacks/viewBase";
 
 
 
@@ -38,7 +38,7 @@ export function getById(views: ViewStore[], id: string): ViewStore {
 	})
 }
 
-/** cerca su tutte le CARD (anche i children) */
+/** cerca su tutte le CARD (anche i children) uno STATE */
 export function findAll(views: ViewStore[], state: any) {
 	const ret: ViewStore[] = []
 	forEachViews(
@@ -98,5 +98,19 @@ export function getRoot(view: ViewStore): ViewStore {
 	let parent: ViewStore = null
 	forEachParent(view, (p) => parent = p)
 	return parent
+}
+
+/** genera un uuid per un DOC */
+export function createUUID(): string {
+	var dt = new Date().getTime();
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+		/[xy]/g,
+		(c) => {
+			let r = (dt + (Math.random() * 16)) % 16 | 0;
+			dt = Math.floor(dt / 16);
+			return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+		}
+	);
+	return uuid;
 }
 

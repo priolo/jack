@@ -3,7 +3,7 @@ import { delay, delayAnim } from "@/utils/time"
 import { StoreCore, createStore, mixStores } from "@priolo/jon"
 import { ViewStore } from "../stacks/viewBase"
 import docsSo from "./index"
-import { forEachViews, getById, getRoot } from "./utils/manage"
+import { forEachViews, getById, getRoot } from "./utils"
 
 
 
@@ -43,12 +43,13 @@ const cardsSetup = {
 			store?: CardsStore
 		) {
 			// se c'e' gia' setto solo il focus
-			// const finded = getById(GetAllCards(), view.state.uuid)
-			// if (finded) {
-			// 	if (finded.state.group == drawerCardsSo) drawerCardsSo.setWidth(500)
-			// 	finded.state.group?.focus(finded)
-			// 	return
-			// }
+			const finded = getById(cardsSetup.GetAllCards(), view.state.uuid)
+			if (finded) {
+				//if (finded.state.group == drawerCardsSo) drawerCardsSo.setWidth(500)
+				finded.state.group?.focus(finded)
+				return
+			}
+			//if (!!getById(store.state.all, view.state.uuid)) return
 
 			view.state.parent = null
 			//view.state.group = store
@@ -62,6 +63,9 @@ const cardsSetup = {
 				await delayAnim()
 				await view.docAnim(DOC_ANIM.SHOWING)
 			}
+
+			// CALL EVENT
+			view.onInsertion()
 		},
 
 		/** inserisco una CARD come link di un altra CARD */
@@ -102,7 +106,7 @@ const cardsSetup = {
 			view.onLinked()
 		},
 
-		/** inserisco una CARD nello STACK di un altra VIEW */
+		/** rimuovo una CARD */
 		async remove({ view, anim = false }: { view: ViewStore, anim?: boolean }, store?: CardsStore) {
 			if (!view) return
 			if (anim && !view.state.docAniDisabled) await view.docAnim(DOC_ANIM.EXITING)
@@ -118,13 +122,17 @@ const cardsSetup = {
 				forEachViews([view], (v) => { v.state.group = null })
 				// [II] view.state.group = null
 
-				// LINKED
+				// is LINKED
 			} else {
 				delete docsSo.state.cardOptions[view.state.parent.state.type]
 				view.state.parent.setLinked(null)
+				view.onLinked()
 			}
 
 			store.setAll(views)
+
+			// CALL EVENT
+			view.onRemoval()
 		},
 
 		/** sposta una view in un indice preciso dello STACK */
@@ -169,6 +177,10 @@ const cardsSetup = {
 		setAll: (all: ViewStore[], store?: CardsStore) => ({ all }),
 		setFocus: (focus: ViewStore) => ({ focus }),
 	},
+
+	// STATIC
+	AllDeck: <CardsStore[]>[],
+	GetAllCards: () => cardsSetup.AllDeck.reduce<ViewStore[]>((acc, store) => [...acc, ...store.state.all], []),
 }
 
 export type CardsState = typeof cardsSetup.state
@@ -180,26 +192,3 @@ export interface CardsStore extends StoreCore<CardsState>, CardsGetters, CardsAc
 }
 export default cardsSetup
 
-
-// const setupDrawer = {
-// 	state: {
-// 		width: 0,
-// 		/** indica che deve attivare l'animazione */
-// 		animation: false,
-// 		/** l'ultimo gap prima di chiuderlo */
-// 		lastWidth: 500,
-// 	},
-// 	mutators: {
-// 		setWidth: (width: number) => ({ width }),
-// 	},
-// }
-// export type DrawerState = typeof setupDrawer.state & CardsState
-// type DrawerMutators = typeof setupDrawer.mutators
-// export interface DrawerStore extends CardsStore, StoreCore<DrawerState>, DrawerMutators { state: DrawerState }
-
-
-
-
-// export const deckCardsSo = createStore(cardsSetup) as CardsStore
-// export const drawerCardsSo = createStore(mixStores(cardsSetup, setupDrawer)) as DrawerStore
-// export const GetAllCards = () => [...deckCardsSo.state.all, ...drawerCardsSo.state.all]

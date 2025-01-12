@@ -1,7 +1,7 @@
 import CloseIcon from "@/icons/CloseIcon"
 import DetachIcon from "@/icons/DetachIcon"
 import docsSo from "@/stores/docs"
-import { VIEW_SIZE } from "@/stores/stacks/utils"
+import { VIEW_SIZE } from "@/stores/stacks/types"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { DOC_ANIM } from "@/types"
 import { useStore, useStoreNext } from "@priolo/jon"

@@ -3,11 +3,11 @@ import { delay } from "@/utils/time"
 import { LISTENER_CHANGE, StoreCore } from "@priolo/jon"
 import docsSo from "../docs"
 import { CardsStore } from "../docs/cards"
-import { createUUID } from "../docs/utils/factory"
-import { forEachViews } from "../docs/utils/manage"
+import { createUUID } from "../docs/utils"
+import { forEachViews } from "../docs/utils"
 import { DragDoc } from "../mouse/utils"
 import { LoadBaseStore } from "./loadBase"
-import { VIEW_SIZE } from "./utils"
+import { VIEW_SIZE } from "./types"
 
 
 
@@ -84,23 +84,32 @@ const viewSetup = {
 	},
 
 	actions: {
+
 		//#region OVERRIDABLE
-		/** quando questa CARD è linked ad un parent */
+
+		/** 
+		 * quando questa CARD è linked ad un parent 
+		 * se il parent == null allora la CARD è stata unlinkata
+		 */
 		onLinked: (_: void, store?: ViewStore) => { },
-		/** quando è stato eseguita la build di questo store */
-		onCreated: (_: void, store?: ViewStore) => { },
-		/** quando viene rimosso dalla deck */
+		/** è inserito in un DECK */
+		onInsertion: (_: void, store?: ViewStore) => { },
+		/** è rimosso dal corrente DECK */
+		onRemoval: (_: void, store?: ViewStore) => { },
+		/** quando viene rimosso dalla deck cioe' si preme il bottone di chiusura */
 		onRemoveFromDeck: (_: void, store?: ViewStore) => {
 			store.state.group.remove({ view: store, anim: true });
 			(store as LoadBaseStore).fetchAbort?.()
 		},
 		/** quando viene droppato un elemento su questa card */
 		onDrop: (data: DragDoc, store?: ViewStore) => { },
+
 		/** creazione della card dalla serializzazione */
 		setSerialization: (state: any, store?: ViewStore) => {
 			store.state.uuid = state.uuid
 			store.state.size = state.size
 		},
+
 		//#endregion
 
 		// LINKED una CARD a questa. Se c'era gia' una CARD la elimina.
@@ -115,7 +124,7 @@ const viewSetup = {
 					//store.state.linked.state.group = null
 				}
 				store.state.linked = null
-				// setto effettivamente un LINKED
+			// setto effettivamente un LINKED
 			} else {
 				view.state.parent = store
 				// [II] view.state.group = store.state.group
@@ -124,6 +133,7 @@ const viewSetup = {
 			}
 			return store
 		},
+
 		docAnim: async (docAnim: DOC_ANIM, store?: ViewStore) => {
 			let animTime = 0
 			let noSet = false
