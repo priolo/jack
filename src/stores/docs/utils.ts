@@ -29,6 +29,7 @@ function forEachLink<T>(view: ViewStore, callback: (view: ViewStore) => T): T {
  * in pratica è un findAll specializzato sull'id
  */
 export function getById(views: ViewStore[], id: string): ViewStore {
+	if ( views == null || id == null ) return null
 	return forEachViews(views, (view) => {
 		if (view.state.uuid === id) {
 			return view

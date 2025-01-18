@@ -94,7 +94,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 						{actionsRender}
 					</div>
 				)}
-				<div className={`${clsChildren} jack-framework-body`} style={styleBody} tabIndex={0}>
+				<div className={`${clsChildren} jack-framework-body`} style={styleBody}>
 					{children}
 				</div>
 			</>}

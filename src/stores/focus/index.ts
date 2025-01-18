@@ -13,6 +13,7 @@ const setup = {
 		/** la CARD che attualmente ha il fuoco */
 		view: <ViewStore>null,
 		ctrl: false,
+		position: -1,
 	},
 
 	getters: {
@@ -23,18 +24,26 @@ const setup = {
 			store.setView(view)
 			if (!view) return
 
-			const elemCard = document.getElementById(view.state.uuid)
-			if (!elemCard) return
-			elemCard.scrollIntoView({ behavior: "smooth", inline: "center" })
-			const elemBody = elemCard.querySelector('.jack-framework-body') as HTMLElement
-			const elemFocus = elemBody.querySelector('[tabindex]') as HTMLElement
-			elemFocus?.focus()
+			if ( focusByElementPosition(0, view) ) {
+				store.setPosition(0)
+			} else {
+				store.setPosition(-1)
+			}
+
+			// const elemCard = document.getElementById(view.state.uuid)
+			// if (!elemCard) return
+			// elemCard.scrollIntoView({ behavior: "smooth", inline: "center" })
+			// const elemBody = elemCard.querySelector('.jack-framework-body') as HTMLElement
+			// const elemFocus = elemBody.querySelector('[tabindex]') as HTMLElement
+			// elemFocus?.focus()
+			// store.setPosition(0)
 		}
 	},
 
 	mutators: {
 		setView: (view: ViewStore) => ({ view }),
 		setCtrl: (ctrl: boolean) => ({ ctrl }),
+		setPosition: (position: number) => ({ position }),
 	},
 }
 
@@ -51,10 +60,10 @@ export default focusSo
 
 document.addEventListener("focusin", (event) => {
 	const id = findParentJackCard(event.target as HTMLElement)?.id
-	if (!id) {
-		focusSo.setView(null)
-		return
-	}
+	// if (id == null) {
+	// 	focusSo.setView(null)
+	// 	return
+	// }
 	const card = getById(docsSo.getAllCards(), id)
 	if (!card) return
 	focusSo.setView(card)
@@ -74,6 +83,7 @@ document.addEventListener('keydown', (event) => {
 	if (!view) return
 	const inZen = docsSo.state.zenCard == view
 	event.preventDefault()
+	event.stopPropagation()
 
 	if (event.shiftKey) {
 		if (event.code == "ArrowLeft") {
@@ -86,21 +96,34 @@ document.addEventListener('keydown', (event) => {
 			const index = group.getIndexByView(view)
 			group.move({ view, index: index + 2 })
 			return
-		}
-	}
-
-	switch (event.code) {
-		case 'ArrowUp':
+		} else if (event.code == "ArrowUp") {
 			if (view.state.size == VIEW_SIZE.COMPACT) {
 				view.setSize(VIEW_SIZE.NORMAL)
 			} else {
 				docsSo.zenOpen(view)
 			}
+		} else if (event.code == "ArrowDown") {
+			if (inZen) { 
+				docsSo.zenClose()
+			} else {
+				focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
+			}
+		}
+	}
+
+	switch (event.code) {
+		case 'ArrowUp': {
+			let nextPosition = focusSo.state.position - 1
+			if (!focusByElementPosition(nextPosition, view)) return
+			focusSo.setPosition(nextPosition)
 			break;
-		case 'ArrowDown':
-			if (inZen) { docsSo.zenClose(); break }
-			focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
+		}
+		case 'ArrowDown': {
+			const nextPosition = focusSo.state.position + 1
+			if (!focusByElementPosition(nextPosition, view)) return
+			focusSo.setPosition(nextPosition)
 			break;
+		}
 		case 'ArrowLeft': {
 			if (inZen) break
 			const card = getNear(view, true)
@@ -140,7 +163,9 @@ document.addEventListener('keyup', (event) => {
 
 
 
-
+/**
+ * Recupera l'elem HTML jack-card genitore
+ */
 function findParentJackCard(el: HTMLElement): HTMLElement | null {
 	let current: HTMLElement | null = el;
 	while (current) {
@@ -150,4 +175,21 @@ function findParentJackCard(el: HTMLElement): HTMLElement | null {
 		current = current.parentElement;
 	}
 	return null;
+}
+
+function getHTMLElemByView(view: ViewStore): HTMLElement {
+	const elemCard = document.getElementById(view.state.uuid)
+	if (!elemCard) return null
+	const elemBody = elemCard.querySelector('.jack-framework-body') as HTMLElement
+	return elemBody
+}
+
+function focusByElementPosition(position: number, view: ViewStore): boolean {
+	if (position < 0) return false
+	const elemBody = getHTMLElemByView(view)
+	const elemsFocusable = [...elemBody.querySelectorAll('[tabindex]')].filter((e: HTMLElement) => e.tabIndex >= 0)
+	if (elemsFocusable.length <= position) return false
+	const elemFocus = elemsFocusable[position] as HTMLElement
+	elemFocus.focus()
+	return true
 }

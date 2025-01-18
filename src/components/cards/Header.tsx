@@ -12,6 +12,7 @@ import React, { FunctionComponent, useMemo, useState } from "react"
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import IconButton from "../buttons/IconButton"
 import cls from "./Header.module.css"
+import focusSo from "../../stores/focus"
 
 
 
@@ -73,9 +74,7 @@ const Header: FunctionComponent<Props> = ({
 	// 	}
 	// }
 	const handleFocus = () => {
-		//e.stopPropagation()
-		//docSo.focus(store)
-		//focusSo.setView(store)
+		focusSo.setView(store)
 	}
 	const handleComprime = () => {
 		forEachParent(store, (view) => view.setSize(VIEW_SIZE.COMPACT))

@@ -151,7 +151,7 @@ function EditList<T>({
 
 	return (
 		<div className={cls.root}
-			tabIndex={0}
+			tabIndex={readOnly ? -1 : 0}
 			ref={ref}
 			style={style}
 			onKeyDown={handleKeyDown}

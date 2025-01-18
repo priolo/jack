@@ -43,6 +43,7 @@ const Table: FunctionComponent<Props> = ({
 	// STORE
 	const [propOrder, setPropOrder] = useState<ItemProp>(null)
 	const [typeOrder, setTypeOrder] = useState<ORDER_TYPE>(ORDER_TYPE.ASC)
+	const [rowFocus, setRowFocus] = useState<number>(-1)
 
 	// HOOKs
 	const propMain = useMemo(() => props.find(p => p.isMain), [props])
@@ -63,23 +64,29 @@ const Table: FunctionComponent<Props> = ({
 	}, [items, propOrder, typeOrder])
 
 	// HANDLER
-	const handleSelect = (item: any) => onSelectChange(item)
+	const handleSelect = (item: any) => {
+		onSelectChange(item)
+		setRowFocus(itemsSort.findIndex(i => i == item))
+	}
 	const handleOrderChange = (prop: ItemProp, type: ORDER_TYPE) => {
 		setPropOrder(prop)
 		setTypeOrder(type)
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLTableElement>) => {
-		if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+		if (e.code === "ArrowUp" || e.code === "ArrowDown") {
 			e.preventDefault();
-			const currentIndex = itemsSort.findIndex((itm) => getId(itm) === selectId);
-			if (currentIndex == -1) return
-			const newIndex = e.key === "ArrowUp" ? Math.max(currentIndex - 1, 0) : Math.min(currentIndex + 1, itemsSort.length - 1);
-			if (newIndex == currentIndex) return
+			const currentIndex = rowFocus >= 0 ? rowFocus : itemsSort.findIndex(i => getId(i) === selectId);
+			let newIndex = currentIndex + (e.code === "ArrowUp" ? - 1 : +1)
+			if (newIndex < 0 || newIndex > itemsSort.length - 1) return
+			setRowFocus(newIndex)
+
 			const nextItem = itemsSort[newIndex]
-			onSelectChange(nextItem)
 			const rowEl = (e.target as HTMLTableElement).querySelector(`#${CSS.escape(getId(nextItem))}`);
 			rowEl?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+		} else if (e.code === "Space" && rowFocus >= 0 ) {
+			e.preventDefault();
+			onSelectChange(itemsSort[rowFocus])
 		}
 	}
 
@@ -104,10 +111,12 @@ const Table: FunctionComponent<Props> = ({
 			{itemsSort.map((item, index) => {
 				const id = getId(item)
 				const selected = isSelected(item)
+				const focused = rowFocus == index
 				const mainText = getValueString(item, propMain)
 
 				const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
-				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} jack-hover-container`
+				const clsFocused = focused ? cls.focus : ""
+				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} ${clsFocused} jack-hover-container`
 				const clsCellMain = `${cls.cell} ${cls.main}`
 
 				return <React.Fragment key={id}>

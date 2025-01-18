@@ -6,6 +6,7 @@ import { FunctionComponent, useEffect, useId } from "react"
 interface Props {
 	content?: React.ReactNode
 	disabled?: boolean
+	tabIndex?: number
 	style?: React.CSSProperties
 	className?: string
 	onMouseOver?: (enter: boolean) => void
@@ -16,6 +17,7 @@ interface Props {
 const TooltipWrapCmp: FunctionComponent<Props> = ({
 	content,
 	disabled,
+	tabIndex = -1,
 	style,
 	className,
 	onMouseOver,
@@ -61,7 +63,7 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 	if (!content) return children
 
 	return (
-		<div style={style} className={className}
+		<div style={style} className={className} tabIndex={-1}
 			onMouseEnter={handleEnter}
 			onMouseLeave={handleLeave}
 			onClick={onClick}

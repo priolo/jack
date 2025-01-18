@@ -7,14 +7,14 @@
 	font-weight: 600;
 }
 
-.root:focus {
-	outline: 2px solid var(--cmp-focus);
-}
-
 .row {
 	position: relative;
 	cursor: pointer;
 	opacity: .8;
+}
+
+.row.focus {
+	outline: 2px solid var(--cmp-focus);
 }
 
 .row.selected {
