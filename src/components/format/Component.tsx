@@ -5,21 +5,25 @@ import cls from "./Component.module.css"
 
 interface Props {
 	style?: React.CSSProperties
+	selected?: boolean
+	readOnly?: boolean
+	autoFocus?: boolean
+
 	preRender?: React.ReactNode
 	enterRender?: React.ReactNode
 	children?: React.ReactNode
-	selected?: boolean
-	readOnly?: boolean
 	onClick?: (e: React.MouseEvent) => void
 }
 
 const Component: FunctionComponent<Props> = ({
 	style,
+	selected,
+	readOnly,
+	autoFocus,
+
 	preRender,
 	enterRender,
 	children,
-	selected,
-	readOnly,
 	onClick,
 }) => {
 	// STORE
@@ -36,6 +40,7 @@ const Component: FunctionComponent<Props> = ({
 
 	return (
 		<div className={clsRoot}
+			autoFocus={autoFocus}
 			style={style}
 			onClick={onClick}
 		>

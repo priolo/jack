@@ -3,8 +3,7 @@ import DetachIcon from "@/icons/DetachIcon"
 import DirectionLeftIcon from "@/icons/DirectionLeftIcon"
 import DirectionRightIcon from "@/icons/DirectionRightIcon"
 import docsSo from "@/stores/docs"
-import { menuSo } from "@/stores/docs/links"
-import { findParent, getRoot } from "@/stores/docs/utils"
+import { findParent, forEachParent, getRoot } from "@/stores/docs/utils"
 import mouseSo from "@/stores/mouse"
 import { VIEW_SIZE } from "@/stores/stacks/types"
 import { ViewStore } from "@/stores/stacks/viewBase"
@@ -75,13 +74,14 @@ const Header: FunctionComponent<Props> = ({
 	// }
 	const handleFocus = () => {
 		//e.stopPropagation()
-		docSo.focus(store)
+		//docSo.focus(store)
+		//focusSo.setView(store)
 	}
 	const handleComprime = () => {
-		findParent(store, (view) => view.setSize(VIEW_SIZE.COMPACT))
+		forEachParent(store, (view) => view.setSize(VIEW_SIZE.COMPACT))
 	}
 	const handleExpand = () => {
-		findParent(store, (view) => view.setSize(VIEW_SIZE.NORMAL))
+		forEachParent(store, (view) => view.setSize(VIEW_SIZE.NORMAL))
 	}
 	const handleDClick = () => {
 		if (inZen) return
@@ -91,7 +91,7 @@ const Header: FunctionComponent<Props> = ({
 	// RENDER
 	const inZen = docsSo.state.zenCard == store
 	//const inDrawer = !inZen && store.state.group == drawerCardsSo
-	const inMenu = !inZen && menuSo.find(store)
+	//const inMenu = !inZen && menuSo.find(store)
 	const [title, subTitle] = useMemo(() => [
 		store.getTitle(),
 		store.getSubTitle(),

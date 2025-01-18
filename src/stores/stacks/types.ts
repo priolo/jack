@@ -24,3 +24,25 @@ export enum LOAD_STATE {
 	LOADING,
 	ERROR
 }
+export enum MESSAGE_TYPE {
+	INFO = "info",
+	SUCCESS = "success",
+	WARNING = "warn",
+	ERROR = "error"
+}
+
+export interface SnackbarState {
+	open: boolean
+	title?: string
+	body?: string
+	type?: MESSAGE_TYPE
+	timeout?: number
+}
+export interface AlertState {
+	open?: boolean
+	title: string
+	body: string
+	labelOk?: string
+	labelCancel?: string
+	resolve?: (value: boolean) => void
+}

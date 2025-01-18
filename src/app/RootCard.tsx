@@ -1,10 +1,9 @@
 import docsSo from "@/stores/docs"
-import { CardsState } from "@/stores/docs/cards"
 import mouseSo from "@/stores/mouse"
 import { VIEW_SIZE } from "@/stores/stacks/types"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { DOC_ANIM } from "@/types"
-import { useStore, useStoreNext } from "@priolo/jon"
+import { useStore } from "@priolo/jon"
 import React, { FunctionComponent, useEffect, useMemo } from "react"
 import { createPortal } from "react-dom"
 import { RenderProps } from "./CardsGroup"
@@ -33,7 +32,7 @@ const RootCard: FunctionComponent<Props> = ({
 	// STORES
 	const viewSa = useStore(view)
 	const docsSa = useStore(docsSo)
-	useStoreNext(view.state.group, (state: CardsState, stateOld: CardsState) => state.focus != stateOld.focus)
+	//useStoreNext(view.state.group, (state: CardsState, stateOld: CardsState) => state.focus != stateOld.focus)
 
 	// HOOKS
 	useEffect(() => {

@@ -7,6 +7,10 @@
 	border-radius: 3px;
 }
 
+.root:focus {
+	outline: 2px solid var(--cmp-focus);
+}
+
 .select {
 	color: var(--cmp-select-fg);
 	background-color: var(--cmp-select-bg);

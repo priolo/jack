@@ -16,7 +16,7 @@
 	/* button icon button */
 	--cmp-select-fg: #393939;
 	--cmp-select-bg: #EBFB35;
-	
+
 	/* ombra perimetrale inputtext buttton */
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
@@ -24,6 +24,7 @@
 	--dialog-fg: #393939;
 	--dialog-bg: #EBFB35;
 
+	--cmp-focus: var(--dialog-bg);
 }
 
 .jack-bars-alert-bg {

@@ -1,11 +1,11 @@
 import CloseIcon from "@/icons/CloseIcon"
-import DetachIcon from "@/icons/DetachIcon"
 import docsSo from "@/stores/docs"
 import { VIEW_SIZE } from "@/stores/stacks/types"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { DOC_ANIM } from "@/types"
-import { useStore, useStoreNext } from "@priolo/jon"
+import { useStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
+import focusSo from "../../stores/focus"
 import IconButton from "../buttons/IconButton"
 import ErrorBoundary from "./ErrorBoundary"
 import cls from "./FrameworkCard.module.css"
@@ -41,8 +41,9 @@ const FrameworkCard: FunctionComponent<Props> = ({
 }) => {
 
 	// STORES
-	const viewSa = useStore(store)
-	useStoreNext(store.state.group, (state, stateOld) => state.focus != stateOld.focus)
+	useStore(store)
+	useStore(focusSo)
+	//useStoreNext(store.state.group, (state, stateOld) => state.focus != stateOld.focus)
 
 	// HANDLER
 	const handleClose = () => store.onRemoveFromDeck()
@@ -51,12 +52,13 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	// RENDER
 	const inZen = docsSo.state.zenCard == store
 	const inRoot = inZen || !store.state.parent
-	const haveFocus = !inZen && store.state.group.state.focus == store
+	const haveFocus = !inZen && focusSo.state.view == store
+	const haveFocusCtrl = focusSo.state.ctrl
 	const isIconized = store.state.size == VIEW_SIZE.COMPACT
 	const inDrag = store.state.docAnim == DOC_ANIM.DRAGGING
 	const dialogId = `dialog_${store.state.uuid}`
 
-	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""} ${className} jack-framework`
+	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""} ${haveFocusCtrl ? cls.ctrl : ""} ${className} jack-framework`
 	const clsChildren = `${cls.children} ${store.state.disabled ? cls.disabled : ""}`
 
 	return <div className={clsRoot} style={style} >
@@ -92,7 +94,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 						{actionsRender}
 					</div>
 				)}
-				<div className={clsChildren} style={styleBody}>
+				<div className={`${clsChildren} jack-framework-body`} style={styleBody} tabIndex={0}>
 					{children}
 				</div>
 			</>}

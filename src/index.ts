@@ -80,18 +80,21 @@ export { default as mouseSo } from "@/stores/mouse/index.js";
 export type { DragDoc, Position } from "@/stores/mouse/utils.js";
 
 export { DOC_ANIM } from '@/stores/docs/types.js';
-export { LOAD_STATE, VIEW_SIZE } from '@/stores/stacks/types.js';
-export { MESSAGE_TYPE, default as viewSetup } from "@/stores/stacks/viewBase.js";
+export { MESSAGE_TYPE, LOAD_STATE, VIEW_SIZE } from '@/stores/stacks/types.js';
+export { default as viewSetup } from "@/stores/stacks/viewBase.js";
 export type { ViewActions, ViewGetters, ViewMutators, ViewState, ViewStore } from "@/stores/stacks/viewBase.js";
+
 export type { ColorVar } from "@/types/global.js";
 
 export { default as cardsSetup } from '@/stores/docs/cards.js';
 export type { CardsState, CardsStore } from '@/stores/docs/cards.js';
 export { default as loadBaseSetup } from '@/stores/stacks/loadBase.js';
 export type { LoadBaseState, LoadBaseStore } from './stores/stacks/loadBase.js';
-
+export { default as linksSetup } from "@/stores/docs/links.js";
+export type { LinksState, LinksStore } from "@/stores/docs/links.js";
 
 // ICONS AND UTILS
 export * as icons from "@/icons";
 export * as utils from "./stores/docs/utils.js";
+export { default as docsSo, DRAWER_POSITION, FIXED_CARD } from "./stores/docs/index.js";
 

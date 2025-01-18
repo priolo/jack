@@ -5,8 +5,11 @@
 	font-size: 10px;
 	font-weight: 800;
 	transition: background-color 300ms, color 200ms;
-
 	border: 2px solid var(--cmp-bg);
+}
+
+.root:focus {
+	outline: 2px solid var(--cmp-focus);
 }
 
 .disabled {

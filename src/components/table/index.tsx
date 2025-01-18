@@ -1,7 +1,7 @@
-import React, { CSSProperties, FunctionComponent, useMemo, useState } from "react"
+import React, { FunctionComponent, useMemo, useState, useEffect } from "react"
+import CopyButton from "../buttons/CopyButton"
 import Header, { ORDER_TYPE } from "./Header"
 import cls from "./Table.module.css"
-import CopyButton from "../buttons/CopyButton"
 
 
 
@@ -26,6 +26,7 @@ interface Props {
 	/** callback per determinare un id di un item */
 	getId?: (item: any) => string
 	style?: React.CSSProperties
+	tabIndex?: number
 }
 
 const Table: FunctionComponent<Props> = ({
@@ -36,6 +37,7 @@ const Table: FunctionComponent<Props> = ({
 	onSelectChange,
 	getId = (item) => item.toString(),
 	style,
+	tabIndex = 0,
 }) => {
 
 	// STORE
@@ -67,6 +69,20 @@ const Table: FunctionComponent<Props> = ({
 		setTypeOrder(type)
 	}
 
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLTableElement>) => {
+		if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+			e.preventDefault();
+			const currentIndex = itemsSort.findIndex((itm) => getId(itm) === selectId);
+			if (currentIndex == -1) return
+			const newIndex = e.key === "ArrowUp" ? Math.max(currentIndex - 1, 0) : Math.min(currentIndex + 1, itemsSort.length - 1);
+			if (newIndex == currentIndex) return
+			const nextItem = itemsSort[newIndex]
+			onSelectChange(nextItem)
+			const rowEl = (e.target as HTMLTableElement).querySelector(`#${CSS.escape(getId(nextItem))}`);
+			rowEl?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+		}
+	}
+
 	// RENDER
 	const isSelected = (item: any) => getId(item) == selectId
 	const colspan = props.length
@@ -75,7 +91,7 @@ const Table: FunctionComponent<Props> = ({
 		return prop.getShow?.(item) ?? prop.getValue?.(item)
 	}
 
-	return <table className={cls.root} style={style}>
+	return <table className={cls.root} style={style} tabIndex={tabIndex} onKeyDown={handleKeyDown}>
 
 		<Header
 			props={propToShow}
@@ -110,13 +126,13 @@ const Table: FunctionComponent<Props> = ({
 						</tr>
 					)}
 
-					<tr
+					<tr id={id}
 						className={clsRow}
 						onClick={() => handleSelect(item)}
 					>
 						{propToShow.map((prop, index) => !(!singleRow && prop.isMain) && (
 							<td key={index}
-								className={prop.isMain ? clsCellMain :  cls.cell}
+								className={prop.isMain ? clsCellMain : cls.cell}
 							>
 								{getValueString(item, prop)}
 							</td>

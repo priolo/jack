@@ -4,6 +4,7 @@ import { StoreCore, createStore, mixStores } from "@priolo/jon"
 import { ViewStore } from "../stacks/viewBase"
 import docsSo from "./index"
 import { forEachViews, getById, getRoot } from "./utils"
+import focusSo from "../focus"
 
 
 
@@ -15,8 +16,6 @@ const cardsSetup = {
 	state: {
 		/** tutte le CARD nel DECK */
 		all: <ViewStore[]>[],
-		/** CARD che ha il fuoco in questo momento */
-		focus: <ViewStore>null,
 	},
 
 	getters: {
@@ -31,22 +30,17 @@ const cardsSetup = {
 
 	actions: {
 
-		focus(view: ViewStore, store?: CardsStore) {
-			const elm = document.getElementById(view?.state?.uuid)
-			elm?.scrollIntoView({ behavior: "smooth", inline: "center" })
-			store.setFocus(view)
-		},
-
 		/** aggiunge una CARD direttamente nel DECK */
 		async add(
 			{ view, index, anim = false }: { view: ViewStore, index?: number, anim?: boolean },
 			store?: CardsStore
 		) {
 			// se c'e' gia' setto solo il focus
-			const finded = getById(cardsSetup.GetAllCards(), view.state.uuid)
+			const finded = getById(docsSo.getAllCards(), view.state.uuid)
 			if (finded) {
 				//if (finded.state.group == drawerCardsSo) drawerCardsSo.setWidth(500)
-				finded.state.group?.focus(finded)
+				//finded.state.group?.focus(finded)
+				focusSo.setView(finded)
 				return
 			}
 			//if (!!getById(store.state.all, view.state.uuid)) return
@@ -175,12 +169,8 @@ const cardsSetup = {
 
 	mutators: {
 		setAll: (all: ViewStore[], store?: CardsStore) => ({ all }),
-		setFocus: (focus: ViewStore) => ({ focus }),
 	},
 
-	// STATIC
-	AllDeck: <CardsStore[]>[],
-	GetAllCards: () => cardsSetup.AllDeck.reduce<ViewStore[]>((acc, store) => [...acc, ...store.state.all], []),
 }
 
 export type CardsState = typeof cardsSetup.state

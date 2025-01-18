@@ -7,6 +7,7 @@ export interface TextInputProps {
 	value?: string | number
 	placeholder?: string
 	autoFocus?: boolean
+	tabIndex?: number
 	readOnly?: boolean
 	className?: string
 	style?: React.CSSProperties
@@ -26,6 +27,7 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 		value,
 		placeholder,
 		autoFocus,
+		tabIndex = 0,
 		readOnly,
 		className,
 		style,
@@ -102,7 +104,8 @@ const TextInput: ForwardRefRenderFunction<HTMLElement, TextInputProps> = (
 		className={clsRoot}
 		style={style}
 		placeholder={placeholder}
-		autoFocus={autoFocus}
+		autoFocus={autoFocus} 
+		tabIndex={tabIndex}
 		spellCheck="false"
 		autoComplete="_off"
 		value={value ?? ""}

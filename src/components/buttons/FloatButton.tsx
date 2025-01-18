@@ -33,7 +33,7 @@ const FloatButton: FunctionComponent<Props> = ({
 	const clsRoot = `jack-cmp jack-cmp-float ${cls.root} ${clsDisabled} ${className}`
 
 	return (
-		<div style={style}
+		<div style={style} tabIndex={-1}
 			className={clsRoot}
 			onClick={handleClick}
 		>

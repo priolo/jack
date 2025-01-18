@@ -8,7 +8,7 @@ import { forEachViews, getById } from "./utils"
 /**
  * gestisce un array di LINKs di VIEWs
  */
-const setup = {
+const linksSetup = {
 
 	state: {
 		/** tutte le CARD LIKED */
@@ -74,12 +74,12 @@ const setup = {
 	},
 }
 
-export type LinksState = typeof setup.state
-export type LinksGetters = typeof setup.getters
-export type LinksActions = typeof setup.actions
-export type LinksMutators = typeof setup.mutators
+export type LinksState = typeof linksSetup.state
+export type LinksGetters = typeof linksSetup.getters
+export type LinksActions = typeof linksSetup.actions
+export type LinksMutators = typeof linksSetup.mutators
 export interface LinksStore extends StoreCore<LinksState>, LinksGetters, LinksActions, LinksMutators {
 	state: LinksState
 }
 
-export const menuSo = createStore(setup) as LinksStore
+export default linksSetup

@@ -11,18 +11,16 @@ import { ViewStore } from "../stacks/viewBase";
 export function forEachViews<T>(views: ViewStore[], callback: (view: ViewStore) => T): T {
 	if (!views) return null
 	for (const view of views) {
-		const ret = forEachView(view, callback)
-		if ( ret != null) return ret
+		const ret = forEachLink(view, callback)
+		if (ret != null) return ret
 	}
 	return null
 }
-function forEachView<T>(view: ViewStore, callback: (view: ViewStore) => T): T {
+function forEachLink<T>(view: ViewStore, callback: (view: ViewStore) => T): T {
 	if (!view) return null
 	const ret = callback(view)
-	if ( ret != null && ret !== false ) return ret
-	if (view.state.linked) {
-		return forEachView(view.state.linked, callback)
-	}
+	if (ret != null && ret !== false) return ret
+	if (view.state.linked) return forEachLink(view.state.linked, callback)
 	return null
 }
 
@@ -60,13 +58,19 @@ export function findInRoot(views: ViewStore[], state: any) {
 
 
 /**
- * cicla i parent se c'e' un return si ferma e restituisce
+ * cicla i parent 
+ * se c'e' un return si ferma e restituisce
+ * se il return è null o false continua
+ * @param callback se non definito prende il parent che sta alla radice
  */
-export function findParent<T>(view: ViewStore, callback: (view: ViewStore) => T): T {
-	let parent = view?.state.parent
+export function findParent(
+	view: ViewStore,
+	callback: (view: ViewStore) => ViewStore | boolean = (v) => v.state?.parent == null ? v : null
+): ViewStore {
+	let parent = view
 	while (parent != null) {
 		const ret = callback(parent)
-		if ( ret != null && ret !== false ) return ret
+		if (ret != null && ret !== false) return ret as ViewStore
 		parent = parent.state.parent
 	}
 	return null
@@ -114,3 +118,26 @@ export function createUUID(): string {
 	return uuid;
 }
 
+/**
+ * restituisce la VIEW precedente o successiva
+ */
+export function getNear(view: ViewStore, left: boolean = false): ViewStore {
+	// se necessita ho un parent o un linked uso quelli
+	if (left && !!view.state.parent) return view.state.parent
+	if (!left && view.state.linked) return view.state.linked
+
+	const group = view?.state.group
+	if (!group) return null
+
+
+	if (left) {
+		let nextIndex = group.getIndexByView(view) - 1
+		if (nextIndex < 0) nextIndex = group.state.all.length - 1
+		return forEachLink(group.state.all[nextIndex], v => v.state?.linked == null ? v : null)
+	}
+
+	const parent = findParent(view)
+	let nextIndex = group.getIndexByView(parent) + 1
+	if (nextIndex >= group.state.all.length) nextIndex = 0
+	return group.state.all[nextIndex]
+}

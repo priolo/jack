@@ -6,6 +6,7 @@ import cls from "./Button.module.css"
 interface Props {
 	select?: boolean
 	children?: React.ReactNode
+	tabIndex?: number
 
 	className?: string
 	style?: React.CSSProperties
@@ -17,6 +18,7 @@ interface Props {
 const Button: FunctionComponent<Props> = ({
 	select,
 	children,
+	tabIndex = 0,
 
 	className = "",
 	style,
@@ -36,6 +38,12 @@ const Button: FunctionComponent<Props> = ({
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		onClick?.(e, select)
 	}
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if ( disabled ) return
+		if (e.code === "Space") {
+			onClick?.(e as any, select);
+		}
+	}
 
 	// RENDER
 	const clsSelect = mouseOver || select ? `${cls.selected} jack-cmp-select` : ""
@@ -44,9 +52,11 @@ const Button: FunctionComponent<Props> = ({
 
 	return (
 		<div style={style} className={clsRoot}
+			tabIndex={tabIndex}
 			onClick={handleClick}
 			onMouseEnter={handleEnter}
 			onMouseLeave={handleLeave}
+			onKeyDown={handleKeyDown}
 		>
 			{children}
 		</div>

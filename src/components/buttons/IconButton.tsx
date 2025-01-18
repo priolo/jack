@@ -4,6 +4,7 @@ import cls from "./IconButton.module.css"
 
 
 interface Props {
+	tabIndex?: number
 	onClick?: (e: React.MouseEvent) => void
 	children?: React.ReactNode
 	effect?: boolean
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const IconButton: FunctionComponent<Props> = ({
+	tabIndex = -1,
 	onClick,
 	select,
 	disabled,
@@ -35,7 +37,7 @@ const IconButton: FunctionComponent<Props> = ({
 	const clsRoot = `jack-cmp jack-cmp-button ${cls.root} ${clsSelect} ${clsDisabled} ${className}`
 
 	return (
-		<div style={style} className={clsRoot}
+		<div style={style} className={clsRoot} tabIndex={tabIndex}
 			onClick={onClick}
 			onMouseEnter={effect ? () => setMouseOver(true) : null}
 			onMouseLeave={effect ? () => setMouseOver(false) : null}

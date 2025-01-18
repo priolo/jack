@@ -10,7 +10,7 @@ import Dialog from "../../components/dialogs/Dialog"
 import TextInput from "../../components/input/TextInput"
 import DirectionRightIcon from "../../icons/DirectionRightIcon"
 import DoneIcon from "../../icons/DoneIcon"
-import { MESSAGE_TYPE } from "../../stores/stacks/viewBase"
+import { MESSAGE_TYPE } from "@/stores/stacks/types"
 import example2Setup, { Example2Store } from "../example2"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
@@ -64,6 +64,20 @@ const Example1View: FunctionComponent<Props> = ({
 				onClick={() => setOpen(true)}
 			>CLICK ME</Button>
 
+			<TextInput
+				value={text}
+				onChange={text => setText(text)}
+			/>
+
+			<Button select
+				onClick={handleOpenLinked}
+			>OPEN</Button>
+
+			<IconButton effect tabIndex={3}
+				onClick={handleIconClick}
+			><DirectionRightIcon /></IconButton>
+
+
 			<Dialog noCloseOnClickParent
 				title="FILTERS"
 				store={store}
@@ -75,16 +89,6 @@ const Example1View: FunctionComponent<Props> = ({
 			>
 				<div>CIAO</div>
 			</Dialog>
-
-			<TextInput value={text} onChange={text => setText(text)} />
-
-			<Button select
-				onClick={handleOpenLinked}
-			>OPEN</Button>
-
-			<IconButton effect
-				onClick={handleIconClick}
-			><DirectionRightIcon /></IconButton>
 
 		</div>
 

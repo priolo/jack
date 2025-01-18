@@ -10,7 +10,7 @@ import ZenCard from "../app/ZenCard"
 import DragCmp from "../app/DragCmp"
 import TooltipCmp from "../app/tooltip/TooltipCmp"
 import PolymorphicCard from "./PolymorphicCard"
-import { DOC_TYPE } from "../types"
+import { DOC_TYPE } from "./types"
 
 
 

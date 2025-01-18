@@ -7,7 +7,7 @@ import { createUUID } from "../docs/utils"
 import { forEachViews } from "../docs/utils"
 import { DragDoc } from "../mouse/utils"
 import { LoadBaseStore } from "./loadBase"
-import { VIEW_SIZE } from "./types"
+import { AlertState, SnackbarState, VIEW_SIZE } from "./types"
 
 
 
@@ -46,9 +46,9 @@ const viewSetup = {
 			/** disabilita qualsiasi animazione */
 			docAniDisabled: false,
 
-			/** la sua VIEW PARENT */
+			/** il PARENT LINKED di questa CARD */
 			parent: <ViewStore>null,
-			/** la sua VIEW LINKED */
+			/** la CARD LINKED a questa */
 			linked: <ViewStore>null,
 			/** il GROUP dove è visualizzata questa CARD */
 			group: <CardsStore>null,
@@ -224,30 +224,5 @@ export interface ViewStore extends StoreCore<ViewState>, ViewGetters, ViewAction
 }
 
 export default viewSetup
-
-
-export enum MESSAGE_TYPE {
-	INFO = "info",
-	SUCCESS = "success",
-	WARNING = "warn",
-	ERROR = "error",
-}
-
-export interface SnackbarState {
-	open: boolean
-	title?: string
-	body?: string
-	type?: MESSAGE_TYPE
-	timeout?: number
-}
-export interface AlertState {
-	open?: boolean
-	title: string
-	body: string
-	labelOk?: string
-	labelCancel?: string
-	resolve?: (value: boolean) => void
-}
-
 
 

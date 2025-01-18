@@ -1,9 +1,9 @@
-import React, { CSSProperties, FunctionComponent, useMemo, useState } from "react"
+import React, { FunctionComponent, useMemo, useState } from "react"
 import { Virtuoso } from "react-virtuoso"
 import CopyButton from "../buttons/CopyButton"
 import { ORDER_TYPE } from "./Header"
-import cls from "./VTable.module.css"
 import VHeader from "./VHeader"
+import cls from "./VTable.module.css"
 
 
 

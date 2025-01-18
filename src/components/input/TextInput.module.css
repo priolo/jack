@@ -17,7 +17,7 @@
 }
 
 .root:focus {
-	outline: none;
+	outline: 2px solid var(--cmp-focus);
 }
 
 .root:disabled {

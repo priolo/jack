@@ -12,6 +12,7 @@ import "@/css/interaction.css";
 import '@/css/label.css';
 import '@/css/layout.css';
 import '@/css/scrollbar.css';
+import docsSo from '../stores/docs';
 
 
 
@@ -19,6 +20,7 @@ import '@/css/scrollbar.css';
 export const deckCardsSo = createStore(cardsSetup) as CardsStore
 export const deckCards2So = createStore(cardsSetup) as CardsStore
 
+docsSo.setAllDeck([deckCardsSo])
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

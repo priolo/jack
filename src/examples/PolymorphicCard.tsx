@@ -2,10 +2,10 @@ import { ViewStore } from "@/stores/stacks/viewBase"
 import { FunctionComponent, useMemo } from "react"
 import { Example1Store } from "./example1"
 import { Example2Store } from "./example2"
-import { DOC_TYPE } from "../types"
 import Example1View from "./example1/View"
 import Example2View from "./example2/View"
 import Example3View from "./example3/View"
+import { DOC_TYPE } from "./types"
 
 
 

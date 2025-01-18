@@ -1,11 +1,8 @@
-import { DOC_TYPE } from "@/stores/docs/types"
+import { DOC_TYPE } from "@/examples/types"
 import { StoreCore, createStore } from "@priolo/jon"
-//import { CnnListStore } from "../stacks/connection"
-//import { ViewLogStore } from "../stacks/log"
-//import { AboutStore } from "../stacks/about"
 import { ViewStore } from "../stacks/viewBase"
 import { delay, delayAnim } from "@/utils/time"
-//import { HelpStore } from "../stacks/help"
+import { CardsStore } from "./cards"
 
 
 
@@ -26,12 +23,13 @@ export enum FIXED_CARD {
 const setup = {
 
 	state: {
-		//fixedViews: <[CnnListStore?, ViewLogStore?, AboutStore?]>null,
+		fixedViews: <ViewStore[]>null,
+		allDeck: <CardsStore[]>[],
 		/** la CARD attualmente in ZEN */
 		zenCard: <ViewStore>null,
 		zenOpen: false,
 		/** indica quale tipo di CARD era aperta precedentemente  */
-		cardOptions: <{ [type: string]: DOC_TYPE }>{},
+		cardOptions: <{ [type: string]: string }>{},
 		drawerPosition: DRAWER_POSITION.RIGHT,
 	},
 
@@ -40,7 +38,8 @@ const setup = {
 			return {
 				drawerPosition: store.state.drawerPosition,
 			}
-		}
+		},
+		getAllCards: (_:void, store?: DocStore) => store.state.allDeck.reduce<ViewStore[]>((acc, store) => [...acc, ...store.state.all], []),
 	},
 
 	actions: {
@@ -58,15 +57,16 @@ const setup = {
 			await delay(300)
 			store.state.zenCard._update()
 			store.setZenCard(null)
-
 		}
 	},
 
 	mutators: {
-		//setFixedViews: (fixedViews: [CnnListStore, ViewLogStore, AboutStore, HelpStore]) => ({ fixedViews }),
 		setZenCard: (zenCard: ViewStore) => ({ zenCard }),
 		setZenOpen: (zenOpen: boolean) => ({ zenOpen }),
 		setDrawerPosition: (drawerPosition: DRAWER_POSITION) => ({ drawerPosition }),
+
+		setFixedViews: (fixedViews: ViewStore[]) => ({ fixedViews }),
+		setAllDeck: (allDeck: CardsStore[]) => ({ allDeck }),
 	},
 }
 
