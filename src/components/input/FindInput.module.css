@@ -5,7 +5,15 @@
 	gap: 3px;
 }
 
+.root:focus-within {
+	outline: 2px solid var(--cmp-focus);
+}
+
 .input {
 	flex: 1;
 	width: 100%;
+}
+
+.input:focus {
+	outline: none;
 }

@@ -1,6 +1,6 @@
 import { StoreCore, createStore } from "@priolo/jon"
 import { DOC_ANIM } from "../docs/types"
-import { DragDoc, Position } from "./utils"
+import { DragDoc, Position } from "./types"
 import { ColorVar } from "../../types/global"
 
 

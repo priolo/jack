@@ -1,7 +1,7 @@
 import tooltipSo from "@/stores/tooltip"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useEffect, useRef, useState } from "react"
-import { Position } from "../../stores/mouse/utils"
+import { Position } from "../../stores/mouse/types"
 import cls from "./TooltipCmp.module.css"
 
 

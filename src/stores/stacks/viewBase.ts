@@ -5,7 +5,7 @@ import docsSo from "../docs"
 import { CardsStore } from "../docs/cards"
 import { createUUID } from "../docs/utils"
 import { forEachViews } from "../docs/utils"
-import { DragDoc } from "../mouse/utils"
+import { DragDoc } from "../mouse/types"
 import { LoadBaseStore } from "./loadBase"
 import { AlertState, SnackbarState, VIEW_SIZE } from "./types"
 

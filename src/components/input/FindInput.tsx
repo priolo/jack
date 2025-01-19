@@ -30,7 +30,7 @@ const FindInput: FunctionComponent<Props> = ({
 
 	// RENDER
 	const haveValue = value?.length > 0
-	const clsRoot = `${cls.root} ${className}`
+	const clsRoot = `jack-cmp-txt-finder ${cls.root} ${className}`
 
 	return (
 		<div

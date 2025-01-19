@@ -36,10 +36,10 @@ const Button: FunctionComponent<Props> = ({
 	const handleEnter = () => setMouseOver(true)
 	const handleLeave = () => setMouseOver(false)
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		if (!disabled ) onClick?.(e, select)
+		if (!disabled) onClick?.(e, select)
 	}
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-		if (!disabled && e.code === "Space") onClick?.(e as any, select);
+		if (!disabled && (e.code === "Space" || e.code == "Enter")) onClick?.(e as any, select);
 	}
 
 	// RENDER

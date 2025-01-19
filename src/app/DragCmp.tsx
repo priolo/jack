@@ -1,7 +1,7 @@
 import mouseSo, { MouseState } from "@/stores/mouse"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useEffect, useState } from "react"
-import { Position } from "../stores/mouse/utils"
+import { Position } from "../stores/mouse/types"
 import { ANIM_TIME } from "../types"
 import cls from "./DragCmp.module.css"
 import { ColorVar } from "../types/global"

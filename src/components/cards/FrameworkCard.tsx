@@ -48,6 +48,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	// HANDLER
 	const handleClose = () => store.onRemoveFromDeck()
 	const handleDetach = () => store.state.group.detach(store)
+	const handleClick = () => focusSo.setView(store)
 
 	// RENDER
 	const inZen = docsSo.state.zenCard == store
@@ -61,7 +62,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""} ${haveFocusCtrl ? cls.ctrl : ""} ${className} jack-framework`
 	const clsChildren = `${cls.children} ${store.state.disabled ? cls.disabled : ""}`
 
-	return <div className={clsRoot} style={style} >
+	return <div className={clsRoot} style={style} onClick={handleClick}>
 
 		{/* <Header store={store} icon={icon} /> */}
 		{headerRender}

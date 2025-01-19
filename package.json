@@ -22,8 +22,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build --sourcemap -d",
-    "build:watch": "vite build --sourcemap -w -d",
+    "build": "vite build --sourcemap",
+    "build:watch": "vite build --sourcemap -w",
     "test": "vitest",
     "prepublishOnly": "npm run build",
     "pub": "npm publish --access public"

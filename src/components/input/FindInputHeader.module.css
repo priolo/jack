@@ -9,9 +9,17 @@
 	border: 2px solid transparent;
 }
 
+.root:focus-within {
+	outline: 2px solid var(--cmp-focus);
+}
+
 .input {
 	flex: 1;
 	padding: 0px;
 	border: none;
 	width: 100%;
+}
+
+.input:focus {
+	outline: none;
 }

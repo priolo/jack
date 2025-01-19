@@ -74,7 +74,7 @@ const Header: FunctionComponent<Props> = ({
 	// 	}
 	// }
 	const handleFocus = () => {
-		focusSo.setView(store)
+		//focusSo.setView(store)
 	}
 	const handleComprime = () => {
 		forEachParent(store, (view) => view.setSize(VIEW_SIZE.COMPACT))

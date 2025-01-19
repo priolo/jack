@@ -28,11 +28,11 @@ const FindInputHeader: FunctionComponent<Props> = ({
 
 	// RENDER
 	const haveValue = value?.length > 0
+	const clsRoot = `jack-cmp-txt-finder ${cls.root}`
 
 	return (
 		<div
-			className={cls.root}
-			//className={`${cls.root} ${haveValue ? "color-br" : ""}`}
+			className={clsRoot}
 			style={style}
 		>
 			<TextInput

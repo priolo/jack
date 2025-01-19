@@ -25,6 +25,7 @@
 	--dialog-bg: #EBFB35;
 
 	--cmp-focus: var(--dialog-bg);
+	--framework-focus: var(--dialog-bg);
 }
 
 .jack-bars-alert-bg {
