@@ -152,6 +152,10 @@ document.addEventListener('keydown', (event) => {
 			view.state.group.detach(view)
 			break;
 		}
+		case "KeyF": {
+			
+			break;
+		}
 		default:
 			break;
 	}
@@ -164,7 +168,7 @@ document.addEventListener('keyup', (event) => {
 
 
 /**
- * Recupera l'elem HTML jack-card genitore
+ * Recupera il parent element HTML che abbia class jack-card
  */
 function findParentJackCard(el: HTMLElement): HTMLElement | null {
 	let current: HTMLElement | null = el;
@@ -177,6 +181,9 @@ function findParentJackCard(el: HTMLElement): HTMLElement | null {
 	return null;
 }
 
+/**
+ * Recupero l'elemento HTML in base alla CARD VIEW-STORE
+ */
 function getHTMLElemByView(view: ViewStore): HTMLElement {
 	const elemCard = document.getElementById(view.state.uuid)
 	if (!elemCard) return null

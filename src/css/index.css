@@ -13,3 +13,28 @@ body {
 #root {
   height: 100%;
 }
+
+
+/**
+DESCRIPTION UTILITY CLASSES
+
+jack-card
+jack-framework
+jack-framework-actions
+jack-framework-focus
+jack-framework-focus-ctrl
+
+
+jack-cmp
+jack-cmp-dialog
+jack-cmp-float
+jack-cmp-button (icon button)
+jack-cmp-text-input
+jack-cmp-tbl-row
+jack-cmp-txt-finder
+
+
+jack-cmp-select
+jack-cmp-disabled
+
+**/

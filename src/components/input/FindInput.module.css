@@ -5,7 +5,10 @@
 	gap: 3px;
 }
 
-.root:focus-within {
+.root:focus {
+	outline: none;
+}
+:global(.jack-framework-focus-ctrl) .root:focus {
 	outline: 2px solid var(--cmp-focus);
 }
 

@@ -59,7 +59,8 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	const inDrag = store.state.docAnim == DOC_ANIM.DRAGGING
 	const dialogId = `dialog_${store.state.uuid}`
 
-	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${haveFocus ? cls.focus : ""} ${haveFocusCtrl ? cls.ctrl : ""} ${className} jack-framework`
+	const clsFocus = `${haveFocus ? `${cls.focus} jack-framework-focus` : ""} ${haveFocusCtrl ? `${cls.ctrl} jack-framework-focus-ctrl` : ""}`
+	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${clsFocus} ${className} jack-framework`
 	const clsChildren = `${cls.children} ${store.state.disabled ? cls.disabled : ""}`
 
 	return <div className={clsRoot} style={style} onClick={handleClick}>

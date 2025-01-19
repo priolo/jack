@@ -11,6 +11,7 @@ interface Props {
 	className?: string
 	onMouseOver?: (enter: boolean) => void
 	onClick?: (e: React.MouseEvent) => void
+	onKeyDown?: (e: React.KeyboardEvent) => void
 	children: React.ReactNode
 }
 
@@ -22,6 +23,7 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 	className,
 	onMouseOver,
 	onClick,
+	onKeyDown,
 	children
 }) => {
 
@@ -63,10 +65,11 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 	if (!content) return children
 
 	return (
-		<div style={style} className={className} tabIndex={-1}
+		<div style={style} className={className} tabIndex={tabIndex}
 			onMouseEnter={handleEnter}
 			onMouseLeave={handleLeave}
 			onClick={onClick}
+			onKeyDown={onKeyDown}
 		>
 			{children}
 		</div>

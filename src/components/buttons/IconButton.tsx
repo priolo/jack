@@ -15,7 +15,7 @@ interface Props {
 }
 
 const IconButton: FunctionComponent<Props> = ({
-	tabIndex = -1,
+	tabIndex = 0,
 	onClick,
 	select,
 	disabled,
@@ -30,6 +30,9 @@ const IconButton: FunctionComponent<Props> = ({
 	const [mouseOver, setMouseOver] = useState(false)
 
 	// HANDLER
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (!disabled && (e.code === "Space" || e.code == "Enter")) onClick?.(e as any);
+	}
 
 	// RENDER
 	const clsSelect = mouseOver || select ? `${cls.select} jack-cmp-select` : ""
@@ -41,6 +44,7 @@ const IconButton: FunctionComponent<Props> = ({
 			onClick={onClick}
 			onMouseEnter={effect ? () => setMouseOver(true) : null}
 			onMouseLeave={effect ? () => setMouseOver(false) : null}
+			onKeyDown={handleKeyDown}
 		>
 			{children}
 		</div>

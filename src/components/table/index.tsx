@@ -74,6 +74,7 @@ const Table: FunctionComponent<Props> = ({
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLTableElement>) => {
+		if (e.ctrlKey || e.shiftKey || e.altKey) return
 		if (e.code === "ArrowUp" || e.code === "ArrowDown") {
 			e.preventDefault();
 			const currentIndex = rowFocus >= 0 ? rowFocus : itemsSort.findIndex(i => getId(i) === selectId);
@@ -84,7 +85,7 @@ const Table: FunctionComponent<Props> = ({
 			const nextItem = itemsSort[newIndex]
 			const rowEl = (e.target as HTMLTableElement).querySelector(`#${CSS.escape(getId(nextItem))}`);
 			rowEl?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-		} else if (e.code === "Space" && rowFocus >= 0 ) {
+		} else if (rowFocus >= 0 && (e.code === "Space" || e.code === "Enter")) {
 			e.preventDefault();
 			onSelectChange(itemsSort[rowFocus])
 		}

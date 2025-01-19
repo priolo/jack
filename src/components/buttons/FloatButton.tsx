@@ -27,6 +27,9 @@ const FloatButton: FunctionComponent<Props> = ({
 		if (disabled) return
 		onClick?.(e)
 	}
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (!disabled && (e.code === "Space" || e.code == "Enter")) onClick?.(e as any);
+	}
 
 	// RENDER
 	const clsDisabled = disabled ? `${cls.disabled} jack-cmp-disabled` : ""
@@ -36,6 +39,7 @@ const FloatButton: FunctionComponent<Props> = ({
 		<div style={style} tabIndex={-1}
 			className={clsRoot}
 			onClick={handleClick}
+			onKeyDown={handleKeyDown}
 		>
 			{children}
 		</div>
