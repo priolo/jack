@@ -47,7 +47,10 @@ const Example1View: FunctionComponent<Props> = ({
 	// RENDER
 	return <FrameworkCard
 		headerRender={<Header store={store} icon={<DoneIcon />} />}
-		actionsRender={<div />}
+		actionsRender={<>
+			<Button children="SAVE" />
+			<Button children="CANCEL" />
+		</>}
 		className={cls.root}
 		store={store}
 	>

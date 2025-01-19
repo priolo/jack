@@ -23,20 +23,7 @@ const setup = {
 		focus: (view: ViewStore, store?: FocusStore) => {
 			store.setView(view)
 			if (!view) return
-
-			if ( focusByElementPosition(0, view) ) {
-				store.setPosition(0)
-			} else {
-				store.setPosition(-1)
-			}
-
-			// const elemCard = document.getElementById(view.state.uuid)
-			// if (!elemCard) return
-			// elemCard.scrollIntoView({ behavior: "smooth", inline: "center" })
-			// const elemBody = elemCard.querySelector('.jack-framework-body') as HTMLElement
-			// const elemFocus = elemBody.querySelector('[tabindex]') as HTMLElement
-			// elemFocus?.focus()
-			// store.setPosition(0)
+			store.setPosition(focusAuto(view))
 		}
 	},
 
@@ -103,7 +90,7 @@ document.addEventListener('keydown', (event) => {
 				docsSo.zenOpen(view)
 			}
 		} else if (event.code == "ArrowDown") {
-			if (inZen) { 
+			if (inZen) {
 				docsSo.zenClose()
 			} else {
 				focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
@@ -114,13 +101,13 @@ document.addEventListener('keydown', (event) => {
 	switch (event.code) {
 		case 'ArrowUp': {
 			let nextPosition = focusSo.state.position - 1
-			if (!focusByElementPosition(nextPosition, view)) return
+			if (!focusPosition(view, nextPosition)) return
 			focusSo.setPosition(nextPosition)
 			break;
 		}
 		case 'ArrowDown': {
 			const nextPosition = focusSo.state.position + 1
-			if (!focusByElementPosition(nextPosition, view)) return
+			if (!focusPosition(view, nextPosition)) return
 			focusSo.setPosition(nextPosition)
 			break;
 		}
@@ -153,7 +140,7 @@ document.addEventListener('keydown', (event) => {
 			break;
 		}
 		case "KeyF": {
-			
+
 			break;
 		}
 		default:
@@ -181,22 +168,37 @@ function findParentJackCard(el: HTMLElement): HTMLElement | null {
 	return null;
 }
 
-/**
- * Recupero l'elemento HTML in base alla CARD VIEW-STORE
- */
-function getHTMLElemByView(view: ViewStore): HTMLElement {
+function getFocusableElements(view: ViewStore): { bodyIndex: number, elements: HTMLElement[] } {
 	const elemCard = document.getElementById(view.state.uuid)
-	if (!elemCard) return null
-	const elemBody = elemCard.querySelector('.jack-framework-body') as HTMLElement
-	return elemBody
+	if (!elemCard) return { bodyIndex: -1, elements: [] }
+
+	const elemActions = [...elemCard.querySelectorAll('.jack-framework-actions [tabindex]')]
+		.filter((e: HTMLElement) => e.tabIndex >= 0)
+	const elemBody = [...elemCard.querySelectorAll('.jack-framework-body [tabindex]')]
+		.filter((e: HTMLElement) => e.tabIndex >= 0)
+
+	return {
+		bodyIndex: elemActions.length,
+		elements: [...elemActions, ...elemBody] as HTMLElement[]
+	}
 }
 
-function focusByElementPosition(position: number, view: ViewStore): boolean {
-	if (position < 0) return false
-	const elemBody = getHTMLElemByView(view)
-	const elemsFocusable = [...elemBody.querySelectorAll('[tabindex]')].filter((e: HTMLElement) => e.tabIndex >= 0)
-	if (elemsFocusable.length <= position) return false
-	const elemFocus = elemsFocusable[position] as HTMLElement
-	elemFocus.focus()
+function focusPosition(view: ViewStore, position: number): boolean {
+	const focusable = getFocusableElements(view)
+	if (focusable.elements.length <= position || position < 0 ) return false
+	focusable.elements[position].focus()
 	return true
 }
+
+function focusAuto(view: ViewStore): number {
+	const focusable = getFocusableElements(view)
+	if (focusable.elements.length == 0) return -1
+
+	let indexFocus = focusable.elements.findIndex(e => e.autofocus)
+	if (indexFocus == -1) indexFocus = focusable.bodyIndex
+	if (indexFocus == -1) indexFocus = 0
+	focusable.elements[indexFocus].focus()
+
+	return indexFocus
+}
+
