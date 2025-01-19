@@ -57,11 +57,8 @@ document.addEventListener("focusin", (event) => {
 })
 // document.addEventListener("focusout", (event) => {
 // 	focusSo.setView(null)
-// 	console.log("Focus perso da:", event.target);
 // })
 document.addEventListener('keydown', (event) => {
-	console.log(`Tasto premuto: "${event.code}"`);
-
 	if (!event.ctrlKey) return
 	focusSo.setCtrl(true)
 	if (event.code == "ControlLeft" || event.code == "ControlRight") return
@@ -100,12 +97,20 @@ document.addEventListener('keydown', (event) => {
 
 	switch (event.code) {
 		case 'ArrowUp': {
+			if ( focusSo.state.position == -1 ) {
+				focusSo.setPosition(focusAuto(view))
+				break
+			}
 			let nextPosition = focusSo.state.position - 1
 			if (!focusPosition(view, nextPosition)) return
 			focusSo.setPosition(nextPosition)
 			break;
 		}
 		case 'ArrowDown': {
+			if ( focusSo.state.position == -1 ) {
+				focusSo.setPosition(focusAuto(view))
+				break
+			}
 			const nextPosition = focusSo.state.position + 1
 			if (!focusPosition(view, nextPosition)) return
 			focusSo.setPosition(nextPosition)
@@ -169,7 +174,7 @@ function findParentJackCard(el: HTMLElement): HTMLElement | null {
 }
 
 function getFocusableElements(view: ViewStore): { bodyIndex: number, elements: HTMLElement[] } {
-	const elemCard = document.getElementById(view.state.uuid)
+	const elemCard = document.getElementById(view.state.uuid).querySelector('.jack-framework')
 	if (!elemCard) return { bodyIndex: -1, elements: [] }
 
 	const elemActions = [...elemCard.querySelectorAll('.jack-framework-actions [tabindex]')]
@@ -185,7 +190,7 @@ function getFocusableElements(view: ViewStore): { bodyIndex: number, elements: H
 
 function focusPosition(view: ViewStore, position: number): boolean {
 	const focusable = getFocusableElements(view)
-	if (focusable.elements.length <= position || position < 0 ) return false
+	if (focusable.elements.length <= position || position < 0) return false
 	focusable.elements[position].focus()
 	return true
 }

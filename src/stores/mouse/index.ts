@@ -26,7 +26,6 @@ const setup = {
 			function fnMouseUp(e: MouseEvent) {
 				document.removeEventListener('mousemove', fnMouseMove)
 				document.removeEventListener('mouseup', fnMouseUp)
-				console.log(e.target)
 				store.stopDrag()
 			}
 			document.addEventListener('mousemove', fnMouseMove);
