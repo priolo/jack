@@ -58,7 +58,7 @@ const Header: FunctionComponent<Props> = ({
 							onMouseEnter={() => setOverProp(prop)}
 						>
 							{prop == overProp || prop == order ? (
-								<IconButton style={{ opacity: prop == order ? 1 : .5 }}
+								<IconButton style={{ opacity: prop == order ? 1 : .5 }} tabIndex={-1}
 									onClick={() => handleOrder(prop)}
 								>
 									{prop != order || orderType == ORDER_TYPE.ASC ? (

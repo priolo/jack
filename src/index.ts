@@ -78,6 +78,8 @@ export type { TIMER_STATE } from "@/components/loaders/TimerCmp.js";
 // STORES
 export { default as mouseSo } from "@/stores/mouse/index.js";
 export type { DragDoc, Position } from "@/stores/mouse/types.js";
+export { default as focusSo } from "@/stores/focus/index.js";
+
 
 export { DOC_ANIM } from '@/stores/docs/types.js';
 export { MESSAGE_TYPE, LOAD_STATE, VIEW_SIZE } from '@/stores/stacks/types.js';

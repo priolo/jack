@@ -25,6 +25,9 @@ const FindInputHeader: FunctionComponent<Props> = ({
 	// HANDLER
 	const handleChange = (value: string) => onChange?.(value)
 	const handleClear = () => onChange?.("")
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.code === "Escape") handleClear()
+	}
 
 	// RENDER
 	const haveValue = value?.length > 0
@@ -40,10 +43,11 @@ const FindInputHeader: FunctionComponent<Props> = ({
 				className={cls.input}
 				value={value}
 				onChange={handleChange}
+				onKeyDown={handleKeyDown}
 			/>
 
 			{haveValue ? (
-				<IconButton
+				<IconButton tabIndex={-1}
 					onClick={handleClear}
 				>
 					<CloseIcon />

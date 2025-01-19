@@ -34,13 +34,17 @@ const Accordion: FunctionComponent<Props> = ({
 	useLayoutEffect(() => {
 		if (open) {
 			if (ref.current.style.height == "") return
+			//ref.current.style.display = null
 			ref.current.style.height = `${ref.current?.scrollHeight}px`
 			setTimeout(() => ref.current.style.height = "", 300)
 		} else {
 			if (ref.current.style.height == "0px") return
 			if (ref.current.style.height == "") {
 				ref.current.style.height = `${ref.current?.scrollHeight}px`
-				requestAnimationFrame(() => ref.current.style.height = `0px`)
+				requestAnimationFrame(() => {
+					ref.current.style.height = `0px`
+				})
+				//setTimeout(() => ref.current.style.display = `none`, 300)
 			}
 		}
 	}, [open])

@@ -11,6 +11,7 @@ import DragCmp from "../app/DragCmp"
 import TooltipCmp from "../app/tooltip/TooltipCmp"
 import PolymorphicCard from "./PolymorphicCard"
 import { DOC_TYPE } from "./types"
+import focusSo from "../stores/focus"
 
 
 
@@ -24,15 +25,18 @@ const App: FunctionComponent = () => {
 	const handleAdd1 = () => {
 		const view = createStore(example1Setup) as ViewStore
 		deckCardsSo.add({ view })
+		focusSo.focus(view)
 	}
 	const handleAdd2 = () => {
 		const view = createStore(example2Setup) as ViewStore
 		deckCardsSo.add({ view })
+		focusSo.focus(view)
 	}
 	const handleAdd3 = () => {
 		const view = createStore(example2Setup) as ViewStore
 		view.state.type = DOC_TYPE.EXAMPLE3
 		deckCardsSo.add({ view })
+		focusSo.focus(view)
 	}
 
 	// RENDER

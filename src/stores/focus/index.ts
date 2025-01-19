@@ -45,19 +45,7 @@ const focusSo = createStore(setup) as FocusStore
 export default focusSo
 
 
-document.addEventListener("focusin", (event) => {
-	const id = findParentJackCard(event.target as HTMLElement)?.id
-	// if (id == null) {
-	// 	focusSo.setView(null)
-	// 	return
-	// }
-	const card = getById(docsSo.getAllCards(), id)
-	if (!card) return
-	focusSo.setView(card)
-})
-// document.addEventListener("focusout", (event) => {
-// 	focusSo.setView(null)
-// })
+
 document.addEventListener('keydown', (event) => {
 	if (!event.ctrlKey) return
 	focusSo.setCtrl(true)
@@ -97,7 +85,7 @@ document.addEventListener('keydown', (event) => {
 
 	switch (event.code) {
 		case 'ArrowUp': {
-			if ( focusSo.state.position == -1 ) {
+			if (focusSo.state.position == -1) {
 				focusSo.setPosition(focusAuto(view))
 				break
 			}
@@ -107,7 +95,8 @@ document.addEventListener('keydown', (event) => {
 			break;
 		}
 		case 'ArrowDown': {
-			if ( focusSo.state.position == -1 ) {
+			debugger
+			if (focusSo.state.position == -1) {
 				focusSo.setPosition(focusAuto(view))
 				break
 			}
@@ -131,7 +120,7 @@ document.addEventListener('keydown', (event) => {
 		case "Delete": {
 			if (inZen) { docsSo.zenClose(); break }
 			const card = getNear(view) ?? getNear(view, true)
-			if (!!card) focusSo.setView(card)
+			if (!!card) focusSo.focus(card)
 			view?.onRemoveFromDeck()
 			break
 		}
@@ -157,24 +146,8 @@ document.addEventListener('keyup', (event) => {
 	if (!event.ctrlKey) focusSo.setCtrl(false)
 });
 
-
-
-/**
- * Recupera il parent element HTML che abbia class jack-card
- */
-function findParentJackCard(el: HTMLElement): HTMLElement | null {
-	let current: HTMLElement | null = el;
-	while (current) {
-		if (current.classList.contains('jack-card')) {
-			return current;
-		}
-		current = current.parentElement;
-	}
-	return null;
-}
-
 function getFocusableElements(view: ViewStore): { bodyIndex: number, elements: HTMLElement[] } {
-	const elemCard = document.getElementById(view.state.uuid).querySelector('.jack-framework')
+	const elemCard = document.getElementById(view.state.uuid)?.querySelector('.jack-framework')
 	if (!elemCard) return { bodyIndex: -1, elements: [] }
 
 	const elemActions = [...elemCard.querySelectorAll('.jack-framework-actions [tabindex]')]
@@ -191,18 +164,20 @@ function getFocusableElements(view: ViewStore): { bodyIndex: number, elements: H
 function focusPosition(view: ViewStore, position: number): boolean {
 	const focusable = getFocusableElements(view)
 	if (focusable.elements.length <= position || position < 0) return false
-	focusable.elements[position].focus()
+	const elem = focusable.elements[position]
+	elem?.focus()
+	elem?.scrollIntoView({ behavior: "smooth" });
 	return true
 }
 
 function focusAuto(view: ViewStore): number {
 	const focusable = getFocusableElements(view)
-	if (focusable.elements.length == 0) return -1
-
-	let indexFocus = focusable.elements.findIndex(e => e.autofocus)
+	if (!focusable.elements || focusable.elements.length == 0) return -1
+	let indexFocus = focusable.elements.indexOf(document.activeElement as HTMLElement)
+	if (indexFocus == -1) focusable.elements.findIndex(e => e.autofocus)
 	if (indexFocus == -1) indexFocus = focusable.bodyIndex
 	if (indexFocus == -1) indexFocus = 0
-	focusable.elements[indexFocus].focus()
+	focusable.elements[indexFocus]?.focus()
 
 	return indexFocus
 }

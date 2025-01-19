@@ -35,6 +35,7 @@ const options: OptionSelect[] = [
 interface Props {
 	store?: LoadBaseStore
 	storeView?: ViewStore
+	tabIndex?: number
 	style?: React.CSSProperties
 }
 
@@ -44,6 +45,7 @@ interface Props {
 const OptionsCmp: FunctionComponent<Props> = ({
 	store,
 	storeView,
+	tabIndex = -1,
 	style,
 }) => {
 
@@ -111,7 +113,7 @@ const OptionsCmp: FunctionComponent<Props> = ({
 			/>
 
 			<div className={`${cls.btt} ${cls.btt_hover}`}>
-				<IconButton style={{ color: "var(--cmp-select-bg)" }}
+				<IconButton style={{ color: "var(--cmp-select-bg)" }} tabIndex={tabIndex}
 					onClick={() => setDialogOpen(true)}
 				><ArrowRightIcon /></IconButton>
 			</div>
