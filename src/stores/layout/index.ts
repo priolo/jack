@@ -1,5 +1,5 @@
 import { StoreCore, createStore } from "@priolo/jon"
-import { Theme } from "./utils"
+import { Theme } from "./types"
 
 export enum COLOR_VAR {
 	DEFAULT = 0,
