@@ -77,7 +77,7 @@ export function startListener() {
 			}
 
 			// CLOSE
-			case "Delete": {
+			case "KeyC": {
 				if (inZen) { docsSo.zenClose(); break }
 				const card = getNear(view) ?? getNear(view, true)
 				if (!!card) focusSo.focus(card)
@@ -86,7 +86,7 @@ export function startListener() {
 			}
 
 			// DETACH
-			case "End": {
+			case "KeyD": {
 				if (inZen) { docsSo.zenClose(); break }
 				if (!view.state.parent && !!view.state.linked) {
 					view.state.group.detach(view.state.linked)
@@ -96,7 +96,7 @@ export function startListener() {
 				break;
 			}
 			// EXTEND
-			case "PageUp": {
+			case "BracketRight": {
 				if (view.state.size == VIEW_SIZE.COMPACT) {
 					view.setSize(VIEW_SIZE.NORMAL)
 				} else {
@@ -105,7 +105,7 @@ export function startListener() {
 				break
 			}
 			// COMPRESS
-			case "PageDown": {
+			case "Slash": {
 				if (inZen) {
 					docsSo.zenClose()
 				} else {
@@ -114,7 +114,7 @@ export function startListener() {
 				break
 			}
 
-
+			// FINDER
 			case "KeyF": {
 				const inputElem = getFrameworkElement(view).querySelector('.jack-cmp-txt-finder input') as HTMLInputElement
 				if (!inputElem) return
@@ -132,6 +132,8 @@ export function startListener() {
 				break;
 			}
 		}
+
+		event.preventDefault()
 
 	})
 	document.addEventListener('keyup', (event) => {
