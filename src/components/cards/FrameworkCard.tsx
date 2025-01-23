@@ -59,7 +59,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	const inZen = docsSo.state.zenCard == store
 	const inRoot = inZen || !store.state.parent
 	const haveFocus = !inZen && focusSo.state.view == store
-	const haveFocusCtrl = focusSo.state.ctrl
+	const haveFocusCtrl = focusSo.state.show
 	const isIconized = store.state.size == VIEW_SIZE.COMPACT
 	const inDrag = store.state.docAnim == DOC_ANIM.DRAGGING
 	const dialogId = `dialog_${store.state.uuid}`

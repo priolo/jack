@@ -33,9 +33,13 @@ const Example1View: FunctionComponent<Props> = ({
 	const [text, setText] = useState("")
 
 	// HANDLER
-	const handleOpenLinked = () => {
+	const handleOpenLinked = (e: React.MouseEvent) => {
 		const newStore = createStore(example2Setup) as Example2Store
-		store.state.group.addLink({ view: newStore, parent: store, anim: true })
+		if (e.shiftKey) {
+			store.state.group.add({ view: newStore, index: store.state.group.getIndexByView(store) + 1, anim: true })
+		} else {
+			store.state.group.addLink({ view: newStore, parent: store, anim: true })
+		}
 	}
 	const handleIconClick = () => {
 		console.log("icon button click")
@@ -72,7 +76,7 @@ const Example1View: FunctionComponent<Props> = ({
 				onChange={text => setText(text)}
 			/>
 
-			<Button select
+			<Button select className="jack-focus-1"
 				onClick={handleOpenLinked}
 			>OPEN</Button>
 

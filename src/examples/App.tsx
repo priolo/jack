@@ -25,7 +25,7 @@ const App: FunctionComponent = () => {
 	const handleAdd1 = () => {
 		const view = createStore(example1Setup) as ViewStore
 		deckCardsSo.add({ view })
-		focusSo.focus(view)
+		//focusSo.focus(view)
 	}
 	const handleAdd2 = () => {
 		const view = createStore(example2Setup) as ViewStore

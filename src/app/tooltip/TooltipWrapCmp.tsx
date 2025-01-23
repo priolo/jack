@@ -65,7 +65,7 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 	if (!content) return children
 
 	return (
-		<div style={style} className={className} tabIndex={tabIndex}
+		<div style={style} className={className ?? ""} tabIndex={tabIndex}
 			onMouseEnter={handleEnter}
 			onMouseLeave={handleLeave}
 			onClick={onClick}

@@ -13,6 +13,7 @@ import FloatButton from "../../components/buttons/FloatButton"
 import SendIcon from "../../icons/SendIcon"
 import Table from "../../components/table"
 import Header from "../../components/cards/Header"
+import FindInput from "../../components/input/FindInput"
 
 
 
@@ -46,8 +47,11 @@ const Example2View: FunctionComponent<Props> = ({
 
 	// RENDER
 	return <FrameworkCard
-		headerRender={<Header store={store} icon={<EditorIcon />} />}
 		store={store}
+		headerRender={<Header store={store} icon={<EditorIcon />} />}
+		actionsRender={<>
+			<FindInput value={text} onChange={setText} />
+		</>}
 	>
 		<div className="jack-lyt-form">
 
@@ -55,7 +59,7 @@ const Example2View: FunctionComponent<Props> = ({
 				<div>EXAMPLE 3</div>
 			</TooltipWrapCmp>
 
-			<Button
+			<Button className="jack-focus-2"
 				onClick={handleClick}
 			>CLICK ME</Button>
 
@@ -80,7 +84,7 @@ const Example2View: FunctionComponent<Props> = ({
 				onClick={() => console.log("click float")}
 				disabled={false}
 			><SendIcon /></FloatButton>
-			
+
 			<div style={{ height: 400, overflowY: "auto" }}>
 				<Table
 					items={Array.from({ length: 200 }, (x, i) => ({ id: i, name: `item${i}` }))}
