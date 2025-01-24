@@ -5,6 +5,9 @@ import { VIEW_SIZE } from "../stacks/types"
 import { focusAuto, focusPosition, getFrameworkElement } from "./utils"
 
 
+/**
+ * Inizializza il listener per i tasti
+ */
 export function startListener() {
 	document.addEventListener('keydown', (event) => {
 		let view = focusSo.state.view
@@ -77,7 +80,7 @@ export function startListener() {
 			}
 
 			// CLOSE
-			case "KeyC": {
+			case "Backspace": {
 				if (inZen) { docsSo.zenClose(); break }
 				const card = getNear(view) ?? getNear(view, true)
 				if (!!card) focusSo.focus(card)
@@ -96,7 +99,7 @@ export function startListener() {
 				break;
 			}
 			// EXTEND
-			case "BracketRight": {
+			case "BracketRight": { // +
 				if (view.state.size == VIEW_SIZE.COMPACT) {
 					view.setSize(VIEW_SIZE.NORMAL)
 				} else {
@@ -105,7 +108,7 @@ export function startListener() {
 				break
 			}
 			// COMPRESS
-			case "Slash": {
+			case "Slash": { // -
 				if (inZen) {
 					docsSo.zenClose()
 				} else {
@@ -122,6 +125,7 @@ export function startListener() {
 				break;
 			}
 
+			// NUMBER SHORTCUTS
 			default: {
 				const digit = parseInt(event.code.replace(event.code.startsWith("Digit") ? "Digit" : "Numpad", ""))
 				if (isNaN(digit)) return
