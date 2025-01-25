@@ -2,7 +2,7 @@ import focusSo from "."
 import docsSo from "../docs"
 import { getNear } from "../docs/utils"
 import { VIEW_SIZE } from "../stacks/types"
-import { focusAuto, focusPosition, getFrameworkElement } from "./utils"
+import { getFrameworkElement } from "./utils"
 
 
 /**
@@ -30,53 +30,51 @@ export function startListener() {
 		}
 		if (!view) return
 
-		if (event.shiftKey) {
+		if (event.ctrlKey) {
 			if (event.code == "ArrowLeft") {
 				const group = view.state.group
 				const index = group.getIndexByView(view)
 				group.move({ view, index: index - 1 })
-				return
 			} else if (event.code == "ArrowRight") {
 				const group = view.state.group
 				const index = group.getIndexByView(view)
 				group.move({ view, index: index + 2 })
-				return
-			}
+			} else if (event.code == "ArrowUp") {
+				if (view.state.size == VIEW_SIZE.COMPACT) {
+					view.setSize(VIEW_SIZE.NORMAL)
+				} else {
+					docsSo.zenOpen(view)
+				}
+			} else if (event.code == "ArrowDown") {
+				if (inZen) {
+					docsSo.zenClose()
+				} else {
+					focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
+				}
+			} 
+			return
+		}
+		if ( event.shiftKey ) {
+			return
 		}
 
 		switch (event.code) {
 
 			case 'ArrowUp': {
-				if (focusSo.state.position == -1) {
-					focusSo.setPosition(focusAuto(view))
-					break
-				}
-				let nextPosition = focusSo.state.position - 1
-				if (!focusPosition(view, nextPosition)) return
-				focusSo.setPosition(nextPosition)
-				break;
+				if (!focusSo.moveVert(true)) return
+				break
 			}
 			case 'ArrowDown': {
-				if (focusSo.state.position == -1) {
-					focusSo.setPosition(focusAuto(view))
-					break
-				}
-				const nextPosition = focusSo.state.position + 1
-				if (!focusPosition(view, nextPosition)) return
-				focusSo.setPosition(nextPosition)
-				break;
+				if (!focusSo.moveVert(false)) return
+				break
 			}
 			case 'ArrowLeft': {
-				if (inZen) break
-				const card = getNear(view, true)
-				focusSo.focus(card)
-				break;
+				focusSo.moveHoriz(true)
+				break
 			}
 			case 'ArrowRight': {
-				if (inZen) break
-				const card = getNear(view)
-				focusSo.focus(card)
-				break;
+				focusSo.moveHoriz(false)
+				break
 			}
 
 			// CLOSE
@@ -97,24 +95,6 @@ export function startListener() {
 					view.state.group.detach(view)
 				}
 				break;
-			}
-			// EXTEND
-			case "BracketRight": { // +
-				if (view.state.size == VIEW_SIZE.COMPACT) {
-					view.setSize(VIEW_SIZE.NORMAL)
-				} else {
-					docsSo.zenOpen(view)
-				}
-				break
-			}
-			// COMPRESS
-			case "Slash": { // -
-				if (inZen) {
-					docsSo.zenClose()
-				} else {
-					focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
-				}
-				break
 			}
 
 			// FINDER

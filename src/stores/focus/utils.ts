@@ -51,8 +51,9 @@ export function focusAuto(view: ViewStore): number {
 	if (indexFocus == -1) focusable.elements.findIndex(e => e.autofocus)
 	if (indexFocus == -1) indexFocus = focusable.bodyIndex
 	if (indexFocus == -1) indexFocus = 0
-	focusable.elements[indexFocus]?.focus()
-
+	const elem = 	focusable.elements[indexFocus]
+	elem?.focus()
+	elem?.scrollIntoView({ behavior: "smooth" });
 	return indexFocus
 }
 

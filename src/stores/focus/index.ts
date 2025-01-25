@@ -1,8 +1,10 @@
 import { StoreCore, createStore } from "@priolo/jon"
 import { ViewStore } from "../stacks/viewBase"
-import { focusAuto } from "./utils"
+import { focusAuto, focusPosition } from "./utils"
 import { Shortcut } from "./types"
 import { startListener } from "./keyevents"
+import { getNear } from "../docs/utils"
+import docsSo from "../docs"
 
 
 
@@ -35,6 +37,22 @@ const setup = {
 			const shortcuts = store.state.shortcuts?.filter(s => s.code == event.code) ?? []
 			if (shortcuts.length == 0) return
 			shortcuts.forEach((s) => s.action())
+		},
+		moveVert(up: boolean, store?: FocusStore) {
+			if (store.state.position == -1) {
+				store.setPosition(focusAuto(store.state.view))
+				return true
+			}
+			let nextPosition = store.state.position + (up ? -1 : 1)
+			if (!focusPosition(store.state.view, nextPosition)) return false
+			store.setPosition(nextPosition)
+			return true
+		},
+		moveHoriz(left: boolean, store?: FocusStore) {
+			const view = store.state.view
+			if (!!view && docsSo.state.zenCard == view) return
+			const card = getNear(view, left)
+			store.focus(card)
 		}
 	},
 

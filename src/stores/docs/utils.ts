@@ -1,5 +1,6 @@
 import { deepEqual } from "@/utils/object";
 import { ViewStore } from "../stacks/viewBase";
+import docsSo from ".";
 
 
 
@@ -123,13 +124,15 @@ export function createUUID(): string {
  * restituisce la VIEW precedente o successiva
  */
 export function getNear(view: ViewStore, left: boolean = false): ViewStore {
+	// se non c'e' la VIEW allora prendo la prima che trovo
+	if (!view) return docsSo.state.allDeck?.[0]?.state.all[0]
+
 	// se necessita ho un parent o un linked uso quelli
 	if (left && !!view.state.parent) return view.state.parent
 	if (!left && view.state.linked) return view.state.linked
 
 	const group = view?.state.group
 	if (!group) return null
-
 
 	if (left) {
 		let nextIndex = group.getIndexByView(view) - 1
