@@ -99,4 +99,4 @@ export type { LinksState, LinksStore } from "@/stores/docs/links.js";
 export * as icons from "@/icons";
 export * as utils from "./stores/docs/utils.js";
 export { default as docsSo, DRAWER_POSITION, FIXED_CARD } from "./stores/docs/index.js";
-
+export type { DocState, DocStore } from "./stores/docs/index.js";
