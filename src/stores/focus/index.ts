@@ -18,7 +18,12 @@ const setup = {
 		show: false,
 		/** posizione del componente con fuoco */
 		position: -1,
+		/** NON USATO */
 		shortcuts: <Shortcut[]>[],
+
+		shiftKey: false,
+		altKey: false,
+		ctrlKey: false,
 	},
 
 	getters: {

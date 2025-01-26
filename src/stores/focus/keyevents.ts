@@ -10,6 +10,10 @@ import { getFrameworkElement } from "./utils"
  */
 export function startListener() {
 	document.addEventListener('keydown', (event) => {
+		focusSo.state.shiftKey = event.shiftKey
+		focusSo.state.altKey = event.altKey
+		focusSo.state.ctrlKey = event.ctrlKey
+
 		let view = focusSo.state.view
 		const inZen = !!view && docsSo.state.zenCard == view
 
@@ -51,13 +55,10 @@ export function startListener() {
 				} else {
 					focusSo.state.view.setSize(VIEW_SIZE.COMPACT)
 				}
-			} 
+			}
 			return
 		}
-		if ( event.shiftKey ) {
-			return
-		}
-
+		
 		switch (event.code) {
 
 			case 'ArrowUp': {
@@ -122,6 +123,9 @@ export function startListener() {
 	})
 	document.addEventListener('keyup', (event) => {
 		if (!event.altKey) focusSo.setShow(false)
+		focusSo.state.shiftKey = event.shiftKey
+		focusSo.state.altKey = event.altKey
+		focusSo.state.ctrlKey = event.ctrlKey
 	})
 
 }
