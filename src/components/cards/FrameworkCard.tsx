@@ -43,17 +43,10 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	// STORES
 	useStore(store)
 	useStore(focusSo)
-	//useStoreNext(store.state.group, (state, stateOld) => state.focus != stateOld.focus)
 
 	// HANDLER
 	const handleClose = () => store.onRemoveFromDeck()
-	const handleDetach = () => store.state.group.detach(store)
-	const handleClick = () => focusSo.focus(store)
-	// const handleFocus = (e:React.FocusEvent) => {
-	// 	if (!(e.target as HTMLElement).classList.contains('jack-framework')) return
-	// 	console.log("handleFocus")
-	// 	//focusSo.setView(store)
-	// }
+	const handleClick = () => focusSo.setView(store)
 
 	// RENDER
 	const inZen = docsSo.state.zenCard == store
@@ -70,10 +63,8 @@ const FrameworkCard: FunctionComponent<Props> = ({
 
 	return <div className={clsRoot} style={style} tabIndex={0}
 		onClick={handleClick}
-		//onFocus={handleFocus}
 	>
 
-		{/* <Header store={store} icon={icon} /> */}
 		{headerRender}
 
 		<ErrorBoundary>
@@ -86,25 +77,19 @@ const FrameworkCard: FunctionComponent<Props> = ({
 					<IconButton
 						onClick={handleClose}
 					><CloseIcon /></IconButton>
-
-					{/* {!inRoot && (
-						<IconButton style={{ color: "var(--card-fg)"}}
-							className={`${cls.btt_detach}`}
-							onClick={handleDetach}
-						><DetachIcon /></IconButton>
-					)} */}
-
 				</div>
 
 				{iconizedRender}
 
 			</> : <>
 				{!!actionsRender && (
-					<div className={`${cls.actions} jack-framework-actions`}>
+					<div className={`${cls.actions} jack-framework-actions`}
+					>
 						{actionsRender}
 					</div>
 				)}
-				<div className={`${clsChildren} jack-framework-body`} style={styleBody}>
+				<div className={`${clsChildren} jack-framework-body`} style={styleBody}
+				>
 					{children}
 				</div>
 			</>}

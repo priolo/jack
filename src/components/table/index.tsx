@@ -6,9 +6,13 @@ import cls from "./Table.module.css"
 
 
 export interface ItemProp {
+	/** titolo della colonna */
 	label?: string
+	/** valore da utilizzare per il sort */
 	getValue?: (item: any) => any
+	/** cosa visualizzare in cella */
 	getShow?: (item: any) => string
+	/** indica se è la colonna main */
 	isMain?: boolean
 }
 

@@ -82,7 +82,7 @@ export function startListener() {
 			case "Backspace": {
 				if (inZen) { docsSo.zenClose(); break }
 				const card = getNear(view) ?? getNear(view, true)
-				if (!!card) focusSo.focus(card)
+				focusSo.focus(card == view ? null : card)
 				view?.onRemoveFromDeck()
 				break
 			}
