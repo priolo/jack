@@ -31,6 +31,7 @@ export { default as EditList, LIST_ACTIONS } from "@/components/lists/EditList.j
 export type { RenderRowBaseProps } from "@/components/lists/EditList.js";
 export { default as List, ListMemo } from "@/components/lists/List.js";
 export { default as ListMultiWithFilter } from "@/components/lists/ListMultiWithFilter.js";
+export { default as ListMultiWithFilter2 } from "@/components/lists/ListMultiWithFilter2.js";
 export { default as ListObjects } from "@/components/lists/ListObjects.js";
 export type { RenderFormProps, RenderLabelProps } from "@/components/lists/ListObjects.js";
 export { default as ListRow } from "@/components/lists/ListRow.js";
@@ -46,6 +47,7 @@ export { default as AlertDialog } from "@/components/dialogs/AlertDialog.js";
 export { default as Dialog } from "@/components/dialogs/Dialog.js";
 export { default as ElementDialog } from "@/components/dialogs/ElementDialog.js";
 export { default as ListDialog } from "@/components/dialogs/ListDialog.js";
+export { default as ListMultiDialog } from "@/components/dialogs/ListMultiDialog.js";
 
 // BUTTONS
 export { default as Button } from "@/components/buttons/Button.js";

@@ -34,6 +34,11 @@ interface Props<T> {
 	style?: React.CSSProperties
 }
 
+/**
+ * Lista editabile di oggetti generici
+ * CRUD sulle ROW
+ * apertura dialog per editare la ROW
+ */
 function ListObjects<T>({
 	store,
 	items,

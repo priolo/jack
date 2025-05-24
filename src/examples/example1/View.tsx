@@ -14,6 +14,7 @@ import { MESSAGE_TYPE } from "@/stores/stacks/types"
 import example2Setup, { Example2Store } from "../example2"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
+import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
 
 
 
@@ -31,6 +32,7 @@ const Example1View: FunctionComponent<Props> = ({
 	// HOOKs
 	const [open, setOpen] = useState(false)
 	const [text, setText] = useState("")
+	const [itemsSelect, setItemsSelect] = useState<number[]>([])
 
 	// HANDLER
 	const handleOpenLinked = (e: React.MouseEvent) => {
@@ -49,6 +51,14 @@ const Example1View: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
+const items = [
+	{ id: 1, name: "pippo"},
+	{ id: 2, name: "pluto"},
+	{ id: 3, name: "paperino"},
+	{ id: 4, name: "topolino"},
+]
+
+
 	return <FrameworkCard
 		headerRender={<Header store={store} icon={<DoneIcon />} />}
 		actionsRender={<>
@@ -96,6 +106,16 @@ const Example1View: FunctionComponent<Props> = ({
 			>
 				<div>CIAO</div>
 			</Dialog>
+
+			<ListMultiDialog
+				store={store}
+				items={items}
+				selects={itemsSelect}
+				onChangeSelect={(ids) => setItemsSelect(ids)}
+				fnGetId={(item) => item?.id}
+				fnGetString={(item) => item?.name}
+			/>
+
 
 		</div>
 

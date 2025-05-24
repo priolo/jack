@@ -7,20 +7,24 @@ import FindInput from "../input/FindInput"
 
 
 interface Props {
-	items: string[],
-	selects: string[],
-	onChangeSelects: (items: string[]) => void
-	renderRow?: (item: string, index: number) => React.ReactNode
+	items: any[],
+	selects: any[],
+	onChangeSelects: (ids: any[]) => void
+	renderRow?: (item: any, index: number) => React.ReactNode
+	fnGetId?: (item: any) => any
+	fnGetString?: (item: any) => string
 }
 
 /**
  * Permette di seezionare più elementi da una lista con un filtro di ricerca
  */
-const ListMultiWithFilter: FunctionComponent<Props> = ({
+const ListMultiWithFilter2: FunctionComponent<Props> = ({
 	items,
 	selects,
 	onChangeSelects,
-	renderRow = (item) => item
+	renderRow,
+	fnGetId = (item) => item,
+	fnGetString = (item) => item?.toString() ?? "",
 }) => {
 
 	// STORE
@@ -30,31 +34,37 @@ const ListMultiWithFilter: FunctionComponent<Props> = ({
 	const [search, setSearch] = useState<string>(null)
 	const itemsShow = useMemo(() => {
 		if (!search || search.length == 0) return items
-		return items.filter(s => s.toLowerCase().includes(search))
+		return items.filter(item => {
+			return (fnGetString?.(item) ?? item)?.toLowerCase().includes(search)
+		})
 	}, [search, items])
 
 	// HANDLER
-	const handleSubjectChange = (item: string) => {
-		const index = selects.indexOf(item)
-		const itemsSelect = [...selects]
-		if (index != -1) itemsSelect.splice(index, 1); else itemsSelect.push(item)
-		onChangeSelects(itemsSelect)
+	const handleSubjectChange = (item: any) => {
+		const id = fnGetId?.(item) ?? item
+		const index = selects.indexOf(id)
+		const idsSelect = [...selects]
+		if (index != -1) idsSelect.splice(index, 1); else idsSelect.push(id)
+		onChangeSelects(idsSelect)
 	}
 	const handleSearchChange = (value: string) => {
 		setTxtSearch(value)
-		debounce(`text-find-list-multi}`, () => setSearch(value.trim().toLowerCase()), items.length > 1000 ? 2000 : 200)
+		debounce(`ListMultiWithFilter2`, () => setSearch(value.trim().toLowerCase()), items.length > 1000 ? 2000 : 200)
 	}
 	const handleSelectAll = (check: boolean) => {
 		if (!check) {
 			onChangeSelects([])
 		} else {
-			onChangeSelects([...items])
+			onChangeSelects(items.map(item => fnGetId?.(item) ?? item))
 		}
 	}
 
 	// RENDER
-	const haveValue = search?.length > 0
 	const allSelect = selects.length == items.length
+	const isSelect = (item: any) => {
+		const id = fnGetId?.(item) ?? item
+		return selects.indexOf(id) != -1
+	}
 
 	if (!items || items.length == 0) return <div className="jack-lbl-empty">EMPTY LIST</div>
 
@@ -76,30 +86,20 @@ const ListMultiWithFilter: FunctionComponent<Props> = ({
 		<List
 			style={{ maxHeight: 400, overflowY: "auto" }}
 			items={itemsShow}
-			//items={Array.from({length:1000},(_,i)=>`item::${i}`)}
 			select={selects as any}
-
-			// RenderRow={({item}) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-			// 	<IconToggle
-			// 		check={selects.indexOf(item) != -1}
-			// 		onChange={select => handleSubjectChange(item)}
-			// 	/>
-			// 	<div className="lbl-prop">{item}</div>
-			// </div>}
-
 			RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
 				<IconToggle
-					check={selects.indexOf(item) != -1}
+					check={isSelect(item)}
 					onChange={select => handleSubjectChange(item)}
 				/>
-				{renderRow(item, index)}
+				{renderRow?.(item, index) ?? <div className="lbl-prop">{fnGetString(item)}</div>}
 			</div>}
 		/>
 
 	</div>
 }
 
-export default ListMultiWithFilter
+export default ListMultiWithFilter2
 
 
 

@@ -11,7 +11,10 @@ export enum LIST_ACTIONS {
 	NEW
 }
 
-/** le PROPS da implementare per il componente di rendering della ROW */
+/** 
+ * le PROPS da implementare per il componente di rendering della ROW 
+ * la ROW è eventualmente editabile
+ * */
 export interface RenderRowBaseProps<T> {
 	item: T
 	isSelect?: boolean
@@ -44,6 +47,10 @@ interface Props<T> {
 	ref?: LegacyRef<HTMLDivElement>
 }
 
+/**
+ * Componente per la gestione di una lista editabile
+ * Cioe' si possono cancellare modificare e aggiungere elementi
+ */
 function EditList<T>({
 	items,
 	select,
