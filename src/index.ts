@@ -47,6 +47,7 @@ export { default as AlertDialog } from "@/components/dialogs/AlertDialog.js";
 export { default as Dialog } from "@/components/dialogs/Dialog.js";
 export { default as ElementDialog } from "@/components/dialogs/ElementDialog.js";
 export { default as ListDialog } from "@/components/dialogs/ListDialog.js";
+export { default as ListDialog2 } from "@/components/dialogs/ListDialog2.js";
 export { default as ListMultiDialog } from "@/components/dialogs/ListMultiDialog.js";
 
 // BUTTONS

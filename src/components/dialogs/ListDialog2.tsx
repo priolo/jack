@@ -1,40 +1,41 @@
 import { DialogProps } from "@/components/dialogs/Dialog"
 import Component from "@/components/format/Component"
+import { RenderRowBaseProps } from "@/components/lists/EditList"
+import List from "@/components/lists/List"
 import ArrowRightIcon from "@/icons/ArrowRightIcon"
-import { FunctionComponent, useMemo, useState } from "react"
-import ListMultiWithFilter2 from "../lists/ListMultiWithFilter2"
+import { FunctionComponent, useState } from "react"
 import ElementDialog from "./ElementDialog"
 
 
 
 /** un COMPONENT che se premuto apre una DIALOG con una LIST */
 interface Props extends DialogProps {
-	/** tutti gli oggetti presenti il lista */
 	items: any[]
 	readOnly?: boolean
-	/** array di id degli oggetti selezionati */
-	selects: any[]
-	/** funzione che viene chiamata quando cambia la selezione */
-	onChangeSelect?: (ids: any[]) => void
+	select?: any
 
 	style?: React.CSSProperties
+	RenderRow?: FunctionComponent<RenderRowBaseProps<string>>
 	/** funzione per ottenere l'id dell'oggetto */
 	fnGetId?: (item: any) => any
 	/** funzione per ottenere la stringa da visualizzare dell'oggetto */
 	fnGetString?: (item: any) => string
+
+	onChangeSelect?: (id: any) => void
+
 }
 
-const ListMultiDialog: FunctionComponent<Props> = ({
+const ListDialog2: FunctionComponent<Props> = ({
 	items,
 	readOnly,
-
-	selects,
-	onChangeSelect,
+	select,
 
 	style,
+	RenderRow,
 	fnGetId = (item) => item,
-	fnGetString = (item) => item?.toString() ?? "",
-
+	fnGetString = (item) => item.toString(),
+	
+	onChangeSelect,
 	...props
 }) => {
 
@@ -45,23 +46,20 @@ const ListMultiDialog: FunctionComponent<Props> = ({
 	// HANDLER
 	const [element, setElement] = useState<HTMLElement>(null)
 	const handleDialogOpen = (e) => setElement(!!element ? null : e.target)
-	
+	const handleSelect = (index: number) => {
+		setElement(null)
+		onChangeSelect(fnGetId?.(items[index]) ?? items[index])
+	}
 
 	// RENDER
 	if (!items) return null
-	const value = useMemo(() => {
-		return selects.map((id) => {
-			const item = items.find(item => fnGetId?.(item) == id)
-			return fnGetString?.(item) ?? item
-		}).join(", ")
-	}, [selects, items])
-	
+	const indexSelect = items.findIndex(item => fnGetId?.(item) == select)
 
 	return <>
 		<Component
 			onClick={handleDialogOpen}
 			enterRender={<ArrowRightIcon style={{ opacity: 0.5 }} />}
-		>{value}</Component>
+		>{fnGetString(items[indexSelect])}</Component>
 
 		<ElementDialog
 			{...props}
@@ -69,15 +67,15 @@ const ListMultiDialog: FunctionComponent<Props> = ({
 			element={element}
 			onClose={() => setElement(null)}
 		>
-			<ListMultiWithFilter2
-				selects={selects}
+			<List<any>
+				select={indexSelect}
 				items={items}
-				onChangeSelects={onChangeSelect}
-				fnGetId={fnGetId}
-				fnGetString={fnGetString}
+				RenderRow={({ item }) => <div className="jack-list-row">{fnGetString(item) ?? ""}</div>}
+				onSelect={handleSelect}
+				readOnly={readOnly}
 			/>
 		</ElementDialog>
 	</>
 }
 
-export default ListMultiDialog
+export default ListDialog2

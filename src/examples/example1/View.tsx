@@ -16,6 +16,7 @@ import { Example1Store } from "./index"
 import cls from "./View.module.css"
 import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
 import MarkdownEditor from "@/components/input/MarkdownEditor"
+import ListDialog2 from "@/components/dialogs/ListDialog2"
 
 
 
@@ -35,6 +36,7 @@ const Example1View: FunctionComponent<Props> = ({
 	const [text, setText] = useState("")
 	const [markdownText, setMarkdownText] = useState("# Welcome to Markdown Editor\n\nThis is a **SlateJS** powered markdown editor with *live preview*.\n\n## Features\n\n- **Bold** and *italic* text\n- `Inline code`\n- Code blocks\n- Lists and more!\n\n> This is a blockquote example\n\n```javascript\nconst hello = 'world';\nconsole.log(hello);\n```")
 	const [itemsSelect, setItemsSelect] = useState<number[]>([])
+	const [itemSelect, setItemSelect] = useState<number>(-1)
 
 	// HANDLER
 	const handleOpenLinked = (e: React.MouseEvent) => {
@@ -121,6 +123,15 @@ const items = [
 				items={items}
 				selects={itemsSelect}
 				onChangeSelect={(ids) => setItemsSelect(ids)}
+				fnGetId={(item) => item?.id}
+				fnGetString={(item) => item?.name}
+			/>
+
+			<ListDialog2
+				store={store}
+				items={items}
+				select={itemSelect}
+				onChangeSelect={(id) => setItemSelect(id)}
 				fnGetId={(item) => item?.id}
 				fnGetString={(item) => item?.name}
 			/>
