@@ -15,6 +15,7 @@ import example2Setup, { Example2Store } from "../example2"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
 import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
+import MarkdownEditor from "@/components/input/MarkdownEditor"
 
 
 
@@ -32,6 +33,7 @@ const Example1View: FunctionComponent<Props> = ({
 	// HOOKs
 	const [open, setOpen] = useState(false)
 	const [text, setText] = useState("")
+	const [markdownText, setMarkdownText] = useState("# Welcome to Markdown Editor\n\nThis is a **SlateJS** powered markdown editor with *live preview*.\n\n## Features\n\n- **Bold** and *italic* text\n- `Inline code`\n- Code blocks\n- Lists and more!\n\n> This is a blockquote example\n\n```javascript\nconst hello = 'world';\nconsole.log(hello);\n```")
 	const [itemsSelect, setItemsSelect] = useState<number[]>([])
 
 	// HANDLER
@@ -84,6 +86,13 @@ const items = [
 			<TextInput
 				value={text}
 				onChange={text => setText(text)}
+			/>
+
+			<MarkdownEditor
+				value={markdownText}
+				onChange={text => setMarkdownText(text)}
+				placeholder="Enter your markdown here..."
+				style={{ minHeight: '200px', marginTop: '10px' }}
 			/>
 
 			<Button select className="jack-focus-1"

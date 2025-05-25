@@ -29,8 +29,12 @@
     "pub": "npm publish --access public"
   },
   "dependencies": {
+    "dayjs": "^1.11.11",
     "react-virtuoso": "^4.7.11",
-    "dayjs": "^1.11.11"
+    "slate": "^0.114.0",
+    "slate-history": "^0.113.1",
+    "slate-react": "^0.114.2",
+    "prismjs": "^1.30.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -38,6 +42,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/prismjs": "^1.26.5",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "jsdom": "latest",
     "typescript": "^5.7.3",
@@ -46,9 +51,9 @@
     "vitest": "^3.0.2"
   },
   "peerDependencies": {
+    "@priolo/jon": "^0.7.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@priolo/jon": "^0.7.7"
+    "react-dom": "^18.3.1"
   },
   "browserslist": "defaults and supports es6-module,maintained node versions"
 }

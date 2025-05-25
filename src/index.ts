@@ -60,6 +60,7 @@ export { default as IconToggle } from "@/components/buttons/IconToggle.js";
 export { default as DateTimeInput } from "@/components/input/DateTimeInput.js";
 export { default as FindInput } from "@/components/input/FindInput.js";
 export { default as FindInputHeader } from "@/components/input/FindInputHeader.js";
+export { default as MarkdownEditor } from "@/components/input/MarkdownEditor.js";
 export { default as NumberInput } from "@/components/input/NumberInput.js";
 export { default as PasswordInput, default as TextInput } from "@/components/input/TextInput.js";
 
