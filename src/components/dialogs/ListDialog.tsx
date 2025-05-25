@@ -46,7 +46,7 @@ const ListDialog: FunctionComponent<Props> = ({
 	const value = RenderRow({ item: items[select] })
 
 	return <>
-		<Component style={{ padding: 0}}
+		<Component
 			onClick={handleDialogOpen}
 			enterRender={<ArrowRightIcon style={{ opacity: 0.5 }} />}
 		>{value}</Component>
