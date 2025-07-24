@@ -17,6 +17,9 @@ import cls from "./View.module.css"
 import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
 import MarkdownEditor from "@/components/input/MarkdownEditor"
 import ListDialog2 from "@/components/dialogs/ListDialog2"
+import DirectionUpIcon from "@/icons/DirectionUpIcon"
+import DirectionDownIcon from "@/icons/DirectionDownIcon"
+import DirectionLeftIcon from "@/icons/DirectionLeftIcon"
 
 
 
@@ -47,20 +50,20 @@ const Example1View: FunctionComponent<Props> = ({
 			store.state.group.addLink({ view: newStore, parent: store, anim: true })
 		}
 	}
-	const handleIconClick = () => {
+	const handleIconClick = (type: MESSAGE_TYPE) => {
 		console.log("icon button click")
 		store.setSnackbar({
-			open: true, title: "TITLE", body: "!!body!!", type: MESSAGE_TYPE.ERROR
+			open: true, title: "TITLE", body: "!!body!!", type
 		})
 	}
 
 	// RENDER
-const items = [
-	{ id: 1, name: "pippo"},
-	{ id: 2, name: "pluto"},
-	{ id: 3, name: "paperino"},
-	{ id: 4, name: "topolino"},
-]
+	const items = [
+		{ id: 1, name: "pippo" },
+		{ id: 2, name: "pluto" },
+		{ id: 3, name: "paperino" },
+		{ id: 4, name: "topolino" },
+	]
 
 
 	return <FrameworkCard
@@ -101,10 +104,20 @@ const items = [
 				onClick={handleOpenLinked}
 			>OPEN</Button>
 
-			<IconButton effect tabIndex={3}
-				onClick={handleIconClick}
-			><DirectionRightIcon /></IconButton>
-
+			<div className="jack-cmp-h">
+				<IconButton effect tabIndex={3}
+					onClick={()=>handleIconClick(MESSAGE_TYPE.SUCCESS)}
+				><DirectionRightIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={()=>handleIconClick(MESSAGE_TYPE.INFO)}
+				><DirectionUpIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={()=>handleIconClick(MESSAGE_TYPE.WARNING)}
+				><DirectionDownIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={()=>handleIconClick(MESSAGE_TYPE.ERROR)}
+				><DirectionLeftIcon /></IconButton>
+			</div>
 
 			<Dialog noCloseOnClickParent
 				title="FILTERS"

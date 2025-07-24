@@ -1,11 +1,13 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 import Button from "../buttons/Button";
 import cls from "./ErrorBoundary.module.css";
+import { ViewStore } from "@/stores/stacks/viewBase";
 
 
 
 interface Props {
 	children?: ReactNode;
+	view?: ViewStore
 }
 
 interface State {
@@ -16,11 +18,15 @@ interface State {
 class ErrorBoundary extends Component<Props, State> {
 	public state: State = {
 		hasError: false,
-		error: null,
+		error: undefined,
 	};
 
-	public handleClickReload(e) {
+	public handleReloadClick = (e) => {
 		this.setState({ hasError: false })
+	}
+	
+	public handleCloseClick = (e) => {
+		this.props.view?.onRemoveFromDeck?.();
 	}
 
 	public static getDerivedStateFromError(_: Error): State {
@@ -45,8 +51,11 @@ class ErrorBoundary extends Component<Props, State> {
 				)}
 
 				<Button
-					onClick={this.handleClickReload}
+					onClick={this.handleReloadClick}
 				>RESET</Button>
+				<Button
+					onClick={this.handleCloseClick}
+				>CLOSE</Button>
 
 			</div>
 		)

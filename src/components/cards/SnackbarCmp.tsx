@@ -53,7 +53,7 @@ const SnackbarCmp: FunctionComponent<Props> = ({
 	}[type]), [type])
 
 	const inRoot = !view.state.parent
-	const clsBox = `${viewSa.size == VIEW_SIZE.COMPACT ? cls.box_icon : cls.box} ${!inRoot ? cls.linked : ""} ${open ? cls.open : cls.close} ${cls[type]}`
+	const clsBox = `jack-cmp-snackbar ${type} ${viewSa.size == VIEW_SIZE.COMPACT ? cls.box_icon : cls.box} ${!inRoot ? cls.linked : ""} ${open ? cls.open : cls.close} ${cls[type] ?? ""}`
 
 	if (viewSa.size == VIEW_SIZE.COMPACT) {
 		return (

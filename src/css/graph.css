@@ -34,3 +34,20 @@
 .jack-framework-actions .jack-cmp:not(.jack-cmp-select) {
 	color: var(--jack-framework-actions-fg)
 }
+
+.jack-cmp-snackbar.error {
+	background: rgb(218, 5, 5);
+	color: #dedede;
+}
+.jack-cmp-snackbar.warn {
+	background: #EBFB35;
+	color: #393939;
+}
+.jack-cmp-snackbar.info {
+	background: #10F3F3;
+	color: #393939;
+}
+.jack-cmp-snackbar.success {
+	background: #6AFFAB;
+	color: #393939;
+}

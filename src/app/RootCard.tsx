@@ -9,6 +9,7 @@ import { createPortal } from "react-dom"
 import { RenderProps } from "./CardsGroup"
 import ResizerCmp from "./ResizerCmp"
 import cls from "./RootCard.module.css"
+import ErrorBoundary from "@/components/cards/ErrorBoundary"
 
 
 
@@ -91,7 +92,9 @@ const RootCard: FunctionComponent<Props> = ({
 
 			{/* DOC BODY WITH RESIZER */}
 			<div style={styContainerDoc} className={cls.doc}>
-				<Render view={view} />
+				<ErrorBoundary view={view}>
+					<Render view={view} />
+				</ErrorBoundary>
 			</div>
 
 			{isResizable

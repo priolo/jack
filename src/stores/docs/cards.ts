@@ -101,7 +101,7 @@ const cardsSetup = {
 		},
 
 		/** rimuovo una CARD */
-		async remove({ view, anim = false }: { view: ViewStore, anim?: boolean }, store?: CardsStore) {
+		async remove({ view, anim = false, move = false }: { view: ViewStore, anim?: boolean, move?: boolean }, store?: CardsStore) {
 			if (!view) return
 			if (anim && !view.state.docAniDisabled) await view.docAnim(DOC_ANIM.EXITING)
 
@@ -126,7 +126,7 @@ const cardsSetup = {
 			store.setAll(views)
 
 			// CALL EVENT
-			view.onRemoval()
+			if (!move) view.onRemoval()
 		},
 
 		/** sposta una view in un indice preciso dello STACK */
@@ -143,7 +143,7 @@ const cardsSetup = {
 			if (view.state.parent == null) {
 				const srcIndex = store.state.all.indexOf(view)
 				if (sameGroup && (srcIndex == index || srcIndex + 1 == index)) return
-				await store.remove({ view, anim })
+				await store.remove({ view, anim, move: true })
 				if (!sameGroup || srcIndex > index) {
 					await groupDest.add({ view, index, anim })
 				} else {
@@ -152,7 +152,7 @@ const cardsSetup = {
 
 				// altrimenti la cancello e la ricreo in ROOT
 			} else {
-				await store.remove({ view, anim })
+				await store.remove({ view, anim, move: true })
 				await groupDest.add({ view, index, anim })
 			}
 		},

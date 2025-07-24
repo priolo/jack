@@ -1,6 +1,6 @@
 {
   "name": "@priolo/jack",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "private": false,
   "type": "module",
   "main": "./dist/index.umd.js",
@@ -21,7 +21,7 @@
     "url": "https://github.com/priolo/jack.git"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5174",
     "build": "vite build --sourcemap",
     "build:watch": "vite build --sourcemap -w",
     "test": "vitest",

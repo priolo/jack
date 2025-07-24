@@ -32,7 +32,7 @@
 .focus {
 	outline-style: solid;
 	outline-width: 1px;
-	outline-color: color-mix(in srgb, var(--dialog-bg) 50%, transparent);
+	outline-color: color-mix(in srgb, var(--dialog-bg) 100%, transparent);
 
 	outline-offset: -1;
 	transition: outline 200ms ease-out;

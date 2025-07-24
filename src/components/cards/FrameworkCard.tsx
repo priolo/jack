@@ -67,34 +67,34 @@ const FrameworkCard: FunctionComponent<Props> = ({
 
 		{headerRender}
 
-		<ErrorBoundary>
 
-			{isIconized ? <>
 
-				<div
-					className={`${cls.actions} ${cls.hovercontainer} jack-framework-actions`}
+		{isIconized ? <>
+
+			<div
+				className={`${cls.actions} ${cls.hovercontainer} jack-framework-actions`}
+			>
+				<IconButton
+					onClick={handleClose}
+				><CloseIcon /></IconButton>
+			</div>
+
+			{iconizedRender}
+
+		</> : <>
+			{!!actionsRender && (
+				<div className={`${cls.actions} jack-framework-actions`}
 				>
-					<IconButton
-						onClick={handleClose}
-					><CloseIcon /></IconButton>
+					{actionsRender}
 				</div>
+			)}
+			<div className={`${clsChildren} jack-framework-body`} style={styleBody}
+			>
+				{children}
+			</div>
+		</>}
 
-				{iconizedRender}
 
-			</> : <>
-				{!!actionsRender && (
-					<div className={`${cls.actions} jack-framework-actions`}
-					>
-						{actionsRender}
-					</div>
-				)}
-				<div className={`${clsChildren} jack-framework-body`} style={styleBody}
-				>
-					{children}
-				</div>
-			</>}
-
-		</ErrorBoundary>
 
 		{/* DIALOG PORTAL */}
 		<div
