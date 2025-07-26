@@ -101,12 +101,17 @@ const cardsSetup = {
 		},
 
 		/** rimuovo una CARD */
-		async remove({ view, anim = false, move = false }: { view: ViewStore, anim?: boolean, move?: boolean }, store?: CardsStore) {
+		async remove(
+			{ view, anim = false, move = false }: { view: ViewStore, anim?: boolean, move?: boolean },
+			store?: CardsStore
+		) {
 			if (!view) return
 			if (anim && !view.state.docAniDisabled) await view.docAnim(DOC_ANIM.EXITING)
 
 			const views = [...store.state.all]
 			let index: number
+
+			
 
 			// placed in ROOT
 			if (!view.state.parent) {
@@ -123,10 +128,12 @@ const cardsSetup = {
 				view.onLinked()
 			}
 
-			store.setAll(views)
-
 			// CALL EVENT
-			if (!move) view.onRemoval()
+			if (!move) {
+				forEachViews([view], v => { v.onRemoval() })
+			}
+
+			store.setAll(views)
 		},
 
 		/** sposta una view in un indice preciso dello STACK */
