@@ -12,7 +12,6 @@ import React, { FunctionComponent, useMemo, useState } from "react"
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import IconButton from "../buttons/IconButton"
 import cls from "./Header.module.css"
-import focusSo from "../../stores/focus"
 
 
 

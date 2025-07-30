@@ -9,12 +9,14 @@ import TextInput from "./TextInput"
 
 interface Props {
 	value?: string
+	placeholder?: string
 	onChange?: (newValue: string) => void
 	style?: React.CSSProperties
 }
 
 const FindInputHeader: FunctionComponent<Props> = ({
 	value,
+	placeholder = "search...",
 	onChange,
 	style,
 }) => {
@@ -39,7 +41,7 @@ const FindInputHeader: FunctionComponent<Props> = ({
 			style={style}
 		>
 			<TextInput
-				placeholder="search..."
+				placeholder={placeholder}
 				className={cls.input}
 				value={value}
 				onChange={handleChange}

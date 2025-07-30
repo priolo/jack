@@ -9,9 +9,11 @@ interface Props {
 	trueIcon?: React.ReactNode
 	falseIcon?: React.ReactNode
 	tabIndex?: number
-	style?: React.CSSProperties
+
 	readOnly?: boolean
 	onChange?: (check: boolean, e?: React.MouseEvent) => void
+	style?: React.CSSProperties
+	className?: string
 }
 
 const IconToggle: FunctionComponent<Props> = ({
@@ -19,9 +21,11 @@ const IconToggle: FunctionComponent<Props> = ({
 	trueIcon = <CheckOnIcon />,
 	falseIcon = <CheckOffIcon />,
 	tabIndex = -1,
-	style,
+	
 	readOnly,
 	onChange,
+	style,
+	className,
 }) => {
 
 	// STORE
@@ -38,7 +42,7 @@ const IconToggle: FunctionComponent<Props> = ({
 	// RENDER
 
 	return (
-		<div style={{ ...cssRoot(check, readOnly, enter), ...style }} tabIndex={tabIndex}
+		<div style={{ ...cssRoot(check, readOnly, enter), ...style }} tabIndex={tabIndex} className={className}
 			onClick={handleClick}
 			onMouseEnter={() => setEnter(true)}
 			onMouseLeave={() => setEnter(false)}

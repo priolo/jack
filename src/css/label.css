@@ -12,12 +12,13 @@
 /* label proprietà */
 .jack-lbl-prop {
 	font-size: 12px;
-	font-weight: 700;
+	font-weight: 500;
+	opacity: .95;
 }
 /* valore in sola lettura */
 .jack-lbl-readonly {
 	font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0px 0px 4px 0px;
 	overflow-wrap: break-word;
 }
