@@ -46,7 +46,7 @@ const Component: FunctionComponent<Props> = ({
 		>
 			{preRender}
 			{children}
-			<div className="jack-hover-hide" style={{ position: "absolute", top: 4, right: 4 }}>
+			<div className="jack-hover-hide" style={{ position: "absolute", top: 4, right: 0 }}>
 				{enterRender}
 			</div>
 		</div>
