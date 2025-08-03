@@ -17,6 +17,7 @@ export enum LIST_ACTIONS {
  * */
 export interface RenderRowBaseProps<T> {
 	item: T
+	index?: number
 	isSelect?: boolean
 	readOnly?: boolean
 	placeholder?: string
@@ -165,16 +166,19 @@ function EditList<T>({
 			onBlur={handleBlur}
 		>
 			{/* LIST */}
-			{items.length > 0 ? items.map((item, index) =>
+			{items?.map((item, index) =>
 				<RenderRow key={index}
 					item={item}
+					index={index}
 					placeholder={placeholder}
 					isSelect={indexSelect == index}
 					readOnly={readOnly}
 					onChange={(newItem) => handleChangeItem(newItem, index)}
 					onSelect={(e) => handleSelect(index, e)}
 				/>
-			) : readOnly ? <div className="jack-lbl-empty">EMPTY LIST</div> : null}
+			)}
+
+			{(items.length == 0 && readOnly) && <div className="jack-lbl-empty">EMPTY LIST</div>}
 
 			{/* NEW BUTTON */}
 			{!readOnly && onNewItem && (

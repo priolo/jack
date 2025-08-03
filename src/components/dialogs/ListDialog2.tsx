@@ -33,7 +33,7 @@ const ListDialog2: FunctionComponent<Props> = ({
 	style,
 	RenderRow,
 	fnGetId = (item) => item,
-	fnGetString = (item) => item.toString(),
+	fnGetString = (item) => item?.toString() ?? "",
 	
 	onChangeSelect,
 	...props

@@ -19,7 +19,7 @@
 .jack-lbl-readonly {
 	font-size: 12px;
     font-weight: 600;
-    padding: 0px 0px 4px 0px;
+    /* padding: 0px 0px 4px 0px; */
 	overflow-wrap: break-word;
 }
 
