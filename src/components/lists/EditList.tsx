@@ -1,6 +1,6 @@
 import IconButton from "@/components/buttons/IconButton"
 import AddIcon from "@/icons/AddIcon"
-import { FunctionComponent, LegacyRef, forwardRef, useEffect, useState } from "react"
+import { FunctionComponent, LegacyRef, forwardRef, useCallback, useEffect, useState } from "react"
 import cls from "./EditList.module.css"
 
 
@@ -78,6 +78,7 @@ function EditList<T>({
 
 	// STORES
 
+
 	// HOOKS
 	const [_indexSelect, _setIndexSelect] = useState(-1)
 	const indexSelect = select == undefined ? _indexSelect : select
@@ -90,8 +91,9 @@ function EditList<T>({
 		if (indexSelect == -1 && keepSelectOnBlur) clearVoid()
 	}, [indexSelect])
 
-	// HANDLERS
+	const MemoRenderRow = useCallback((props: RenderRowBaseProps<T>) => <RenderRow {...props} />, [])
 
+	// HANDLERS
 	const handleChangeItem = (newItem: T, index: number) => {
 		if (readOnly) return
 		const newItems = [...items]
@@ -167,7 +169,7 @@ function EditList<T>({
 		>
 			{/* LIST */}
 			{items?.map((item, index) =>
-				<RenderRow key={index}
+				<MemoRenderRow key={index}
 					item={item}
 					index={index}
 					placeholder={placeholder}

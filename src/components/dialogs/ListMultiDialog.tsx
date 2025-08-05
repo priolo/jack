@@ -61,6 +61,7 @@ const ListMultiDialog: FunctionComponent<Props> = ({
 		<Component
 			onClick={handleDialogOpen}
 			enterRender={<ArrowRightIcon style={{ opacity: 0.5 }} />}
+			readOnly={readOnly}
 		>{value}</Component>
 
 		<ElementDialog
@@ -72,6 +73,7 @@ const ListMultiDialog: FunctionComponent<Props> = ({
 			<ListMultiWithFilter2
 				selects={selects}
 				items={items}
+				readOnly={readOnly}
 				onChangeSelects={onChangeSelect}
 				fnGetId={fnGetId}
 				fnGetString={fnGetString}

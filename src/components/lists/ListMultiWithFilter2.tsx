@@ -7,8 +7,9 @@ import FindInput from "../input/FindInput"
 
 
 interface Props {
-	items: any[],
-	selects: any[],
+	items: any[]
+	selects: any[]
+	readOnly?: boolean
 	onChangeSelects: (ids: any[]) => void
 	renderRow?: (item: any, index: number) => React.ReactNode
 	fnGetId?: (item: any) => any
@@ -21,6 +22,7 @@ interface Props {
 const ListMultiWithFilter2: FunctionComponent<Props> = ({
 	items,
 	selects,
+	readOnly,
 	onChangeSelects,
 	renderRow,
 	fnGetId = (item) => item,
@@ -74,6 +76,7 @@ const ListMultiWithFilter2: FunctionComponent<Props> = ({
 		<div style={{ display: "flex", position: "relative", alignItems: "center", margin: 3 }}>
 			<IconToggle style={{ marginLeft: 3, marginRight: 5 }}
 				check={allSelect}
+				readOnly={readOnly}
 				onChange={handleSelectAll}
 			/>
 			<FindInput
@@ -90,6 +93,7 @@ const ListMultiWithFilter2: FunctionComponent<Props> = ({
 			RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
 				<IconToggle
 					check={isSelect(item)}
+					readOnly={readOnly}
 					onChange={select => handleSubjectChange(item)}
 				/>
 				{renderRow?.(item, index) ?? <div className="lbl-prop">{fnGetString(item)}</div>}
