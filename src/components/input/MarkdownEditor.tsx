@@ -1,6 +1,6 @@
 import Prism from "prismjs"
 import "prismjs/components/prism-markdown"
-import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { FunctionComponent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createEditor, Descendant, Node, Text, Transforms } from 'slate'
 import { withHistory } from 'slate-history'
 import { Editable, RenderLeafProps, Slate, withReact } from 'slate-react'
@@ -50,6 +50,9 @@ const MarkdownEditor: FunctionComponent<MarkdownEditorProps> = ({
 }) => {
 	// Create editor instance
 	const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+	
+	// Flag to prevent onChange when we're updating from external value prop
+	const isUpdatingFromProp = useRef(false)
 
 	// Initialize editor value from props
 	const [slateValue, setSlateValue] = useState<Descendant[]>(() =>
@@ -58,15 +61,34 @@ const MarkdownEditor: FunctionComponent<MarkdownEditorProps> = ({
 
 	// Update slate value when external value prop changes
 	useEffect(() => {
-		const newSlateValue = markdownToSlate(value)
-		setSlateValue(newSlateValue)
-	}, [value])
+		const currentValue = slateToMarkdown(slateValue)
+		
+		// Only update if the external value is different from current editor value
+		if (value !== currentValue) {
+			const newSlateValue = markdownToSlate(value)
+			
+			isUpdatingFromProp.current = true
+			
+			// Reset editor content completely
+			Transforms.deselect(editor)
+			editor.children = newSlateValue
+			editor.normalize({ force: true })
+			
+			// Update state to match
+			setSlateValue(newSlateValue)
+			
+			// Reset flag after a tick
+			setTimeout(() => {
+				isUpdatingFromProp.current = false
+			}, 0)
+		}
+	}, [value, editor, slateValue])
 	// Handle editor changes
 	const handleChange = (newValue: Descendant[]) => {
 		setSlateValue(newValue)
 
-		// Convert Slate value to markdown string if onChange prop provided
-		if (onChange) {
+		// Only trigger onChange if we're not updating from external prop
+		if (!isUpdatingFromProp.current && onChange) {
 			const markdown = slateToMarkdown(newValue)
 			onChange(markdown)
 		}
@@ -133,7 +155,6 @@ const decorateMarkdown = ([node, path]: [Node, number[]]) => {
 		const end = start + length
 
 		if (typeof token !== 'string') {
-			console.log("TOKEN: ", token)
 			ranges.push({
 				[token.type]: true,
 				anchor: { path, offset: start },

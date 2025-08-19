@@ -20,6 +20,7 @@ import ListDialog2 from "@/components/dialogs/ListDialog2"
 import DirectionUpIcon from "@/icons/DirectionUpIcon"
 import DirectionDownIcon from "@/icons/DirectionDownIcon"
 import DirectionLeftIcon from "@/icons/DirectionLeftIcon"
+import MarkdownEditorTest from "../MarkdownEditorTest"
 
 
 
@@ -99,6 +100,10 @@ const Example1View: FunctionComponent<Props> = ({
 				placeholder="Enter your markdown here..."
 				style={{ minHeight: '200px', marginTop: '10px' }}
 			/>
+
+
+			<MarkdownEditorTest />
+			
 
 			<Button select className="jack-focus-1"
 				onClick={handleOpenLinked}
