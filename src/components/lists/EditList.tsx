@@ -1,6 +1,6 @@
 import IconButton from "@/components/buttons/IconButton"
 import AddIcon from "@/icons/AddIcon"
-import { FunctionComponent, LegacyRef, forwardRef, useCallback, useEffect, useState } from "react"
+import { FunctionComponent, Ref, forwardRef, useCallback, useEffect, useState } from "react"
 import cls from "./EditList.module.css"
 
 
@@ -45,7 +45,7 @@ interface Props<T> {
 
 	fnIsVoid?: (item: T) => boolean
 
-	ref?: LegacyRef<HTMLDivElement>
+	ref?: Ref<HTMLDivElement>
 }
 
 /**
@@ -68,7 +68,7 @@ function EditList<T>({
 
 	fnIsVoid,
 
-}: Props<T>, ref: LegacyRef<HTMLDivElement>) {
+}: Props<T>, ref: Ref<HTMLDivElement>) {
 
 	const clearVoid = () => {
 		if (!fnIsVoid || !items || items.length == 0) return
@@ -192,4 +192,4 @@ function EditList<T>({
 	)
 }
 
-export default forwardRef(EditList) as <T>(props: Props<T>, ref: LegacyRef<HTMLDivElement>) => JSX.Element
+export default forwardRef(EditList) as <T>(props: Props<T>, ref: Ref<HTMLDivElement>) => React.ReactElement

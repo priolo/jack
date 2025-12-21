@@ -1,11 +1,19 @@
 {
   "name": "@priolo/jack",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "private": false,
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./style.css": "./dist/jack.css"
+  },
   "files": [
     "dist"
   ],
@@ -15,6 +23,9 @@
   "description": "CARD interface",
   "author": "Iorio Ivano <iorioivano@gmail.com>",
   "license": "MIT",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "homepage": "https://github.com/priolo/jack",
   "repository": {
     "type": "git",
@@ -37,23 +48,29 @@
     "prismjs": "^1.30.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/prismjs": "^1.26.5",
-    "@vitejs/plugin-react-swc": "^3.7.2",
+
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@priolo/jon": "^0.7.9",
+    
     "jsdom": "latest",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "typescript": "^5.7.3",
+
+    "@vitejs/plugin-react-swc": "^3.7.2",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.5.0",
     "vitest": "^3.0.2"
   },
   "peerDependencies": {
-    "@priolo/jon": "^0.7.7",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@priolo/jon": "^0.7",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "browserslist": "defaults and supports es6-module,maintained node versions"
 }

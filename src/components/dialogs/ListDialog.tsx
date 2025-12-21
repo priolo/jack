@@ -43,13 +43,14 @@ const ListDialog: FunctionComponent<Props> = ({
 
 	// RENDER
 	if (!items) return null
-	const value = RenderRow({ item: items[select] })
 
 	return <>
 		<Component
 			onClick={handleDialogOpen}
 			enterRender={<ArrowRightIcon style={{ opacity: 0.5 }} />}
-		>{value}</Component>
+		>
+			<RenderRow item={items[select]} />
+		</Component>
 
 		<ElementDialog
 			{...props}

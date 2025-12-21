@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { createStore } from '@priolo/jon';
 import cardsSetup, { CardsStore } from '../stores/docs/cards';
 import App from './App';
@@ -23,7 +23,7 @@ export const deckCards2So = createStore(cardsSetup) as CardsStore
 docsSo.setAllDeck([deckCardsSo])
 
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
     <App />
   // </React.StrictMode>,
