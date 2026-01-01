@@ -7,7 +7,9 @@ import IconButton from "../buttons/IconButton"
 import cls from "./Dialog.module.css"
 
 
-
+/**
+ * Disegna una dialog sul margine della CARD
+ */
 export interface DialogProps {
 	/** VIEW dove appiccicare questa DIALOG */
 	store: ViewStore

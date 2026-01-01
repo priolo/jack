@@ -9,13 +9,17 @@
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
-/* label proprietà */
+/** 
+* Label per proprietà. Il testo di solito è sopra un campo di input
+*/
 .jack-lbl-prop {
 	font-size: 12px;
 	font-weight: 500;
 	opacity: .95;
 }
-/* valore in sola lettura */
+/**
+* Label usata in un campo di input se questo è di sola lettura
+*/
 .jack-lbl-readonly {
 	font-size: 12px;
     font-weight: 600;
@@ -23,7 +27,9 @@
 	overflow-wrap: break-word;
 }
 
-/* lista vuota */
+/**
+* Visualizza un messaggio per una lista vuota
+*/
 .jack-lbl-empty {
 	border: 1px dashed currentColor;
 	padding: 3px;
@@ -34,7 +40,14 @@
 	opacity: .6;
 }
 
-/* title */
+.jack-divider-h {
+	margin: 3px 0px 3px 0px;
+	border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+}
+
+/**
+* Titolo di una sezione
+*/
 .jack-title {
 	font-size: 14px;
 	font-weight: 800;

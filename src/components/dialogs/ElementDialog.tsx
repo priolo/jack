@@ -7,6 +7,9 @@ export interface ElementDialogProps extends DialogProps {
 	element: Element
 }
 
+/**
+ * Disegna una DIALOG al margine della CARD ma calcola l'altezza sulla base dell'ELEMENT passato
+ */
 const ElementDialog: FunctionComponent<ElementDialogProps> = ({
 	element,
 	...props

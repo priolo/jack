@@ -1,18 +1,24 @@
 import FrameworkCard from "@/components/cards/FrameworkCard"
 import ListDialog2 from "@/components/dialogs/ListDialog2"
 import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
-import EditList from "@/components/lists/EditList"
+import MarkdownEditor from "@/components/input/MarkdownEditor"
+import DirectionDownIcon from "@/icons/DirectionDownIcon"
+import DirectionLeftIcon from "@/icons/DirectionLeftIcon"
+import DirectionUpIcon from "@/icons/DirectionUpIcon"
 import { MESSAGE_TYPE } from "@/stores/stacks/types"
 import { createStore, useStore } from "@priolo/jon"
 import { FunctionComponent, useState } from "react"
-import { Example1State, ItemExample } from "."
+import { Example1State } from "."
 import TooltipWrapCmp from "../../app/tooltip/TooltipWrapCmp"
 import Button from "../../components/buttons/Button"
+import IconButton from "../../components/buttons/IconButton"
 import Header from "../../components/cards/Header"
 import Dialog from "../../components/dialogs/Dialog"
 import TextInput from "../../components/input/TextInput"
+import DirectionRightIcon from "../../icons/DirectionRightIcon"
 import DoneIcon from "../../icons/DoneIcon"
 import example2Setup, { Example2Store } from "../example2"
+import MarkdownEditorTest from "../MarkdownEditorTest"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
 
@@ -73,20 +79,50 @@ const Example1View: FunctionComponent<Props> = ({
 		<div className="jack-lyt-form">
 
 			{/* TOOLTIP */}
-			<TooltipWrapCmp content="TOOLTIP !!!">
-				<div className="jack-lbl-prop-title">
-					DEFAULT COMPONENTS
-				</div>
+			<TooltipWrapCmp content="TOOLTIP 1!!!">
+				<div>EXAMPLE 1</div>
 			</TooltipWrapCmp>
-
-			{/* BUTTONS */}
-			<div className="jack-lbl-prop">
-				BUTTONS
-			</div>
 
 			<Button
 				onClick={() => setOpen(true)}
 			>OPEN DIALOG</Button>
+
+			<Button select className="jack-focus-1"
+				onClick={handleOpenLinked}
+			>OPEN CARD 2</Button>
+
+			{/* TEXT INPUT collegata alla STORE */}
+			<TextInput
+				value={store.state.text}
+				onChange={text => store.setText(text)}
+			/>
+
+			<MarkdownEditor
+				value={markdownText}
+				onChange={text => setMarkdownText(text)}
+				placeholder="Enter your markdown here..."
+				style={{ minHeight: '200px', marginTop: '10px' }}
+			/>
+
+			<MarkdownEditorTest />
+
+			<div className="jack-cmp-h">
+				<IconButton effect tabIndex={3}
+					onClick={() => handleIconClick(MESSAGE_TYPE.SUCCESS)}
+				><DirectionRightIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={() => handleIconClick(MESSAGE_TYPE.INFO)}
+				><DirectionUpIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={() => handleIconClick(MESSAGE_TYPE.WARNING)}
+				><DirectionDownIcon /></IconButton>
+				<IconButton effect tabIndex={3}
+					onClick={() => handleIconClick(MESSAGE_TYPE.ERROR)}
+				><DirectionLeftIcon /></IconButton>
+			</div>
+
+
+			{/* DIALOGS */}
 
 			<Dialog noCloseOnClickParent
 				title="FILTERS"
@@ -99,33 +135,6 @@ const Example1View: FunctionComponent<Props> = ({
 			>
 				<div>CIAO</div>
 			</Dialog>
-
-
-			<Button
-				onClick={handleOpenLinked}
-			>OPEN CARD</Button>
-
-			<Button select={store.state.toogle}
-				onClick={() => store.setToggle(!store.state.toogle)}
-			>TOGGLE</Button>
-
-			{/* TEXT INPUT */}
-			<div className="jack-lbl-prop">
-				INPUTS
-			</div>
-			<TextInput
-				value={store.state.text}
-				onChange={text => store.setText(text)}
-			/>
-
-			<div className="jack-divider-h"/>
-
-
-			{/* LISTS */}
-
-			<div className="jack-lbl-prop">
-				LISTS
-			</div>
 
 			<ListMultiDialog
 				store={store}
@@ -145,9 +154,7 @@ const Example1View: FunctionComponent<Props> = ({
 				fnGetString={(item) => item?.name}
 			/>
 
-			<EditList<ItemExample>
-				items={store.state.items}
-			/>
+
 		</div>
 
 	</FrameworkCard>

@@ -26,23 +26,31 @@ export interface RenderRowBaseProps<T> {
 }
 
 interface Props<T> {
+
 	items: T[]
+	/** indice selezionato */
 	select?: number
 	/** renderizza una ROW ITEM in lista */
 	RenderRow?: FunctionComponent<RenderRowBaseProps<T>>
+
 	placeholder?: string
+
 	readOnly?: boolean
 	/** quando perde il fuoco seve mantenere la selezione (utile per le dialog) */
 	keepSelectOnBlur?: boolean
 	/** se riclicco sulla stessa row gia' selezionata la deseleziono */
 	toggleSelect?: boolean
+
 	style?: React.CSSProperties
 
 	/** restituisce nuovo ITEM (su click btt NEW) */
 	onNewItem?: (index: number) => T
+	/** chiamato quando la lista degli ITEMS cambia */
 	onItemsChange?: (newItems: T[], action?: LIST_ACTIONS) => void
+	/** chiamato quando cambia la selezione */
 	onSelectChange?: (index: number, e: React.BaseSyntheticEvent) => void
 
+	/** funzione per determinare se un item e' vuoto (utile per la pulizia automatica) */
 	fnIsVoid?: (item: T) => boolean
 
 	ref?: Ref<HTMLDivElement>
@@ -192,4 +200,4 @@ function EditList<T>({
 	)
 }
 
-export default forwardRef(EditList) as <T>(props: Props<T>, ref: Ref<HTMLDivElement>) => React.ReactElement
+export default forwardRef(EditList) as <T>(props: Props<T> & { ref?: Ref<HTMLDivElement> }) => React.ReactElement

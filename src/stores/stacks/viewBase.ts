@@ -64,14 +64,33 @@ const viewSetup = {
 
 	getters: {
 		//#region OVERRIDABLE
-		/** restituisce il width effettivo */
+		/** 
+		 * restituisce il width effettivo della CARD 
+		 */
 		getWidth: (_: void, store?: ViewStore) => {
 			if (docsSo.state.zenCard == store) return store.state.widthMax
 			if (store.state.size == VIEW_SIZE.COMPACT) return store.state.widthCompact
 			return store.state.width
 		},
+		/** 
+		 * Il titolo che appare sull'HEADER della CARD 
+		 */
 		getTitle: (_: void, store?: ViewStore): string => null,
+		/** una descrizione secondarioa che appare sull'HEADER della CARD */
 		getSubTitle: (_: void, store?: ViewStore): string => null,
+		/** 
+		 * chiamato quando si deve serializzare la CARD
+		 * restituisce un oggetto con i dati da serializzare
+		 * @example override
+		 * ```ts
+		 * getSerialization: (_: void, store?: ViewStore) => {
+		 *   const state = store.state as Example1State
+		 *   return {
+		 * 	   ...viewSetup.getSerialization(),
+		 * 	   text: state.text,
+		 *   }
+		 * },
+		 */
 		getSerialization: (_: void, store?: ViewStore) => {
 			return {
 				uuid: store.state.uuid,
@@ -124,7 +143,7 @@ const viewSetup = {
 					//store.state.linked.state.group = null
 				}
 				store.state.linked = null
-			// setto effettivamente un LINKED
+				// setto effettivamente un LINKED
 			} else {
 				view.state.parent = store
 				// [II] view.state.group = store.state.group
@@ -171,6 +190,9 @@ const viewSetup = {
 			}
 		},
 
+		/**
+		 * apre un ALERT nella stessa CARD
+		 */
 		async alertOpen(alert: AlertState, store?: ViewStore): Promise<boolean> {
 			return new Promise<boolean>((res, rej) => {
 				alert.resolve = res

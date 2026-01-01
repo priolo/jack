@@ -14,6 +14,7 @@ interface Props {
 }
 
 /**
+ * Visualizza una lista 
  * Permette di seezionare più elementi da una lista con un filtro di ricerca
  */
 const ListMultiWithFilter: FunctionComponent<Props> = ({

@@ -9,15 +9,16 @@
 	/** il background che contiene il set di ACTIONS di un FRAMEWORK dentro la CARD */
 	--jack-framework-actions-bg: rgb(0 0 0 / 50%);
 
-	
+	/** colore foreground della card */
 	--card-fg: #dedede;
+	/** colore background della card */
 	--card-bg: #3E3E3E;
 	
 	/* button icon button */
 	--cmp-select-fg: #393939;
 	--cmp-select-bg: #EBFB35;
 
-	/* ombra perimetrale inputtext buttton */
+	/* ombra perimetrale inputtext button */
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
 	/* tooltip drag dialog float-button*/
