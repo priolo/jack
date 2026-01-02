@@ -13,12 +13,14 @@ const setup = {
 
 		text: <string>"ciao!",
 		toogle: <boolean>true,
+
 		items: <ItemExample[]>[
 			{ id: 1, name: "pippo" },
 			{ id: 2, name: "pluto" },
 			{ id: 3, name: "paperino" },
 			{ id: 4, name: "topolino" },
 		],
+		itemSelectedIndex: <number>-1,
 
 		//#region VIEWBASE
 		type: DOC_TYPE.EXAMPLE1,
@@ -54,7 +56,9 @@ const setup = {
 	mutators: {
 		setText: (text: string) => ({ text }),
 		setToggle: (toogle: boolean) => ({ toogle }),
-		setItems: (items: ItemExample[]) => ({ items })
+
+		setItems: (items: ItemExample[]) => ({ items }),
+		setItemSelectedIndex: (itemSelectedIndex: number) => ({ itemSelectedIndex }),
 	},
 }
 

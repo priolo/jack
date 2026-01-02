@@ -15,6 +15,7 @@ import DoneIcon from "../../icons/DoneIcon"
 import example2Setup, { Example2Store } from "../example2"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
+import EditItemRow from "@/components/rows/EditItemRow"
 
 
 
@@ -147,6 +148,11 @@ const Example1View: FunctionComponent<Props> = ({
 
 			<EditList<ItemExample>
 				items={store.state.items}
+				RenderRow={(props) => <EditItemRow {...props} item={props.item?.name} />}
+				select={store.state.itemSelectedIndex}
+				onItemsChange={(itemsNew) => store.setItems(itemsNew)}
+				onSelectChange={(index) => store.setItemSelectedIndex(index)}
+				onNewItem={(index) => ({ id: Date.now(), name: "new item" })}
 			/>
 		</div>
 

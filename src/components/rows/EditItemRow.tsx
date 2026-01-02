@@ -7,6 +7,7 @@ import ListRow from "../lists/ListRow"
 
 
 /** 
+ * wrapper 
  * ListRow con l'aggiunta bottone "close" (onChange(null))
  */
 const EditItemRow: FunctionComponent<RenderRowBaseProps<any>> = ({

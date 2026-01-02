@@ -7,7 +7,6 @@ import ElementDialog from "./ElementDialog"
 
 
 
-/** un COMPONENT che se premuto apre una DIALOG con una LIST */
 interface Props extends DialogProps {
 	/** tutti gli oggetti presenti il lista */
 	items: any[]
@@ -24,6 +23,10 @@ interface Props extends DialogProps {
 	fnGetString?: (item: any) => string
 }
 
+/** 
+ * Un FIELD con una lista di stringhe divise da virgola
+ * cliccando si apre una DIALOG con la lista completa e la possibilita' di selezionare piu' item
+ */
 const ListMultiDialog: FunctionComponent<Props> = ({
 	items,
 	readOnly,

@@ -63,7 +63,7 @@ interface Props<T> {
 function EditList<T>({
 	items,
 	select,
-	RenderRow,
+	RenderRow = (item) => item.toString(),
 	placeholder,
 	readOnly = false,
 	keepSelectOnBlur,

@@ -280,7 +280,7 @@ Esempio di CSS per una CARD con tema CYAN:
 ## class per i COMPONENTS
 
 ### LABELS
-Permettono di definire dei testri statici all'interno delle CARDS
+Permettono di definire dei testi statici all'interno delle CARDS
 Controllare il file `src/css/label.css` per le definizioni.
 
 ### LAYOUTS
