@@ -71,7 +71,7 @@ function ListObjects<T>({
 		setSourceIndex(-1)
 		setElementSource(e.target as HTMLElement)
 	}
-	const handleOnClose = () => {
+	const handleDialogClose = () => {
 		setSourceIndex(-1)
 		setElementSource(null)
 	}
@@ -118,7 +118,16 @@ function ListObjects<T>({
 			<RenderForm
 				item={itemSelect}
 				index={sourceIndex}
-				onClose={handleOnClose}
+				onClose={handleDialogClose}
+				onChange={(newItem) => {
+					let newItems = [...items]
+					if (sourceIndex == -1) {
+						newItems.push(newItem)
+					} else {
+						newItems[sourceIndex] = newItem
+					}
+					onChange?.(newItems)
+				}}
 			/>
 		</ElementDialog>
 	</>

@@ -212,19 +212,14 @@ const Example1View: FunctionComponent<Props> = ({
 				width={170}
 				RenderLabel={({ item, index }) => (
 					<div className="jack-cmp-h">
-						{/* <IconToggle
-                                check={auth.active}
-                                onChange={(check, e) => handleActivate(check, index, e)}
-                                readOnly={inRead}
-                                trueIcon={<CheckRadioOnIcon />}
-                            /> */}
 						{item?.name?.toUpperCase()}
 					</div>
 				)}
+				RenderForm={ItemEditableForm}
 				onDelete={(index, item) => {
 					store.setItems(store.state.items.filter(i => i.id !== item.id))
 				}}
-				RenderForm={ItemEditableRow}
+				onChange={(items) => store.setItems(items)}
 			/>
 
 		</div>
@@ -234,25 +229,21 @@ const Example1View: FunctionComponent<Props> = ({
 
 
 // ItemEditableRow: separate component to render/edit an ItemExample
-const ItemEditableRow: FunctionComponent<{
-	item?: ItemExample
-	index: number
+const ItemEditableForm: FunctionComponent<{
+	item: ItemExample
+	index?: number
 	onClose?: () => void
-	store?: Example1Store
-}> = ({ item, index, onClose, store }) => {
+	onChange?: (item: ItemExample) => void
 
-	const handleChange = (name: string) => {
-		if (!store) return
-		store.state.items[index].name = name
-		store.setItems([...store.state.items])
-	}
+}> = ({ item, index, onClose, onChange }) => {
+
 
 	return (
 		<div className="jack-lyt-form">
 			<div>{item?.id ?? "--"}</div>
 			<TextInput
 				value={item?.name ?? ""}
-				onChange={handleChange}
+				onChange={(name) => onChange({ ...item, name })}
 			/>
 			<div>{item?.name ?? "--"}</div>
 		</div>
