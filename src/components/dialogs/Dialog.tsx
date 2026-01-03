@@ -38,7 +38,9 @@ export interface DialogProps {
 }
 
 /**
- * dettaglio di una CONNECTION
+ * La base di tutte le DIALOG
+ * appare al bordo destro della CARD
+ * il contenuto è renderizzato con un "portal"
  */
 const Dialog: FunctionComponent<DialogProps> = ({
 	store,

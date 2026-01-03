@@ -22,6 +22,8 @@ const setup = {
 		],
 		itemSelectedIndex: <number>-1,
 
+		strings: [ "uno", "due", "tre", "quattro" ],
+
 		//#region VIEWBASE
 		type: DOC_TYPE.EXAMPLE1,
 		width: 150,
@@ -59,6 +61,8 @@ const setup = {
 
 		setItems: (items: ItemExample[]) => ({ items }),
 		setItemSelectedIndex: (itemSelectedIndex: number) => ({ itemSelectedIndex }),
+
+		setStrings: (strings: string[]) => ({ strings }),
 	},
 }
 
@@ -71,5 +75,3 @@ export interface Example1Store extends ViewStore, StoreCore<Example1State>, Exam
 }
 const example1Setup = mixStores(viewSetup, setup)
 export default example1Setup
-
-

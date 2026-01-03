@@ -10,6 +10,9 @@ interface Props {
 	store?: ViewStore
 }
 
+/**
+ * Visualizza una dialog di ALERT con OK e CANCEL
+ */
 const AlertDialog: FunctionComponent<Props> = ({
 	store,
 }) => {

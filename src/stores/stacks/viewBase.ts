@@ -191,7 +191,9 @@ const viewSetup = {
 		},
 
 		/**
-		 * apre un ALERT nella stessa CARD
+		 * apre un "AlertDialog" nella stessa CARD
+		 * ricorda di inserire il componente <AlertDialog /> nel render della CARD
+		 * @return una PROMISE che si risolve con TRUE se si preme OK, FALSE se si preme CANCEL
 		 */
 		async alertOpen(alert: AlertState, store?: ViewStore): Promise<boolean> {
 			return new Promise<boolean>((res, rej) => {

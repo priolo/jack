@@ -12,6 +12,7 @@ export interface RenderFormProps<T> {
 	item: T
 	index?: number
 	onClose?: () => void
+	onChange?: (newItem: T) => void
 }
 
 export interface RenderLabelProps<T> {
@@ -29,7 +30,8 @@ interface Props<T> {
 	RenderLabel?: FunctionComponent<RenderLabelProps<T>>
 	/** renderizza la form che appare nella DIALOG. "onClose" permette di chiudere la DIALOG */
 	RenderForm?: FunctionComponent<RenderFormProps<T>>
-	onDelete: (index: number) => void
+	onDelete: (index: number, item:T) => void
+	onChange?: (items: T[]) => void
 
 	style?: React.CSSProperties
 }
@@ -48,6 +50,7 @@ function ListObjects<T>({
 	RenderLabel,
 	RenderForm,
 	onDelete,
+	onChange,
 
 	style,
 }: Props<T>) {
@@ -85,7 +88,7 @@ function ListObjects<T>({
 				<Component key={index}
 					selected={index == sourceIndex}
 					onClick={(e) => handleRowClick(index, e)}
-					enterRender={!readOnly && <CloseIcon onClick={() => onDelete(index)} />}
+					enterRender={!readOnly && <CloseIcon onClick={() => onDelete(index, item)} />}
 					readOnly={readOnly}
 				>
 					<RenderLabel item={item} index={index} />

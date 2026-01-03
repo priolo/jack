@@ -1,7 +1,7 @@
 import FrameworkCard from "@/components/cards/FrameworkCard"
 import ListDialog2 from "@/components/dialogs/ListDialog2"
 import ListMultiDialog from "@/components/dialogs/ListMultiDialog"
-import EditList from "@/components/lists/EditList"
+import EditList, { RenderRowBaseProps } from "@/components/lists/EditList"
 import { MESSAGE_TYPE } from "@/stores/stacks/types"
 import { createStore, useStore } from "@priolo/jon"
 import { FunctionComponent, useState } from "react"
@@ -16,6 +16,14 @@ import example2Setup, { Example2Store } from "../example2"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
 import EditItemRow from "@/components/rows/EditItemRow"
+import AlertDialog from "@/components/dialogs/AlertDialog"
+import EditStringRow from "@/components/rows/EditStringRow"
+import IconToggle from "@/components/buttons/IconToggle"
+import ListRow from "@/components/lists/ListRow"
+import Box from "@/components/format/Box"
+import IconButton from "@/components/buttons/IconButton"
+import CloseIcon from "@/icons/CloseIcon"
+import ListObjects from "@/components/lists/ListObjects"
 
 
 
@@ -31,10 +39,10 @@ const Example1View: FunctionComponent<Props> = ({
 	useStore<Example1State>(store)
 
 	// HOOKs
-	const [open, setOpen] = useState(false)
-	const [markdownText, setMarkdownText] = useState("# Welcome to Markdown Editor\n\nThis is a **SlateJS** powered markdown editor with *live preview*.\n\n## Features\n\n- **Bold** and *italic* text\n- `Inline code`\n- Code blocks\n- Lists and more!\n\n> This is a blockquote example\n\n```javascript\nconst hello = 'world';\nconsole.log(hello);\n```")
-	const [itemsSelect, setItemsSelect] = useState<number[]>([])
-	const [itemSelect, setItemSelect] = useState<number>(-1)
+	const [dialogOpened, setDialogOpened] = useState(false)
+	const [itemsMultidialogSelect, setItemsMultidialogSelect] = useState<number[]>([])
+	const [itemDialog2Select, setItemDilaog2Select] = useState<number>(-1)
+	const [itemsKV, setItemsKV] = useState<[string, string][]>([])
 
 	// HANDLER
 	const handleOpenLinked = (e: React.MouseEvent) => {
@@ -45,6 +53,12 @@ const Example1View: FunctionComponent<Props> = ({
 			store.state.group.addLink({ view: newStore, parent: store, anim: true })
 		}
 	}
+	const handleOpenAlert = () => {
+		store.alertOpen({
+			title: "ALERT TITLE",
+			body: "This is the alert body text.",
+		})
+	}
 	const handleIconClick = (type: MESSAGE_TYPE) => {
 		console.log("icon button click")
 		store.setSnackbar({
@@ -53,13 +67,12 @@ const Example1View: FunctionComponent<Props> = ({
 	}
 
 	// RENDER
-	const items = [
+	const items: ItemExample[] = [
 		{ id: 1, name: "pippo" },
 		{ id: 2, name: "pluto" },
 		{ id: 3, name: "paperino" },
 		{ id: 4, name: "topolino" },
 	]
-
 
 	return <FrameworkCard
 		headerRender={<Header store={store} icon={<DoneIcon />} />}
@@ -80,27 +93,34 @@ const Example1View: FunctionComponent<Props> = ({
 				</div>
 			</TooltipWrapCmp>
 
+
+
+
 			{/* BUTTONS */}
 			<div className="jack-lbl-prop">
 				BUTTONS
 			</div>
 
 			<Button
-				onClick={() => setOpen(true)}
+				onClick={() => setDialogOpened(true)}
 			>OPEN DIALOG</Button>
-
 			<Dialog noCloseOnClickParent
 				title="FILTERS"
 				store={store}
 
 				//width={140}
-				open={open}
-				onClose={() => setOpen(false)}
+				open={dialogOpened}
+				onClose={() => setDialogOpened(false)}
 				timeoutClose={-1}
 			>
 				<div>CIAO</div>
 			</Dialog>
 
+			{/* Apre una DIALOG di ALERT. Ricorda di mettere anche un <AlertDialog /> nel render della CARD */}
+			<Button
+				onClick={handleOpenAlert}
+			>OPEN ALERT</Button>
+			<AlertDialog store={store} />
 
 			<Button
 				onClick={handleOpenLinked}
@@ -108,7 +128,15 @@ const Example1View: FunctionComponent<Props> = ({
 
 			<Button select={store.state.toogle}
 				onClick={() => store.setToggle(!store.state.toogle)}
-			>TOGGLE</Button>
+			>BUTTON TOGGLE</Button>
+
+			<IconToggle
+				check={store.state.toogle}
+				onChange={() => store.setToggle(!store.state.toogle)}
+			/>
+
+
+
 
 			{/* TEXT INPUT */}
 			<div className="jack-lbl-prop">
@@ -119,7 +147,9 @@ const Example1View: FunctionComponent<Props> = ({
 				onChange={text => store.setText(text)}
 			/>
 
-			<div className="jack-divider-h"/>
+			<div className="jack-divider-h" />
+
+
 
 
 			{/* LISTS */}
@@ -131,8 +161,8 @@ const Example1View: FunctionComponent<Props> = ({
 			<ListMultiDialog
 				store={store}
 				items={items}
-				selects={itemsSelect}
-				onChangeSelect={(ids) => setItemsSelect(ids)}
+				selects={itemsMultidialogSelect}
+				onChangeSelect={(ids) => setItemsMultidialogSelect(ids)}
 				fnGetId={(item) => item?.id}
 				fnGetString={(item) => item?.name}
 			/>
@@ -140,24 +170,135 @@ const Example1View: FunctionComponent<Props> = ({
 			<ListDialog2
 				store={store}
 				items={items}
-				select={itemSelect}
-				onChangeSelect={(id) => setItemSelect(id)}
+				select={itemDialog2Select}
+				onChangeSelect={(id) => setItemDilaog2Select(id)}
 				fnGetId={(item) => item?.id}
 				fnGetString={(item) => item?.name}
 			/>
 
+			<EditList<string>
+				items={store.state.strings}
+				RenderRow={EditStringRow}
+				onItemsChange={(stringsNew) => store.setStrings(stringsNew)}
+				onNewItem={() => ""}
+				fnIsVoid={i => !i || i.trim().length == 0}
+			/>
+
+
+
 			<EditList<ItemExample>
-				items={store.state.items}
+				items={items}
 				RenderRow={(props) => <EditItemRow {...props} item={props.item?.name} />}
-				select={store.state.itemSelectedIndex}
 				onItemsChange={(itemsNew) => store.setItems(itemsNew)}
 				onSelectChange={(index) => store.setItemSelectedIndex(index)}
 				onNewItem={(index) => ({ id: Date.now(), name: "new item" })}
+				fnIsVoid={item => !item.name || item.name.trim().length == 0}
 			/>
+
+			<EditList<[string, string]>
+				items={itemsKV}
+				onItemsChange={itemsKV => setItemsKV(itemsKV)}
+				//readOnly={inRead}
+				placeholder="ex. 10"
+				onNewItem={() => ["", ""]}
+				fnIsVoid={m => !m || (m[0] == "" && m[1] == "")}
+				RenderRow={EditMetadataRow}
+			/>
+
+			<ListObjects<ItemExample>
+				store={store}
+				items={store.state.items}
+				//readOnly={inRead}
+				width={170}
+				RenderLabel={({ item, index }) => (
+					<div className="jack-cmp-h">
+						{/* <IconToggle
+                                check={auth.active}
+                                onChange={(check, e) => handleActivate(check, index, e)}
+                                readOnly={inRead}
+                                trueIcon={<CheckRadioOnIcon />}
+                            /> */}
+						{item?.name?.toUpperCase()}
+					</div>
+				)}
+				onDelete={(index, item) => {
+					store.setItems(store.state.items.filter(i => i.id !== item.id))
+				}}
+				RenderForm={ItemEditableRow}
+			/>
+
 		</div>
 
 	</FrameworkCard>
 }
 
+
+// ItemEditableRow: separate component to render/edit an ItemExample
+const ItemEditableRow: FunctionComponent<{
+	item?: ItemExample
+	index: number
+	onClose?: () => void
+	store?: Example1Store
+}> = ({ item, index, onClose, store }) => {
+
+	const handleChange = (name: string) => {
+		if (!store) return
+		store.state.items[index].name = name
+		store.setItems([...store.state.items])
+	}
+
+	return (
+		<div className="jack-lyt-form">
+			<div>{item?.id ?? "--"}</div>
+			<TextInput
+				value={item?.name ?? ""}
+				onChange={handleChange}
+			/>
+			<div>{item?.name ?? "--"}</div>
+		</div>
+	)
+}
+
 export default Example1View
+
+
+
+
+
+const EditMetadataRow: FunctionComponent<RenderRowBaseProps<[string, string]>> = ({
+	item,
+	isSelect,
+	readOnly = false,
+	placeholder,
+	onChange,
+	onSelect,
+}) => {
+
+
+	const handleKeyChange = (key: string) => {
+		onChange([key, item?.[1] ?? ""])
+	}
+	const handleValueChange = (value: string) => {
+		onChange([item?.[0] ?? "", value])
+	}
+	const handleDelete = () => onChange?.(null)
+
+	return <Box style={{ display: "flex", alignItems: "center", margin: "3px 0px" }}
+		enterRender={!readOnly &&
+			<IconButton onClick={handleDelete} >
+				<CloseIcon />
+			</IconButton>}
+	>
+		<TextInput style={{ flex: 1 }}
+			focus={isSelect}
+			value={item?.[0] ?? ""}
+			onChange={handleKeyChange}
+		/>
+		<div>:</div>
+		<TextInput style={{ flex: 3 }}
+			value={item?.[1] ?? ""}
+			onChange={handleValueChange}
+		/>
+	</Box>
+}
 

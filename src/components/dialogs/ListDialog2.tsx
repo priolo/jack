@@ -8,7 +8,6 @@ import ElementDialog from "./ElementDialog"
 
 
 
-/** un COMPONENT che se premuto apre una DIALOG con una LIST */
 interface Props extends DialogProps {
 	items: any[]
 	readOnly?: boolean
@@ -24,7 +23,9 @@ interface Props extends DialogProps {
 	onChangeSelect?: (id: any) => void
 
 }
-
+/**
+ * Un FIELD che apre una dialog con una LIST per selezionare un singolo item
+ */
 const ListDialog2: FunctionComponent<Props> = ({
 	items,
 	readOnly,
