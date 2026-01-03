@@ -145,7 +145,11 @@ const OptionsCmp: FunctionComponent<Props> = ({
 				items={options}
 				select={optionSelIndex}
 				onSelect={handleOptionsChange}
-				RenderRow2={(item) => item.mode == LOAD_MODE.PARENT && !haveParent
+				// RenderRow2={(item) => item.mode == LOAD_MODE.PARENT && !haveParent
+				// 	? null
+				// 	: <div className={`jack-list-row ${item.mode == LOAD_MODE.PARENT ? cls.divider : ""}`}>{item.label}</div>
+				// }
+				RenderRow={({ item }) => item.mode == LOAD_MODE.PARENT && !haveParent
 					? null
 					: <div className={`jack-list-row ${item.mode == LOAD_MODE.PARENT ? cls.divider : ""}`}>{item.label}</div>
 				}

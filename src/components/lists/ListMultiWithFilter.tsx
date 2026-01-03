@@ -80,21 +80,21 @@ const ListMultiWithFilter: FunctionComponent<Props> = ({
 			//items={Array.from({length:1000},(_,i)=>`item::${i}`)}
 			select={selects as any}
 
-			// RenderRow={({item}) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-			// 	<IconToggle
-			// 		check={selects.indexOf(item) != -1}
-			// 		onChange={select => handleSubjectChange(item)}
-			// 	/>
-			// 	<div className="lbl-prop">{item}</div>
-			// </div>}
-
-			RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
+			RenderRow={({item}) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px' }}>
 				<IconToggle
 					check={selects.indexOf(item) != -1}
 					onChange={select => handleSubjectChange(item)}
 				/>
-				{renderRow(item, index)}
+				<div className="lbl-prop">{item}</div>
 			</div>}
+
+			// RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
+			// 	<IconToggle
+			// 		check={selects.indexOf(item) != -1}
+			// 		onChange={select => handleSubjectChange(item)}
+			// 	/>
+			// 	{renderRow(item, index)}
+			// </div>}
 		/>
 
 	</div>

@@ -24,6 +24,7 @@ import Box from "@/components/format/Box"
 import IconButton from "@/components/buttons/IconButton"
 import CloseIcon from "@/icons/CloseIcon"
 import ListObjects from "@/components/lists/ListObjects"
+import List from "@/components/lists/List"
 
 
 
@@ -40,6 +41,7 @@ const Example1View: FunctionComponent<Props> = ({
 
 	// HOOKs
 	const [dialogOpened, setDialogOpened] = useState(false)
+	const [itemSelectedIndex, setItemSelectedIndex] = useState<number>(-1)
 	const [itemsMultidialogSelect, setItemsMultidialogSelect] = useState<number[]>([])
 	const [itemDialog2Select, setItemDilaog2Select] = useState<number>(-1)
 	const [itemsKV, setItemsKV] = useState<[string, string][]>([])
@@ -157,6 +159,14 @@ const Example1View: FunctionComponent<Props> = ({
 			<div className="jack-lbl-prop">
 				LISTS
 			</div>
+
+			<List<ItemExample>
+				items={items}
+				select={itemSelectedIndex}
+				onSelect={(index)=>setItemSelectedIndex(index)}
+				RenderRow={({ item }) => <div className="jack-list-row">{item?.name ?? ""}</div>}
+			/>
+
 
 			<ListMultiDialog
 				store={store}

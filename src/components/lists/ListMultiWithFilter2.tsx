@@ -90,14 +90,24 @@ const ListMultiWithFilter2: FunctionComponent<Props> = ({
 			style={{ maxHeight: 400, overflowY: "auto" }}
 			items={itemsShow}
 			select={selects as any}
-			RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
+			
+			RenderRow={({ item }) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
 				<IconToggle
 					check={isSelect(item)}
 					readOnly={readOnly}
 					onChange={select => handleSubjectChange(item)}
 				/>
-				{renderRow?.(item, index) ?? <div className="lbl-prop">{fnGetString(item)}</div>}
-			</div>}
+				{renderRow?.(item, 0) ?? <div className="lbl-prop">{fnGetString(item)}</div>}
+			</div>}	
+
+			// RenderRow2={(item, index) => <div style={{ padding: '4px 6px', display: 'flex', alignItems: 'center', gap: '4px', flex: 1 }}>
+			// 	<IconToggle
+			// 		check={isSelect(item)}
+			// 		readOnly={readOnly}
+			// 		onChange={select => handleSubjectChange(item)}
+			// 	/>
+			// 	{renderRow?.(item, index) ?? <div className="lbl-prop">{fnGetString(item)}</div>}
+			// </div>}
 		/>
 
 	</div>

@@ -6,28 +6,32 @@ import { RenderRowBaseProps } from "./EditList"
 
 interface Props<T> {
 	items: T[]
-	RenderRow?: FunctionComponent<RenderRowBaseProps<T>>
-	RenderRow2?: (item: T, index: number) => React.ReactNode
 	readOnly?: boolean
 	height?: number
 	/** indice selezionato */
 	select?: number
-	onSelect?: (index: number, e: React.MouseEvent<HTMLElement>) => void
+
+	RenderRow?: FunctionComponent<RenderRowBaseProps<T>>
+	//RenderRow2?: (item: T, index: number) => React.ReactNode
 	style?: React.CSSProperties
 	className?: string
+
+	onSelect?: (index: number, e: React.MouseEvent<HTMLElement>) => void
 }
 
 /** lista generica non editabile */
 function List<T>({
 	items,
-	RenderRow = ({ item }) => <div className="jack-list-row">{item?.toString() ?? ""}</div>,
-	RenderRow2,
 	readOnly,
 	height,
 	select,
-	onSelect,
+
+	RenderRow = ({ item }) => <div className="jack-list-row">{item?.toString() ?? ""}</div>,
+	//RenderRow2,
 	style = {},
 	className,
+
+	onSelect,
 }: Props<T>) {
 
 	// STORES
@@ -49,15 +53,15 @@ function List<T>({
 	>
 		{items.map((item, index) => {
 
-			if (RenderRow2) {
-				const row = RenderRow2(item, index)
-				if ( !row ) return null
-				return <ListRow key={index}
-					onClick={(e) => handleSelect(index, e)}
-					readOnly={readOnly}
-					isSelect={isSelect(index)}
-				>{row}</ListRow>
-			}
+			// if (RenderRow2) {
+			// 	const row = RenderRow2(item, index)
+			// 	if ( !row ) return null
+			// 	return <ListRow key={index}
+			// 		onClick={(e) => handleSelect(index, e)}
+			// 		readOnly={readOnly}
+			// 		isSelect={isSelect(index)}
+			// 	>{row}</ListRow>
+			// }
 
 			// [II] DA ELIMINARE
 			return <ListRow key={index}
@@ -82,8 +86,8 @@ const cssContainer = (height: number): React.CSSProperties => ({
 	},
 })
 
-export const ListMemo = React.memo(
-	List,
-	(prev, curr) => prev.items == curr.items && prev.readOnly == curr.readOnly && prev.select == curr.select && prev.RenderRow2 == curr.RenderRow2
-)
+// export const ListMemo = React.memo(
+// 	List,
+// 	(prev, curr) => prev.items == curr.items && prev.readOnly == curr.readOnly && prev.select == curr.select && prev.RenderRow2 == curr.RenderRow2
+// )
 
