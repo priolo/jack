@@ -31,10 +31,12 @@ export interface DialogProps {
 	timeoutClose?: number
 
 	noCloseOnClickParent?: boolean
+	closeOnEnter?: boolean
+	closeOnEscape?: boolean
 
 	children?: React.ReactNode
 	/** chiamato quando clicco su qualunque altro punto che non sia la DIALOG */
-	onClose?: (e) => void
+	onClose?: (e: React.MouseEvent | React.KeyboardEvent) => void
 }
 
 /**
@@ -58,6 +60,9 @@ const Dialog: FunctionComponent<DialogProps> = ({
 	timeoutClose = 200,
 
 	noCloseOnClickParent,
+	closeOnEnter,
+	closeOnEscape,
+
 	onClose,
 }) => {
 
@@ -89,7 +94,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 	/** EVENT CLICK */
 	useEffect(() => {
 		// click fuori dalla dialog eventualmente chiude
-		const handleClick = (e: MouseEvent) => {
+		const handleClick = (e: React.MouseEvent) => {
 			// se non serve controllare
 			if (!open || !ref || !e.target) return
 			// se ho cliccato sulla stessa dialog:
@@ -109,14 +114,25 @@ const Dialog: FunctionComponent<DialogProps> = ({
 		if (open && !!ref) {
 			// se minore di 0 non chiudere automaticamente
 			if (timeoutClose < 0) return
-			document.addEventListener('mousedown', handleClick)
+			document.addEventListener('mousedown', handleClick as any)
 			//setTimeout(() => document.addEventListener('mousedown', handleClick), 100)
 		}
 		return () => {
 			if (timeoutClose < 0) return
-			document.removeEventListener('mousedown', handleClick)
+			document.removeEventListener('mousedown', handleClick as any)
 		}
 	}, [open, ref])
+
+	/** EVENT KEYDOWN */
+	useEffect(() => {
+		if (!open) return
+		const handleKeyDown = (e: React.KeyboardEvent) => {
+			if (closeOnEscape && e.key === "Escape") onClose?.(e)
+			if (closeOnEnter && e.key === "Enter") onClose?.(e)
+		}
+		window.addEventListener("keydown", handleKeyDown as any)
+		return () => window.removeEventListener("keydown", handleKeyDown as any)
+	}, [open, onClose])
 
 	const y = useMemo(() => {
 		if (top == null) return 0
@@ -146,7 +162,7 @@ const Dialog: FunctionComponent<DialogProps> = ({
 					<div className={cls.text}>
 						{title}
 					</div>
-					<IconButton onClick={(e) => onClose(e)}>
+					<IconButton onClick={e => onClose(e)}>
 						<CloseIcon />
 					</IconButton>
 				</div>

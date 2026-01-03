@@ -3,7 +3,7 @@ import CloseIcon from "@/icons/CloseIcon"
 import { ViewStore } from "@/stores/stacks/viewBase"
 import { FunctionComponent, useRef, useState } from "react"
 import IconButton from "../buttons/IconButton"
-import ElementDialog from "../dialogs/ElementDialog"
+import ElementDialog, { ElementDialogProps } from "../dialogs/ElementDialog"
 import Component from "../format/Component"
 
 
@@ -20,7 +20,7 @@ export interface RenderLabelProps<T> {
 	index?: number
 }
 
-interface Props<T> {
+interface Props<T> extends ElementDialogProps {
 	store: ViewStore
 	items: T[]
 	readOnly?: boolean
@@ -53,6 +53,8 @@ function ListObjects<T>({
 	onChange,
 
 	style,
+
+	...props
 }: Props<T>) {
 
 	// STORES
@@ -75,6 +77,10 @@ function ListObjects<T>({
 		setSourceIndex(-1)
 		setElementSource(null)
 	}
+	const handleIconCloseClick = (e: React.MouseEvent) => {
+		e.stopPropagation()
+		handleDialogClose()
+	}
 
 	// RENDER
 	if (!items) items = []
@@ -88,7 +94,7 @@ function ListObjects<T>({
 				<Component key={index}
 					selected={index == sourceIndex}
 					onClick={(e) => handleRowClick(index, e)}
-					enterRender={!readOnly && <CloseIcon onClick={() => onDelete(index, item)} />}
+					enterRender={!readOnly && <CloseIcon onClick={handleIconCloseClick} />}
 					readOnly={readOnly}
 				>
 					<RenderLabel item={item} index={index} />
@@ -104,11 +110,11 @@ function ListObjects<T>({
 
 		</div>
 
-		<ElementDialog
+		{/* DIALOG EDIT ITEM */}
+		<ElementDialog {...props}
 			element={elementSource}
 			store={store}
 			width={width}
-			title="AUTH"
 			onClose={(e) => {
 				if (ref && ref.current.contains(e.target)) return
 				setSourceIndex(-1)
@@ -123,6 +129,7 @@ function ListObjects<T>({
 					let newItems = [...items]
 					if (sourceIndex == -1) {
 						newItems.push(newItem)
+						setSourceIndex(newItems.length - 1)
 					} else {
 						newItems[sourceIndex] = newItem
 					}

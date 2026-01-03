@@ -4,7 +4,7 @@ import { FunctionComponent, useMemo } from "react"
 
 
 export interface ElementDialogProps extends DialogProps {
-	element: Element
+	element?: Element
 }
 
 /**

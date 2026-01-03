@@ -205,21 +205,22 @@ const Example1View: FunctionComponent<Props> = ({
 				RenderRow={EditMetadataRow}
 			/>
 
-			<ListObjects<ItemExample>
-				store={store}
+			<ListObjects<ItemExample> store={store}
+				title="ITEMS LIST"
+				closeOnEnter
 				items={store.state.items}
 				//readOnly={inRead}
 				width={170}
-				RenderLabel={({ item, index }) => (
-					<div className="jack-cmp-h">
-						{item?.name?.toUpperCase()}
-					</div>
-				)}
-				RenderForm={ItemEditableForm}
+				RenderLabel={({ item, index }) => <div className="jack-cmp-h">
+					{item?.name?.toUpperCase()}
+				</div>}
+				RenderForm={ItemEditableForm2}
 				onDelete={(index, item) => {
-					store.setItems(store.state.items.filter(i => i.id !== item.id))
+					store.setItems(store.state.items.filter((i, idx) => idx != index))
 				}}
-				onChange={(items) => store.setItems(items)}
+				onChange={(items) => {
+					store.setItems(items)
+				}}
 			/>
 
 		</div>
@@ -228,7 +229,7 @@ const Example1View: FunctionComponent<Props> = ({
 }
 
 
-// ItemEditableRow: separate component to render/edit an ItemExample
+
 const ItemEditableForm: FunctionComponent<{
 	item: ItemExample
 	index?: number
@@ -237,18 +238,51 @@ const ItemEditableForm: FunctionComponent<{
 
 }> = ({ item, index, onClose, onChange }) => {
 
+	const [tmpItem, setTmpItem] = useState<ItemExample>({ ...item })
+	const isNew = index == -1
+
+	return (
+		<div className="jack-lyt-form">
+			{isNew ? <>
+				<TextInput
+					value={tmpItem?.name ?? ""}
+					onChange={(name) => setTmpItem({ ...tmpItem, name })}
+				/>
+				<Button onClick={() => {
+					onChange?.(tmpItem)
+					onClose?.()
+				}}>ADD</Button>
+			</> : <>
+				<div>{item?.id ?? "--"}</div>
+				<TextInput
+					value={item?.name ?? ""}
+					onChange={(name) => onChange({ ...item, name })}
+				/>
+			</>}
+		</div>
+	)
+}
+
+
+const ItemEditableForm2: FunctionComponent<{
+	item: ItemExample
+	index?: number
+	onClose?: () => void
+	onChange?: (item: ItemExample) => void
+
+}> = ({ item, index, onClose, onChange }) => {
 
 	return (
 		<div className="jack-lyt-form">
 			<div>{item?.id ?? "--"}</div>
-			<TextInput
+			<TextInput autoFocus
 				value={item?.name ?? ""}
 				onChange={(name) => onChange({ ...item, name })}
 			/>
-			<div>{item?.name ?? "--"}</div>
 		</div>
 	)
 }
+
 
 export default Example1View
 
