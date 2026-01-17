@@ -29,7 +29,7 @@ export { default as VTable } from "@/components/table/VTable.js";
 // LIST
 export { default as EditList, LIST_ACTIONS } from "@/components/lists/EditList.js";
 export type { RenderRowBaseProps } from "@/components/lists/EditList.js";
-export { default as List, ListMemo } from "@/components/lists/List.js";
+export { default as List } from "@/components/lists/List.js";
 export { default as ListMultiWithFilter } from "@/components/lists/ListMultiWithFilter.js";
 export { default as ListMultiWithFilter2 } from "@/components/lists/ListMultiWithFilter2.js";
 export { default as ListObjects } from "@/components/lists/ListObjects.js";

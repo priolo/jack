@@ -7,7 +7,6 @@ import { useStore } from "@priolo/jon"
 import { FunctionComponent } from "react"
 import focusSo from "../../stores/focus"
 import IconButton from "../buttons/IconButton"
-import ErrorBoundary from "./ErrorBoundary"
 import cls from "./FrameworkCard.module.css"
 import SnackbarCmp from "./SnackbarCmp"
 
@@ -58,7 +57,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	const dialogId = `dialog_${store.state.uuid}`
 
 	const clsFocus = `${haveFocus ? `${cls.focus} jack-framework-focus` : ""} ${haveFocusCtrl ? `${cls.ctrl} jack-framework-focus-ctrl` : ""}`
-	const clsRoot = `${cls.root} ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${clsFocus} ${className} jack-framework`
+	const clsRoot = `${cls.root} jack-framework ${!inRoot ? cls.linked : ""} ${inDrag ? cls.drag : ""} ${isIconized ? cls.iconized : ""} ${clsFocus} ${className} jack-framework`
 	const clsChildren = `${cls.children} ${store.state.disabled ? cls.disabled : ""}`
 
 	return <div className={clsRoot} style={style} tabIndex={0}
@@ -66,8 +65,6 @@ const FrameworkCard: FunctionComponent<Props> = ({
 	>
 
 		{headerRender}
-
-
 
 		{isIconized ? <>
 
@@ -82,6 +79,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 			{iconizedRender}
 
 		</> : <>
+
 			{!!actionsRender && (
 				<div className={`${cls.actions} jack-framework-actions`}
 				>
@@ -92,6 +90,7 @@ const FrameworkCard: FunctionComponent<Props> = ({
 			>
 				{children}
 			</div>
+			
 		</>}
 
 

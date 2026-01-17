@@ -124,7 +124,7 @@ const Header: FunctionComponent<Props> = ({
 				onClick={!inZen ? handleSizeClick : undefined}
 				className={cls.icon}
 			>
-				<TooltipWrapCmp
+				<TooltipWrapCmp style={{ display: "flex" }}
 					disabled={!isCompact}
 					content={<div>
 						<div className={cls.title}>{title}</div>
@@ -145,7 +145,7 @@ const Header: FunctionComponent<Props> = ({
 						onClick={!inZen ? handleFocus : undefined}
 					>{title}</div>
 					{subTitle && (
-						<div className={cls.subtitle}>
+						<div className={`${cls.subtitle} jack-subtitle`}>
 							{subTitle}
 						</div>
 					)}

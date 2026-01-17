@@ -7,11 +7,6 @@
 	flex-direction: column;
 
 	transition: opacity 300ms;
-	border-radius: 5px;
-
-	color: var(--card-fg);
-	background-color: var(--card-bg);
-	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
 }
 
 .iconized {

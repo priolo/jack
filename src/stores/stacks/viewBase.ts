@@ -39,8 +39,7 @@ const viewSetup = {
 			widthMin: 80,
 			widthMax: 600,
 			widthCompact: 40,
-			/** colore caratteristico della  VIEW */
-			//colorVar: COLOR_VAR.DEFAULT,
+			
 			/** il corrente stato di animazione */
 			docAnim: DOC_ANIM.EXIT,
 			/** disabilita qualsiasi animazione */
@@ -52,10 +51,11 @@ const viewSetup = {
 			linked: <ViewStore>null,
 			/** il GROUP dove è visualizzata questa CARD */
 			group: <CardsStore>null,
-
+			/** i dati SNACKBAR di questa CARD */
 			snackbar: <SnackbarState>{
 				open: false,
 			},
+			/** i dati ALERT di questa CARD */
 			alert: <AlertState>{
 				open: false,
 			},

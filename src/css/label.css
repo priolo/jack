@@ -10,12 +10,13 @@
 	margin-bottom: 3px;
 }
 /** 
-* Label per proprietà. Il testo di solito è sopra un campo di input
+* Label per proprietà. 
+* testo che sta di solito sopra un campo di input
 */
 .jack-lbl-prop {
 	font-size: 12px;
 	font-weight: 500;
-	opacity: .95;
+	opacity: .9;
 }
 /**
 * Label usata in un campo di input se questo è di sola lettura
@@ -46,10 +47,19 @@
 }
 
 /**
-* Titolo di una sezione
+* Titolo dell'HEADER di una CARD
 */
 .jack-title {
 	font-size: 14px;
 	font-weight: 800;
 	font-family: sans-serif;
+}
+
+/**
+* Sottotitolo dell'HEADER di una CARD
+*/
+.jack-subtitle {
+	font-size: 12px;
+	font-weight: 600;
+	opacity: .7;
 }

@@ -1,7 +1,6 @@
-import { DOC_TYPE } from "@/examples/types"
+import { delay, delayAnim } from "@/utils/time"
 import { StoreCore, createStore } from "@priolo/jon"
 import { ViewStore } from "../stacks/viewBase"
-import { delay, delayAnim } from "@/utils/time"
 import { CardsStore } from "./cards"
 
 
@@ -23,7 +22,7 @@ export enum FIXED_CARD {
 const setup = {
 
 	state: {
-		fixedViews: <ViewStore[]>null,
+		//fixedViews: <ViewStore[]>null,
 		allDeck: <CardsStore[]>[],
 		/** la CARD attualmente in ZEN */
 		zenCard: <ViewStore>null,
@@ -39,7 +38,8 @@ const setup = {
 				drawerPosition: store.state.drawerPosition,
 			}
 		},
-		getAllCards: (_:void, store?: DocStore) => store.state.allDeck.reduce<ViewStore[]>((acc, store) => [...acc, ...store.state.all], []),
+		getAllCards: (_:void, store?: DocStore) => 
+			store.state.allDeck.reduce<ViewStore[]>((acc, store) => [...acc, ...store.state.all], []),
 	},
 
 	actions: {
@@ -65,7 +65,7 @@ const setup = {
 		setZenOpen: (zenOpen: boolean) => ({ zenOpen }),
 		setDrawerPosition: (drawerPosition: DRAWER_POSITION) => ({ drawerPosition }),
 
-		setFixedViews: (fixedViews: ViewStore[]) => ({ fixedViews }),
+		//setFixedViews: (fixedViews: ViewStore[]) => ({ fixedViews }),
 		setAllDeck: (allDeck: CardsStore[]) => ({ allDeck }),
 	},
 }

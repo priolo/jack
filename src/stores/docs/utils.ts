@@ -25,12 +25,14 @@ function forEachLink<T>(view: ViewStore, callback: (view: ViewStore) => T): T {
 	return null
 }
 
+
+
 /** 
  * restituisce una VIEW tramite l'id cercando nei "child" in un array di VIEW 
  * in pratica è un findAll specializzato sull'id
  */
 export function getById(views: ViewStore[], id: string): ViewStore {
-	if ( views == null || id == null ) return null
+	if (views == null || id == null) return null
 	return forEachViews(views, (view) => {
 		if (view.state.uuid === id) {
 			return view

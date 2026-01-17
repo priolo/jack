@@ -32,6 +32,14 @@
 	background: repeating-linear-gradient(135deg, transparent, transparent 7px, currentColor 7px, currentColor 15px)
 }
 
+.jack-framework {
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 0px 0px;
+
+	color: var(--card-fg);
+	background-color: var(--card-bg);
+}
+
 .jack-framework-actions .jack-cmp:not(.jack-cmp-select) {
 	color: var(--jack-framework-actions-fg)
 }

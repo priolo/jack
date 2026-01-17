@@ -165,6 +165,7 @@ export type Example1Store = typeof example1Setup & StoreCore<Example1State>
 
 
 
+
 # COMPONENTS
 Esempi per utilizzare i componenti JACK all'interno delle CARD.
 
@@ -286,3 +287,22 @@ Controllare il file `src/css/label.css` per le definizioni.
 ### LAYOUTS
 Permettono di definire dei layout comuni dento le CARDS
 Controllare il file `src/css/layout.css` per le definizioni.
+
+
+# UTILITIES
+Funzioni helper comuni per la gestione delle View e Store, situate in `src/stores/docs/utils.ts`.
+
+- **`forEachViews(views, callback)`**: Itera ricorsivamente attraverso un array di view e i loro figli linkati ("linked"). Restituisce un valore se il callback ne ritorna uno.
+esempio:
+```ts
+const result = utils.forEachViews(
+		docsSo.getAllCards(),
+		view => view.state["connectionId"] == ss.cnnId || view.state["connection"]?.id == ss.cnnId,
+)
+```
+- **`getById(views, id)`**: Cerca una view tramite UUID all'interno di un array di view (es. `cardsStore.state.all`) e nei loro figli.
+- **`findAll(views, state)`**: Restituisce tutte le view che corrispondono esattamente a un oggetto stato parziale (deepEqual).
+- **`findParent(view, callback)`**: Risale la catena dei padri (stack). Restituisce una view se il callback ne ritorna una, o la root se nessun callback è fornito.
+- **`getRoot(view)`**: Restituisce il padre più in alto nello stack della view corrente.
+- **`getNear(view, left)`**: Naviga alla view adiacente (sinistra/parent o destra/linked). Gestisce la logica di navigazione nel deck e tra i gruppi.
+- **`createUUID()`**: Generatore semplice di UUID.

@@ -27,7 +27,6 @@ const setup = {
 		//#region VIEWBASE
 		type: DOC_TYPE.EXAMPLE1,
 		width: 150,
-		colorVar: COLOR_VAR.GENERIC,
 		pinnable: false,
 		//#endregion
 	},
@@ -40,6 +39,7 @@ const setup = {
 			const state = store.state as Example1State
 			return {
 				...viewSetup.getters.getSerialization(null, store),
+				text : state.text,
 			}
 		},
 		//#endregion
@@ -50,6 +50,8 @@ const setup = {
 		//#region VIEWBASE
 		setSerialization: (data: any, store?: ViewStore) => {
 			viewSetup.actions.setSerialization(data, store)
+			const state = store.state as Example1State
+			state.text = data.text ?? ""
 		},
 		//#endregion
 
