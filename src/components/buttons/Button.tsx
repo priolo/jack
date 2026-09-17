@@ -13,6 +13,8 @@ interface Props {
 
 	disabled?: boolean
 	onClick?: (e: React.MouseEvent<HTMLDivElement>, select: boolean) => void
+	onMouseDown?: (e: React.MouseEvent<HTMLDivElement>) => void
+	onMouseUp?: (e: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const Button: FunctionComponent<Props> = ({
@@ -25,6 +27,8 @@ const Button: FunctionComponent<Props> = ({
 
 	disabled,
 	onClick,
+	onMouseDown,
+	onMouseUp,
 }) => {
 
 	// STORE
@@ -51,6 +55,8 @@ const Button: FunctionComponent<Props> = ({
 		<div style={style} className={clsRoot}
 			tabIndex={tabIndex}
 			onClick={handleClick}
+			onMouseDown={onMouseDown}
+			onMouseUp={onMouseUp}
 			onMouseEnter={handleEnter}
 			onMouseLeave={handleLeave}
 			onKeyDown={handleKeyDown}

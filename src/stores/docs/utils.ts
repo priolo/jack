@@ -40,7 +40,7 @@ export function getById(views: ViewStore[], id: string): ViewStore {
 	})
 }
 
-/** cerca su tutte le CARD (anche i children) uno STATE */
+/** Fa una ricerca in un array di CARDS (anche le CARDS linked) di uno STATE (partial)*/
 export function findAll(views: ViewStore[], state: any) {
 	const ret: ViewStore[] = []
 	forEachViews(
@@ -52,7 +52,7 @@ export function findAll(views: ViewStore[], state: any) {
 	return ret
 }
 
-/** cerca nel DECK solo le CARD senza parent */
+/** Fa una ricerca in un array di CARDS (ignora le CARDS linked) di uno STATE (partial)*/
 export function findInRoot(views: ViewStore[], state: any) {
 	return forEachViews(
 		views,

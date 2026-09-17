@@ -17,12 +17,11 @@ export enum FIXED_CARD {
 }
 
 /**
- * Gestisce la lista di DOCS presenti
+ * Gestisce i DECK e tutti sistemi di visualizzazione delle CARDs (drawer, menu, zen...)
  */
 const setup = {
 
 	state: {
-		//fixedViews: <ViewStore[]>null,
 		allDeck: <CardsStore[]>[],
 		/** la CARD attualmente in ZEN */
 		zenCard: <ViewStore>null,

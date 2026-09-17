@@ -8,9 +8,9 @@ import ElementDialog from "./ElementDialog"
 
 
 
-/** un COMPONENT che se premuto apre una DIALOG con una LIST */
 interface Props extends DialogProps {
 	items: string[]
+	/** funzione per renderizzare ogni riga della LIST, riceve come parametro l'ITEM */
 	RenderRow?: FunctionComponent<RenderRowBaseProps<string>>
 	readOnly?: boolean
 	/** indice selezionato */
@@ -19,6 +19,10 @@ interface Props extends DialogProps {
 	style?: React.CSSProperties
 }
 
+/** 
+ * un COMPONENT che se premuto apre una DIALOG con una LIST per poter selezionare un item. 
+ * Il COMPONENT mostra l'item selezionato, o null se non c'è selezione
+ * */
 const ListDialog: FunctionComponent<Props> = ({
 	items,
 	RenderRow = ({ item }) => <div className="jack-list-row">{item?.toString() ?? ""}</div>,

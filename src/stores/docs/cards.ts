@@ -1,10 +1,10 @@
 import { DOC_ANIM } from "@/stores/docs/types"
 import { delay, delayAnim } from "@/utils/time"
-import { StoreCore, createStore, mixStores } from "@priolo/jon"
+import { StoreCore } from "@priolo/jon"
+import focusSo from "../focus"
 import { ViewStore } from "../stacks/viewBase"
 import docsSo from "./index"
 import { forEachViews, getById, getRoot } from "./utils"
-import focusSo from "../focus"
 
 
 
@@ -111,8 +111,6 @@ const cardsSetup = {
 			const views = [...store.state.all]
 			let index: number
 
-			
-
 			// placed in ROOT
 			if (!view.state.parent) {
 				index = views.findIndex(v => v == view)
@@ -133,6 +131,7 @@ const cardsSetup = {
 				forEachViews([view], v => { v.onRemoval() })
 			}
 
+			if (view == focusSo.state.view) focusSo.setView(null)
 			store.setAll(views)
 		},
 

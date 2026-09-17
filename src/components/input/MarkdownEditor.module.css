@@ -6,7 +6,7 @@
   border: none;
   min-width: 0;
   color: currentColor;
-  background-color: rgb(0 0 0 / 15%);
+  background-color: var(--cmp-bg);
   font-size: 12px;
   /* font-weight: 600; */
   padding: 4px 3px 3px 3px;

@@ -150,6 +150,7 @@ const viewSetup = {
 				forEachViews([view], (v) => { v.state.group = store.state.group })
 				store.state.linked = view
 			}
+			store._update()
 			return store
 		},
 
@@ -212,11 +213,15 @@ const viewSetup = {
 			store.docAnim(DOC_ANIM.SIZING)
 			return { size }
 		},
+		/** imposta la larghezza della CARD */
 		setWidth: (width: number) => ({ width }),
+
 		setDisabled: (disabled: boolean) => ({ disabled }),
 		setDocAnim: (docAnim: DOC_ANIM) => ({ docAnim }),
 
+		/** fa apparire la SNACKBAR */
 		setSnackbar: (snackbar: SnackbarState) => ({ snackbar }),
+		/** fa apparire l'ALERT */
 		setAlert: (alert: AlertState) => ({ alert }),
 	},
 

@@ -15,8 +15,8 @@
 */
 .jack-lbl-prop {
 	font-size: 12px;
-	font-weight: 500;
-	opacity: .9;
+	font-weight: 300;
+	opacity: .7;
 }
 /**
 * Label usata in un campo di input se questo è di sola lettura

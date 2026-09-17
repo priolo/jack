@@ -9,30 +9,37 @@ import ElementDialog from "./ElementDialog"
 
 
 interface Props extends DialogProps {
+	/** array di ITEMS selezionabili */
 	items: any[]
-	readOnly?: boolean
+	/** id selezionato */
 	select?: any
-
+	/** funzione per renderizzare ogni riga della LIST, riceve come parametro l'ITEM */
+	//RenderRow?: FunctionComponent<RenderRowBaseProps<string>>
+	readOnly?: boolean
 	style?: React.CSSProperties
-	RenderRow?: FunctionComponent<RenderRowBaseProps<string>>
+
 	/** funzione per ottenere l'id dell'oggetto */
 	fnGetId?: (item: any) => any
 	/** funzione per ottenere la stringa da visualizzare dell'oggetto */
 	fnGetString?: (item: any) => string
 
 	onChangeSelect?: (id: any) => void
-
 }
-/**
- * Un FIELD che apre una dialog con una LIST per selezionare un singolo item
- */
+
+/** 
+ * un COMPONENT che se premuto apre una DIALOG con una LIST per poter selezionare un item. 
+ * Il COMPONENT mostra l'item selezionato, o null se non c'è selezione
+ * a differenza di ListDialog:
+ * permette di gestire oggetti, non solo stringhe.
+ * */
 const ListDialog2: FunctionComponent<Props> = ({
 	items,
-	readOnly,
 	select,
+	//RenderRow,
 
+	readOnly,
 	style,
-	RenderRow,
+	
 	fnGetId = (item) => item,
 	fnGetString = (item) => item?.toString() ?? "",
 	
