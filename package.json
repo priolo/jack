@@ -62,10 +62,10 @@
     "react-dom": "^19.2.3",
     "typescript": "^5.7.3",
 
-    "@vitejs/plugin-react-swc": "^4.2.2",
-    "vite": "^7.3.1",
+    "@vitejs/plugin-react-swc": "^4.3.3",
+    "vite": "^8.3.0",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.0.17"
+    "vitest": "^5.0.1"
   },
   "peerDependencies": {
     "@priolo/jon": "^1.1.0",
