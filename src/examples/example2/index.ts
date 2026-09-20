@@ -1,7 +1,6 @@
 import { COLOR_VAR } from "@/stores/layout"
 import viewSetup, { ViewStore } from "@/stores/stacks/viewBase"
-import { StoreCore, mixStores } from "@priolo/jon"
-import { ViewState } from "../../stores/stacks/viewBase"
+import { StoreOf, mixStores } from "@priolo/jon"
 import { DOC_TYPE } from "../types"
 
 
@@ -48,14 +47,9 @@ const setup = {
 	},
 }
 
-export type Example2State = typeof setup.state & ViewState
-export type Example2Getters = typeof setup.getters
-export type Example2Actions = typeof setup.actions
-export type Example2Mutators = typeof setup.mutators
-export interface Example2Store extends ViewStore, StoreCore<Example2State>, Example2Getters, Example2Actions, Example2Mutators {
-	state: Example2State
-}
 const example2Setup = mixStores(viewSetup, setup)
+export type Example2Store = StoreOf<typeof example2Setup>
+export type Example2State = Example2Store["state"]
 export default example2Setup
 
 

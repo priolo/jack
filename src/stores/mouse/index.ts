@@ -74,7 +74,7 @@ export type MouseMutators = typeof setup.mutators
 export interface MouseStore extends StoreCore<MouseState>, MouseGetters, MouseActions, MouseMutators {
 	state: MouseState
 }
-const mouseSo = createStore(setup) as MouseStore
+const mouseSo = createStore(setup)
 export default mouseSo
 
 

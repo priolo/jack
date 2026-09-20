@@ -115,6 +115,13 @@ const viewSetup = {
 		onInsertion: (_: void, store?: ViewStore) => { },
 		/** è rimosso dal corrente DECK */
 		onRemoval: (_: void, store?: ViewStore) => { },
+		/** chiude l'alert corrente e completa la promise in attesa */
+		closeAlert: (result: boolean, store?: ViewStore) => {
+			const resolve = store.state.alert.resolve
+			if (!store.state.alert.open && !resolve) return
+			store.setAlert({ ...store.state.alert, open: false, resolve: undefined })
+			resolve?.(result)
+		},
 		/** quando viene rimosso dalla deck cioe' si preme il bottone di chiusura */
 		onRemoveFromDeck: (_: void, store?: ViewStore) => {
 			store.state.group.remove({ view: store, anim: true });
@@ -197,11 +204,12 @@ const viewSetup = {
 		 * @return una PROMISE che si risolve con TRUE se si preme OK, FALSE se si preme CANCEL
 		 */
 		async alertOpen(alert: AlertState, store?: ViewStore): Promise<boolean> {
+			if (store.state.alert.open) return false
 			return new Promise<boolean>((res, rej) => {
-				alert.resolve = res
 				store.setAlert({
 					...{ labelCancel: "CANCEL", labelOk: "OK", title: "ALERT", open: true },
-					...alert
+					...alert,
+					resolve: res,
 				})
 			})
 		},
@@ -240,16 +248,14 @@ const viewSetup = {
 	// }
 }
 
-export type ViewState = Partial<ReturnType<typeof viewSetup.state>>//Partial<typeof viewSetup.state>
+export type ViewState = Partial<ReturnType<typeof viewSetup.state>>
 export type ViewGetters = typeof viewSetup.getters
 export type ViewActions = typeof viewSetup.actions
 export type ViewMutators = typeof viewSetup.mutators
 
-/**
- * E' lo STORE "abstract" ereditato da tutti gli altri STORE che vogliono essere visualizzati come VIEW
- */
-export interface ViewStore extends StoreCore<ViewState>, ViewGetters, ViewActions, ViewMutators {
+export interface ViewStore extends StoreCore<any> {
 	state: ViewState
+	[key: string]: any
 }
 
 export default viewSetup

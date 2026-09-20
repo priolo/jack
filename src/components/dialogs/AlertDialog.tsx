@@ -24,9 +24,7 @@ const AlertDialog: FunctionComponent<Props> = ({
 
 	// HANDLER
 	const handleClose = (ok: boolean) => {
-		storeSa.alert.open = false
-		store.setAlert({ ...storeSa.alert })
-		storeSa.alert.resolve(ok)
+		store.closeAlert(ok)
 	}
 
 	// RENDER

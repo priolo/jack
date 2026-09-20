@@ -106,6 +106,7 @@ const cardsSetup = {
 			store?: CardsStore
 		) {
 			if (!view) return
+			forEachViews([view], currentView => void currentView.closeAlert(false))
 			if (anim && !view.state.docAniDisabled) await view.docAnim(DOC_ANIM.EXITING)
 
 			const views = [...store.state.all]

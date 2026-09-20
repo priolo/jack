@@ -38,7 +38,7 @@ export type LoadBaseState = Partial<typeof loadBaseSetup.state> & ViewState
 export type LoadBaseGetters = typeof loadBaseSetup.getters
 export type LoadBaseActions = typeof loadBaseSetup.actions
 export type LoadBaseMutators = typeof loadBaseSetup.mutators
-export interface LoadBaseStore extends ViewStore, StoreCore<LoadBaseState>, LoadBaseGetters, LoadBaseActions, LoadBaseMutators {
+export interface LoadBaseStore extends ViewStore, LoadBaseGetters, LoadBaseActions, LoadBaseMutators {
 	state: LoadBaseState
 }
 

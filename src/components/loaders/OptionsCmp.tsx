@@ -6,7 +6,7 @@ import ArrowRightIcon from "@/icons/ArrowRightIcon"
 import CloseIcon from "@/icons/CloseIcon"
 import ReloadIcon from "@/icons/ReloadIcon"
 import SkullIcon from "@/icons/SkullIcon"
-import { LoadBaseStore } from "@/stores/stacks/loadBase"
+import { LoadBaseState, LoadBaseStore } from "@/stores/stacks/loadBase"
 import { LOAD_MODE, LOAD_STATE } from "@/stores/stacks/types"
 import { useStore } from "@priolo/jon"
 import { FunctionComponent, useMemo, useState } from "react"
@@ -51,7 +51,7 @@ const OptionsCmp: FunctionComponent<Props> = ({
 
 	// STORE
 	storeView = storeView ?? store
-	const storeSa = useStore(store)
+	const storeSa = useStore(store) as LoadBaseState
 	if (storeView != store) useStore(storeView)
 
 	// HOOKs

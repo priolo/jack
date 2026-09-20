@@ -17,7 +17,7 @@ import Dialog from "../../components/dialogs/Dialog"
 import TextInput from "../../components/input/TextInput"
 import DirectionRightIcon from "../../icons/DirectionRightIcon"
 import DoneIcon from "../../icons/DoneIcon"
-import example2Setup, { Example2Store } from "../example2"
+import example2Setup from "../example2"
 import MarkdownEditorTest from "../MarkdownEditorTest"
 import { Example1Store } from "./index"
 import cls from "./View.module.css"
@@ -43,7 +43,7 @@ const Example1View: FunctionComponent<Props> = ({
 
 	// HANDLER
 	const handleOpenLinked = (e: React.MouseEvent) => {
-		const newStore = createStore(example2Setup) as Example2Store
+		const newStore = createStore(example2Setup)
 		if (e.shiftKey) {
 			store.state.group.add({ view: newStore, index: store.state.group.getIndexByView(store) + 1, anim: true })
 		} else {

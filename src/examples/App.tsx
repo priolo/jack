@@ -5,7 +5,6 @@ import Button from "../components/buttons/Button"
 import { deckCards2So, deckCardsSo } from "./main"
 import example1Setup from "./example1"
 import example2Setup from "./example2"
-import { ViewStore } from "../stores/stacks/viewBase"
 import ZenCard from "../app/ZenCard"
 import DragCmp from "../app/DragCmp"
 import TooltipCmp from "../app/tooltip/TooltipCmp"
@@ -23,17 +22,17 @@ const App: FunctionComponent = () => {
 
 	// HANDLERS
 	const handleAdd1 = () => {
-		const view = createStore(example1Setup) as ViewStore
+		const view = createStore(example1Setup)
 		deckCardsSo.add({ view })
 		//focusSo.focus(view)
 	}
 	const handleAdd2 = () => {
-		const view = createStore(example2Setup) as ViewStore
+		const view = createStore(example2Setup)
 		deckCardsSo.add({ view })
 		focusSo.focus(view)
 	}
 	const handleAdd3 = () => {
-		const view = createStore(example2Setup) as ViewStore
+		const view = createStore(example2Setup)
 		view.state.type = DOC_TYPE.EXAMPLE3
 		deckCardsSo.add({ view })
 		focusSo.focus(view)
