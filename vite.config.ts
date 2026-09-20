@@ -25,10 +25,14 @@ export default defineConfig({
 			fileName: (format) => `index.${format}.js`,
 		},
 		rollupOptions: {
-			external: Object.keys(pkg.peerDependencies || {}),
+			external: (id) => Object.keys(pkg.peerDependencies || {}).some((dependency) =>
+			id === dependency || id.startsWith(`${dependency}/`)
+		),
 			output: {
 				globals: {
 					'react': 'React',
+					'react/jsx-runtime': 'ReactJSXRuntime',
+					'react/jsx-dev-runtime': 'ReactJSXRuntime',
 					'react-dom': 'ReactDOM',
 					'@priolo/jon': 'Jon',
 				},

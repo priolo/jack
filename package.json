@@ -1,7 +1,21 @@
 {
   "name": "@priolo/jack",
-  "version": "0.2.14",
+  "version": "0.2.16",
   "private": false,
+  "description": "CARD interface",
+  "author": "Iorio Ivano <iorioivano@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/priolo/jack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priolo/jack.git"
+  },
+  "keywords": [
+    "ui",
+    "ux",
+    "react",
+    "card"
+  ],
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -17,20 +31,9 @@
   "files": [
     "dist"
   ],
-  "keywords": [
-    "card"
-  ],
-  "description": "CARD interface",
-  "author": "Iorio Ivano <iorioivano@gmail.com>",
-  "license": "MIT",
   "sideEffects": [
     "**/*.css"
   ],
-  "homepage": "https://github.com/priolo/jack",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/priolo/jack.git"
-  },
   "scripts": {
     "dev": "vite --port 5174",
     "build": "vite build --sourcemap",
@@ -51,17 +54,14 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/prismjs": "^1.26.5",
-
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.6.1",
     "@priolo/jon": "^0.7.9",
-    
     "jsdom": "latest",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "typescript": "^5.7.3",
-
     "@vitejs/plugin-react-swc": "^4.3.3",
     "vite": "^8.3.0",
     "vite-plugin-dts": "^4.5.4",
