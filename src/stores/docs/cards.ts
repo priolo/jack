@@ -1,6 +1,6 @@
 import { DOC_ANIM } from "@/stores/docs/types"
 import { delay, delayAnim } from "@/utils/time"
-import { StoreCore } from "@priolo/jon"
+import { StoreOf } from "@priolo/jon"
 import focusSo from "../focus"
 import { ViewStore } from "../stacks/viewBase"
 import docsSo from "./index"
@@ -181,11 +181,5 @@ const cardsSetup = {
 }
 
 export type CardsState = typeof cardsSetup.state
-export type CardsGetters = typeof cardsSetup.getters
-export type CardsActions = typeof cardsSetup.actions
-export type CardsMutators = typeof cardsSetup.mutators
-export interface CardsStore extends StoreCore<CardsState>, CardsGetters, CardsActions, CardsMutators {
-	state: CardsState
-}
+export interface CardsStore extends StoreOf<typeof cardsSetup> {}
 export default cardsSetup
-

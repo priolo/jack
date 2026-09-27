@@ -37,7 +37,10 @@ const loadBaseSetup = {
 export type LoadBaseState = Partial<typeof loadBaseSetup.state> & ViewState
 export type LoadBaseGetters = typeof loadBaseSetup.getters
 export type LoadBaseActions = typeof loadBaseSetup.actions
-export type LoadBaseMutators = typeof loadBaseSetup.mutators
+/** as exposed on the STORE: a mutator call returns nothing (see `StoreOf` in jon) */
+export type LoadBaseMutators = {
+	[K in keyof typeof loadBaseSetup.mutators]: (payload: Parameters<typeof loadBaseSetup.mutators[K]>[0]) => void
+}
 export interface LoadBaseStore extends ViewStore, LoadBaseGetters, LoadBaseActions, LoadBaseMutators {
 	state: LoadBaseState
 }

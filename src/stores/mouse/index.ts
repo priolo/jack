@@ -1,7 +1,7 @@
-import { StoreCore, createStore } from "@priolo/jon"
+import { StoreOf, createStore } from "@priolo/jon"
+import { ColorVar } from "../../types/global"
 import { DOC_ANIM } from "../docs/types"
 import { DragDoc, Position } from "./types"
-import { ColorVar } from "../../types/global"
 
 
 
@@ -68,13 +68,6 @@ const setup = {
 }
 
 export type MouseState = typeof setup.state
-export type MouseGetters = typeof setup.getters
-export type MouseActions = typeof setup.actions
-export type MouseMutators = typeof setup.mutators
-export interface MouseStore extends StoreCore<MouseState>, MouseGetters, MouseActions, MouseMutators {
-	state: MouseState
-}
-const mouseSo = createStore(setup)
+export interface MouseStore extends StoreOf<typeof setup> {}
+const mouseSo = createStore<typeof setup>(setup) as MouseStore
 export default mouseSo
-
-
