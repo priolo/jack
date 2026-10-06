@@ -21,11 +21,7 @@
 	/* ombra perimetrale inputtext button */
 	--cmp-bg: rgba(0, 0, 0, 0.15);
 
-	/* tooltip drag dialog float-button*/
-	--dialog-fg: #393939;
-	--dialog-bg: #EBFB35;
-
-	--cmp-focus: var(--dialog-bg);
+	--cmp-focus: var(--accent);
 }
 
 .jack-bars-alert-bg {

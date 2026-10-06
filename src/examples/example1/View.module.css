@@ -8,8 +8,8 @@
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
 	/* tooltip drag */
-	--dialog-bg: orange;
-	--dialog-fg: black;
+	--accent: orange;
+	--accent-text: black;
 }
 
 /* .root :global(.jack-cmp-text-input)::selection {

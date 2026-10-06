@@ -49,8 +49,8 @@ const TooltipWrapCmp: FunctionComponent<Props> = ({
 			content,
 			targetRect: elem.getBoundingClientRect(),
 			color: {
-				bg: style.getPropertyValue('--dialog-bg'),
-				fg: style.getPropertyValue('--dialog-fg'),
+				bg: style.getPropertyValue('--accent'),
+				fg: style.getPropertyValue('--accent-text'),
 			},
 			id,
 		})

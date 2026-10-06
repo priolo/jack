@@ -46,7 +46,7 @@ const Header: FunctionComponent<Props> = ({
 
 	// RENDER
 	return (
-		<thead >
+		<thead className={`jack-cmp-table-header`}>
 			<tr className={cls.row}>
 				{props.map((prop, index) => (
 

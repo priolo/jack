@@ -35,7 +35,7 @@
 }
 
 .root tr:nth-of-type(even):not(.selected) {
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--cmp-table-row-even-bg);
 }
 
 .root tr:nth-of-type(even).selected {

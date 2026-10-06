@@ -27,7 +27,7 @@
 /* la "seconda" row senza il main */
 .row2 {
 	display: flex;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--cmp-table-row-even-bg);
 }
 .selected .row2 {
 	background-color: var(--cmp-select-bg);

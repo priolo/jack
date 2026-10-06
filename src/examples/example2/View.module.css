@@ -6,8 +6,8 @@
 	--cmp-select-fg: green;
 	--cmp-bg: rgba(0, 0, 0, 0.05);
 
-	--dialog-bg: blue;
-	--dialog-fg: black;
+	--accent: blue;
+	--accent-text: black;
 }
 
 .root ::-webkit-scrollbar-thumb:hover {
@@ -45,7 +45,7 @@
 
 
 
-.root :global(.jack-cmp-tbl-row):global(.jack-cmp-select) {
+.root :global(.jack-cmp-table-row):global(.jack-cmp-select) {
 	background-color: purple;
 	color: black;
 }

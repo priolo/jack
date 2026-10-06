@@ -19,26 +19,63 @@ body {
 /**
 DESCRIPTION UTILITY CLASSES
 
+// la card per intero (RootCard) comprese le card linked
 jack-card
+// il contenuto della card
 jack-framework
+// fascia superiore della card con pulsanti di azione
 jack-framework-actions
+  jack-title, jack-subtitle
 jack-framework-focus
 jack-framework-focus-ctrl
+jack-framework-linked
 
-
+// tutti i componenti jack
 jack-cmp
 jack-cmp-dialog
 jack-cmp-float
+
+// TABLE component
+jack-cmp-table
+  jack-cmp-table-header
+  jack-cmp-table-row
+
+// BUTTON component
 jack-cmp-button (icon button)
+
+// TEXT INPUT component
 jack-cmp-text-input
-jack-cmp-tbl-row
+
+// SNACKBAR component
 jack-cmp-snackbar
 
 jack-cmp-txt-finder
 jack-focus-[number]
 
-
+// se un cmp è selezionato, per esempio un Button
 jack-cmp-select
+// se un cmp è disabilitato
 jack-cmp-disabled
+
+
+
+jack-lbl-prop-title
+
+
+jack-subtitle
+jack-title
+
+
+
+
+// z del resizer
+jack-z-resizer
+// z della card in zen
+jack-z-zen
+
+// contenuto che deve essere visualizzato quando si passa il mouse sopra la card
+jack-hover-hide
+// contenitore che gestisce l'evento hoiver e mostra il contenuto di jack-hover-hide
+jack-hover-container
 
 **/

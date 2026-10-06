@@ -13,11 +13,11 @@
 	box-shadow: rgba(0, 0, 0, 0.3) 3px 10px 2px 1px;
 	/* max-height: calc(100% - 18px); */
 
-	color: var(--dialog-fg);
-	background-color: var(--dialog-bg);
+	color: var(--accent-text);
+	background-color: var(--accent);
 
-	--cmp-select-bg: var(--dialog-fg);
-	--cmp-select-fg: var(--dialog-bg);
+	--cmp-select-bg: var(--accent-text);
+	--cmp-select-fg: var(--accent);
 }
 
 .full_height {

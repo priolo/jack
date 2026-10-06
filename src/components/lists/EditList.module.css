@@ -3,5 +3,5 @@
 }
 
 .btt_new {
-	background-color: rgba(0, 0, 0, 0.063);
+	background-color: var(--cmp-bg)
 }

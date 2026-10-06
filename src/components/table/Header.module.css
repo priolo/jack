@@ -4,7 +4,7 @@
 	height: 28px;
 	position: sticky;
 	top: 0px;
-	background-color: #5b5b5b;
+	background-color: var(--cmp-table-header-bg);
 	z-index: 1;
 	box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 2px 0px;
 }

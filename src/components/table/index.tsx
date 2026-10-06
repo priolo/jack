@@ -103,7 +103,11 @@ const Table: FunctionComponent<Props> = ({
 		return prop.getShow?.(item) ?? prop.getValue?.(item)
 	}
 
-	return <table className={cls.root} style={style} tabIndex={tabIndex} onKeyDown={handleKeyDown}>
+	return <table 
+		className={`jack-cmp-table ${cls.root}`} style={style} 
+		tabIndex={tabIndex} 
+		onKeyDown={handleKeyDown}
+	>
 
 		<Header
 			props={propToShow}
@@ -121,7 +125,7 @@ const Table: FunctionComponent<Props> = ({
 
 				const clsSelected = selected ? `${cls.selected} jack-cmp-select` : ""
 				const clsFocused = focused ? cls.focus : ""
-				const clsRow = `jack-cmp-tbl-row ${cls.row} ${clsSelected} ${clsFocused} jack-hover-container`
+				const clsRow = `jack-cmp-table-row ${cls.row} ${clsSelected} ${clsFocused} jack-hover-container`
 				const clsCellMain = `${cls.cell} ${cls.main}`
 
 				return <React.Fragment key={id}>

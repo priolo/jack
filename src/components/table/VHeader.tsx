@@ -41,7 +41,7 @@ const VHeader: FunctionComponent<Props> = ({
 	// RENDER
 
 	return (
-		<div className={`${cls.virtuoso} ${cls.row}`}>
+		<div className={`jack-cmp-table-header ${cls.virtuoso} ${cls.row}`}>
 			{props.map((prop, index) => (
 
 				<div key={index}

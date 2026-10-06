@@ -48,8 +48,8 @@ const Header: FunctionComponent<Props> = ({
 		const style = window.getComputedStyle(e.target as Element)
 		mouseSo.setPosition({ x: e.clientX, y: e.clientY })
 		mouseSo.setColor({
-			bg: style.getPropertyValue('--dialog-bg'),
-			fg: style.getPropertyValue('--dialog-fg'),
+			bg: style.getPropertyValue('--accent'),
+			fg: style.getPropertyValue('--accent-text'),
 		})
 		mouseSo.startDrag({ source: { view: store } })
 	}
@@ -107,7 +107,7 @@ const Header: FunctionComponent<Props> = ({
 	const showBttComprime = !inZen && !allCompact && !inRoot && enter
 
 	const clsCompact = store.state.size == VIEW_SIZE.COMPACT ? cls.compact : ""
-	const clsRoot = `${cls.root} ${clsCompact}`
+	const clsRoot = `jack-framework-header ${cls.root} ${clsCompact}`
 	const clsTitle = `${cls.titleBox} ${clsCompact}`
 
 
