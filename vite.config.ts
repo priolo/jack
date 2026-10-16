@@ -1,12 +1,11 @@
-/// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts';
 import path from 'path'
 import fs from 'fs'
-import pkg from './package.json'
+import pkg from './package.json' with { type: 'json' }
 import type { Plugin } from 'vite'
 
 
@@ -67,7 +66,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, './src')
+			'@': path.resolve(import.meta.dirname, './src')
 		}
 	},
 	test: {

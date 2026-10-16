@@ -12,3 +12,5 @@
 .env.test.local
 .env.production.local
 *.map
+
+*.tsbuildinfo
