@@ -12,78 +12,56 @@ import { CopyButton } from "@priolo/jack"
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `text` | `string` | - | The text to copy to clipboard |
-| `size` | `"xs" \| "sm" \| "md" \| "lg"` | `"md"` | Button size |
-| `variant` | `"outline" \| "ghost" \| "link"` | `"ghost"` | Button variant style |
-| `className` | `string` | - | Additional CSS classes |
-| `children` | `React.ReactNode` | Copy icon | Custom content (overrides default icon) |
+| `value` | `string \| (() => string)` | - | The text to copy, or a function returning it (evaluated on click) |
+| `absolute` | `boolean` | - | Positions the button absolutely and shows it only when the parent has class `jack-hover-container` is hovered |
+| `label` | `string` | `"COPY"` | Tooltip text |
+| `className` | `string` | `""` | Additional CSS classes (applied to the tooltip wrapper) |
+| `style` | `React.CSSProperties` | - | Inline styles (applied to the tooltip wrapper) |
 
 ## Usage
 
 ### Basic Copy Button
 
 ```tsx
-<CopyButton text="Hello, World!" />
+<CopyButton value="Hello, World!" />
 ```
 
-### Custom Size and Variant
+### Lazy Value and Custom Tooltip
 
 ```tsx
 <CopyButton 
-  text="npm install @priolo/jack"
-  size="lg"
-  variant="outline"
+  value={() => editor.getText()}
+  label="Copy to clipboard"
 />
-```
-
-### Custom Content
-
-```tsx
-<CopyButton text="Copy this text">
-  Copy to Clipboard
-</CopyButton>
 ```
 
 ### In Code Blocks
 
 ```tsx
-<div className="code-block">
+<div className="jack-hover-container" style={{ position: "relative" }}>
   <pre>npm install @priolo/jack</pre>
   <CopyButton 
-    text="npm install @priolo/jack"
-    size="sm"
-    className="copy-btn"
+    value="npm install @priolo/jack"
+    absolute
   />
 </div>
 ```
 
 ## Features
 
-- **Clipboard Integration**: Automatically copies text to system clipboard
-- **Visual Feedback**: Shows success/error states after copy operation
-- **Accessibility**: Includes proper ARIA labels and keyboard support
-- **Size Variants**: Multiple size options for different contexts
-- **Customizable**: Support for custom content and styling
+- **Clipboard Integration**: Copies text to the system clipboard (via a temporary `textarea` and `document.execCommand('copy')`)
+- **Tooltip**: Shows `label` on hover
+- **Click isolation**: The click calls `preventDefault` and `stopPropagation`
+- **Hover reveal**: With `absolute` the button is hidden until the `jack-hover-container` ancestor is hovered
 
 ## Related Components
 
 - [`Button`](./button.md) - Base button component
-- [`IconButton`](./icon-button.md) - Icon-specific button
+- [`IconButton`](./icon-button.md) - Icon-specific button (used internally)
 
 ## CSS Classes
 
-- `.copy-button` - Base copy button class
-- `.copy-button--xs`, `.copy-button--sm`, `.copy-button--md`, `.copy-button--lg` - Size variants
-- `.copy-button--outline`, `.copy-button--ghost`, `.copy-button--link` - Style variants
-- `.copy-button--success` - Applied after successful copy
-- `.copy-button--error` - Applied when copy fails
-
-## Accessibility
-
-- Uses `aria-label` for screen readers
-- Keyboard accessible via Tab navigation
-- Provides feedback for copy success/failure
-- Follows WCAG guidelines for interactive elements
+- `jack-hover-hide` - Applied when `absolute` is set; shown when an ancestor with `jack-hover-container` is hovered
 
 ## Common Patterns
 
@@ -91,26 +69,9 @@ import { CopyButton } from "@priolo/jack"
 
 ```tsx
 const CodeExample = ({ code }: { code: string }) => (
-  <div className="relative">
+  <div className="jack-hover-container" style={{ position: "relative" }}>
     <pre className="code-block">{code}</pre>
-    <CopyButton 
-      text={code}
-      className="absolute top-2 right-2"
-      size="sm"
-    />
+    <CopyButton value={code} absolute />
   </div>
-)
-```
-
-### Share Links
-
-```tsx
-const ShareButton = ({ url }: { url: string }) => (
-  <CopyButton 
-    text={url}
-    variant="outline"
-  >
-    📋 Copy Link
-  </CopyButton>
 )
 ```

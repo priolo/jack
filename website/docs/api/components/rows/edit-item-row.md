@@ -404,5 +404,4 @@ The component uses these CSS classes:
 - [EditList](../lists/edit-list.md) - Container for editable lists
 - [EditStringRow](./edit-string-row.md) - For text input rows
 - [EditNumberRow](./edit-number-row.md) - For numeric input rows
-- [ListRow](../lists/list-row.md) - Underlying row component
 - [Box](../layout/box.md) - Layout container used internally

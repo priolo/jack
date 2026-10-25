@@ -23,8 +23,7 @@ import { FloatButton } from '@priolo/jack';
 ### Basic Float Button
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { AddIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function MyComponent() {
   const handleAdd = () => {
@@ -33,7 +32,7 @@ function MyComponent() {
 
   return (
     <FloatButton onClick={handleAdd}>
-      <AddIcon />
+      <icons.EditorIcon />
     </FloatButton>
   );
 }
@@ -42,8 +41,7 @@ function MyComponent() {
 ### Positioned Float Button
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { SendIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function ChatInterface() {
   return (
@@ -58,7 +56,7 @@ function ChatInterface() {
         }}
         onClick={handleSend}
       >
-        <SendIcon />
+        <icons.EditorIcon />
       </FloatButton>
     </div>
   );
@@ -68,8 +66,7 @@ function ChatInterface() {
 ### Disabled Float Button
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { SaveIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function SaveFAB({ hasChanges, onSave }) {
   return (
@@ -77,7 +74,7 @@ function SaveFAB({ hasChanges, onSave }) {
       disabled={!hasChanges}
       onClick={onSave}
     >
-      <SaveIcon />
+      <icons.EditorIcon />
     </FloatButton>
   );
 }
@@ -97,17 +94,21 @@ Designed specifically for icon content with appropriate sizing and spacing.
 
 Provides visual feedback on hover and interaction states.
 
-### Accessibility
+### Keyboard
 
-Supports keyboard navigation and proper focus management.
+Space and Enter trigger `onClick` when the element has focus (`tabIndex` is `-1`, so it is not in the Tab order).
+
+## CSS Classes
+
+- `jack-cmp jack-cmp-float` - Base classes
+- `jack-cmp-disabled` - Applied when disabled
 
 ## Common Use Cases
 
 ### Primary Action
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { ComposeIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function EmailInterface() {
   return (
@@ -122,7 +123,7 @@ function EmailInterface() {
         }}
         onClick={handleCompose}
       >
-        <ComposeIcon />
+        <icons.EditorIcon />
       </FloatButton>
     </div>
   );
@@ -132,8 +133,7 @@ function EmailInterface() {
 ### Form Submission
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { CheckIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function FormContainer({ isValid, onSubmit }) {
   return (
@@ -145,7 +145,7 @@ function FormContainer({ isValid, onSubmit }) {
         onClick={onSubmit}
         style={{ marginTop: '20px' }}
       >
-        <CheckIcon />
+        <icons.EditorIcon />
       </FloatButton>
     </div>
   );
@@ -155,8 +155,7 @@ function FormContainer({ isValid, onSubmit }) {
 ### Quick Actions
 
 ```tsx
-import { FloatButton } from '@priolo/jack';
-import { ShareIcon } from '@priolo/jack/icons';
+import { FloatButton, icons } from '@priolo/jack';
 
 function ContentView({ content, onShare }) {
   return (
@@ -170,7 +169,7 @@ function ContentView({ content, onShare }) {
         }}
         onClick={onShare}
       >
-        <ShareIcon />
+        <icons.EditorIcon />
       </FloatButton>
     </div>
   );
@@ -221,4 +220,4 @@ FloatButton can be customized with CSS:
 
 - [`IconButton`](./icon-button.md) - For smaller icon actions
 - [`Button`](./button.md) - For text-based actions
-- [`TooltipWrapCmp`](../core/tooltip.md) - For adding helpful tooltips
+- [`TooltipWrapCmp`](../../core/tooltip.md) - For adding helpful tooltips

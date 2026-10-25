@@ -32,7 +32,7 @@ import { createStore } from "@priolo/jon";
 import { FunctionComponent } from "react";
 
 import './index.css';
-import "@priolo/jack/dist/style.css";
+import "@priolo/jack/style.css";
 
 const App: FunctionComponent = () => {
 

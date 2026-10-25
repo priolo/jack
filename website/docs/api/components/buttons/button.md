@@ -18,7 +18,9 @@ import { Button } from '@priolo/jack';
 | `className` | `string` | No | Additional CSS classes |
 | `style` | `React.CSSProperties` | No | Inline styles |
 | `disabled` | `boolean` | No | Whether button is disabled |
-| `onClick` | `(e: React.MouseEvent, select: boolean) => void` | No | Click handler |
+| `onClick` | `(e: React.MouseEvent<HTMLDivElement>, select: boolean) => void` | No | Click handler (also fired by Space/Enter) |
+| `onMouseDown` | `(e: React.MouseEvent<HTMLDivElement>) => void` | No | Mouse down handler |
+| `onMouseUp` | `(e: React.MouseEvent<HTMLDivElement>) => void` | No | Mouse up handler |
 
 ## Usage
 
@@ -145,13 +147,12 @@ Dimmed appearance and no interaction when `disabled` prop is true.
 
 - Proper `tabIndex` support for keyboard navigation
 - Keyboard event handling for Space and Enter keys
-- Appropriate ARIA states through CSS classes
 
 ## Related Components
 
 - [`IconButton`](./icon-button.md) - Button specifically for icons
 - [`FloatButton`](./float-button.md) - Floating action button
-- [`Header`](../core/header.md) - Uses buttons for actions
+- [`Header`](../../core/header.md) - Uses buttons for actions
 
 ## Common Patterns
 
@@ -193,7 +194,7 @@ function TabButton({ isActive, label, onClick }) {
 }
 ```
 
-### Action Button with Focus
+### Primary Action
 
 ```tsx
 import { Button } from '@priolo/jack';
@@ -201,7 +202,6 @@ import { Button } from '@priolo/jack';
 function PrimaryAction({ onAction }) {
   return (
     <Button 
-      className="jack-focus-1" // Jack focus class
       onClick={onAction}
     >
       Primary Action

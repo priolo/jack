@@ -16,12 +16,12 @@ import { TooltipWrapCmp } from '@priolo/jack';
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
-| `content` | `React.ReactNode` | Yes | Content to display in tooltip |
+| `content` | `React.ReactNode` | No | Content to display in tooltip; if empty, `children` are rendered without the wrapper |
 | `disabled` | `boolean` | No | Disables tooltip when true |
-| `tabIndex` | `number` | No | Tab index for keyboard navigation |
-| `style` | `React.CSSProperties` | No | Inline styles |
-| `className` | `string` | No | Additional CSS classes |
-| `onMouseOver` | `(e: React.MouseEvent) => void` | No | Mouse over handler |
+| `tabIndex` | `number` | No | Tab index of the wrapper (default `-1`) |
+| `style` | `React.CSSProperties` | No | Inline styles of the wrapper `div` |
+| `className` | `string` | No | CSS classes of the wrapper `div` |
+| `onMouseOver` | `(enter: boolean) => void` | No | Called with `true` on mouse enter and `false` on leave |
 | `onClick` | `(e: React.MouseEvent) => void` | No | Click handler |
 | `onKeyDown` | `(e: React.KeyboardEvent) => void` | No | Key down handler |
 | `children` | `React.ReactNode` | Yes | Element to wrap with tooltip |
@@ -115,10 +115,10 @@ Tooltips automatically position themselves to avoid viewport edges and provide o
 
 ### Color Theme Support
 
-Tooltips inherit color themes from CSS custom properties:
+Tooltips take their colors from the CSS custom properties of the hovered element:
 
-- `--dialog-bg` - Background color
-- `--dialog-fg` - Text color
+- `--accent` - Background color
+- `--accent-text` - Text color
 
 ### Unique ID Management
 
@@ -126,30 +126,26 @@ Each tooltip wrapper has a unique ID to prevent conflicts when multiple tooltips
 
 ### Cleanup on Unmount
 
-Tooltips are automatically cleaned up when components unmount to prevent memory leaks.
+The tooltip is closed when the wrapper is disabled or unmounted.
 
 ## Styling
 
-Tooltips can be styled using CSS custom properties:
+Set the variables on the wrapped element (or a parent):
 
 ```css
-.tooltip-content {
-  --dialog-bg: #333;
-  --dialog-fg: #fff;
+.my-element {
+  --accent: #333;
+  --accent-text: #fff;
 }
 ```
 
 ## Accessibility
 
-- Supports keyboard navigation with `tabIndex`
-- Provides hover and focus states
-- Properly manages tooltip visibility states
+- `tabIndex` and `onKeyDown` are forwarded to the wrapper
 
 ## Performance
 
-- Tooltips are only rendered when visible
-- Automatic cleanup prevents memory leaks
-- Uses React portals for optimal rendering
+- Only one tooltip is shown at a time (a single global store)
 
 ## Related Components
 
@@ -162,13 +158,13 @@ Tooltips can be styled using CSS custom properties:
 ### Icon with Tooltip
 
 ```tsx
-import { TooltipWrapCmp, IconButton } from '@priolo/jack';
+import { TooltipWrapCmp, IconButton, icons } from '@priolo/jack';
 
 function ActionButton() {
   return (
     <TooltipWrapCmp content="Save changes">
       <IconButton onClick={handleSave}>
-        <SaveIcon />
+        <icons.EditorIcon />
       </IconButton>
     </TooltipWrapCmp>
   );

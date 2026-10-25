@@ -10,17 +10,16 @@ import { IconToggle } from "@priolo/jack"
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `boolean` | `false` | Current toggle state |
-| `onChange` | `(value: boolean) => void` | - | Callback when state changes |
-| `iconOn` | `React.ReactNode` | - | Icon to show when toggled on |
-| `iconOff` | `React.ReactNode` | - | Icon to show when toggled off |
-| `size` | `"xs" \| "sm" \| "md" \| "lg"` | `"md"` | Button size |
-| `variant` | `"primary" \| "secondary" \| "ghost"` | `"ghost"` | Button style variant |
-| `disabled` | `boolean` | `false` | Whether the toggle is disabled |
-| `className` | `string` | - | Additional CSS classes |
-| `title` | `string` | - | Tooltip text |
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `check` | `boolean` | Yes | - | Current toggle state |
+| `onChange` | `(check: boolean, e?: React.MouseEvent) => void` | No | - | Called with the new (inverted) value on click |
+| `trueIcon` | `React.ReactNode` | No | `<CheckOnIcon />` | Icon shown when `check` is true |
+| `falseIcon` | `React.ReactNode` | No | `<CheckOffIcon />` | Icon shown when `check` is false |
+| `tabIndex` | `number` | No | `-1` | Tab index |
+| `readOnly` | `boolean` | No | - | Ignores clicks and removes the pointer cursor |
+| `style` | `React.CSSProperties` | No | - | Inline styles (merged over the defaults) |
+| `className` | `string` | No | - | CSS classes |
 
 ## Usage
 
@@ -30,40 +29,25 @@ import { IconToggle } from "@priolo/jack"
 const [isLiked, setIsLiked] = useState(false)
 
 <IconToggle
-  value={isLiked}
+  check={isLiked}
   onChange={setIsLiked}
-  iconOn={<HeartFilled />}
-  iconOff={<HeartOutline />}
+  trueIcon={<HeartFilled />}
+  falseIcon={<HeartOutline />}
 />
 ```
 
-### Bookmark Toggle
+### Default Icons
 
 ```tsx
-const [isBookmarked, setIsBookmarked] = useState(false)
+const [done, setDone] = useState(false)
 
-<IconToggle
-  value={isBookmarked}
-  onChange={setIsBookmarked}
-  iconOn={<BookmarkFilled />}
-  iconOff={<BookmarkOutline />}
-  title={isBookmarked ? "Remove bookmark" : "Add bookmark"}
-/>
+<IconToggle check={done} onChange={setDone} />
 ```
 
-### Theme Toggle
+### Read Only
 
 ```tsx
-const [isDark, setIsDark] = useState(false)
-
-<IconToggle
-  value={isDark}
-  onChange={setIsDark}
-  iconOn={<SunIcon />}
-  iconOff={<MoonIcon />}
-  size="lg"
-  variant="primary"
-/>
+<IconToggle check={true} readOnly />
 ```
 
 ### Visibility Toggle
@@ -72,44 +56,30 @@ const [isDark, setIsDark] = useState(false)
 const [isVisible, setIsVisible] = useState(false)
 
 <IconToggle
-  value={isVisible}
+  check={isVisible}
   onChange={setIsVisible}
-  iconOn={<EyeIcon />}
-  iconOff={<EyeOffIcon />}
-  disabled={!canToggle}
+  trueIcon={<EyeOpen />}
+  falseIcon={<EyeClosed />}
 />
 ```
+
+`HeartFilled`, `HeartOutline`, `EyeOpen` and `EyeClosed` are your own icon components (only `icons.EditorIcon` is exported by the package).
 
 ## Features
 
 - **Dual State Icons**: Different icons for on/off states
-- **Smooth Transitions**: Animated state changes
-- **Accessibility**: Full keyboard and screen reader support
-- **Size Variants**: Multiple size options
-- **Disabled State**: Support for disabled interaction
-- **Custom Styling**: Flexible appearance customization
+- **Default check icons**: Built-in check on/off icons
+- **Opacity feedback**: Inline `opacity` is `1` when checked or hovered (unless read-only), otherwise `0.5`
+- **Read-only mode**: `readOnly` disables interaction
 
 ## Related Components
 
 - [`Button`](./button.md) - Base button component
 - [`IconButton`](./icon-button.md) - Single-state icon button
 
-## CSS Classes
+## Styling
 
-- `.icon-toggle` - Base toggle class
-- `.icon-toggle--xs`, `.icon-toggle--sm`, `.icon-toggle--md`, `.icon-toggle--lg` - Size variants
-- `.icon-toggle--primary`, `.icon-toggle--secondary`, `.icon-toggle--ghost` - Style variants
-- `.icon-toggle--on` - Applied when toggle is active
-- `.icon-toggle--off` - Applied when toggle is inactive
-- `.icon-toggle--disabled` - Applied when disabled
-
-## Accessibility
-
-- Uses `role="switch"` for proper semantics
-- Includes `aria-checked` attribute
-- Keyboard accessible (Space/Enter to toggle)
-- Focus indicators for keyboard navigation
-- Screen reader announcements for state changes
+The component applies no built-in CSS classes; use `className` and `style`.
 
 ## Common Patterns
 
@@ -124,21 +94,11 @@ const SettingsPanel = () => {
     <div className="settings-panel">
       <div className="setting-item">
         <span>Notifications</span>
-        <IconToggle
-          value={notifications}
-          onChange={setNotifications}
-          iconOn={<BellIcon />}
-          iconOff={<BellOffIcon />}
-        />
+        <IconToggle check={notifications} onChange={setNotifications} />
       </div>
       <div className="setting-item">
         <span>Dark Mode</span>
-        <IconToggle
-          value={darkMode}
-          onChange={setDarkMode}
-          iconOn={<SunIcon />}
-          iconOff={<MoonIcon />}
-        />
+        <IconToggle check={darkMode} onChange={setDarkMode} />
       </div>
     </div>
   )
@@ -155,18 +115,16 @@ const SocialActions = ({ post }: { post: Post }) => {
   return (
     <div className="social-actions">
       <IconToggle
-        value={liked}
+        check={liked}
         onChange={setLiked}
-        iconOn={<HeartFilled className="text-red-500" />}
-        iconOff={<HeartOutline />}
-        size="sm"
+        trueIcon={<HeartFilled className="text-red-500" />}
+        falseIcon={<HeartOutline />}
       />
       <IconToggle
-        value={bookmarked}
+        check={bookmarked}
         onChange={setBookmarked}
-        iconOn={<BookmarkFilled className="text-blue-500" />}
-        iconOff={<BookmarkOutline />}
-        size="sm"
+        trueIcon={<BookmarkFilled className="text-blue-500" />}
+        falseIcon={<BookmarkOutline />}
       />
     </div>
   )

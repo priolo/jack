@@ -5,14 +5,14 @@ The `IconButton` component provides a button specifically designed for displayin
 ## Import
 
 ```typescript
-import { IconButton } from '@priolo/jack';
+import { IconButton, icons } from '@priolo/jack';
 ```
 
 ## Props
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
-| `tabIndex` | `number` | No | Tab index for keyboard navigation |
+| `tabIndex` | `number` | No | Tab index for keyboard navigation (default: 0) |
 | `onClick` | `(e: React.MouseEvent) => void` | No | Click handler |
 | `children` | `React.ReactNode` | No | Icon or content to display |
 | `effect` | `boolean` | No | Enables hover/click visual effects |
@@ -26,8 +26,7 @@ import { IconButton } from '@priolo/jack';
 ### Basic Icon Button
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { CloseIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function MyComponent() {
   const handleClose = () => {
@@ -36,7 +35,7 @@ function MyComponent() {
 
   return (
     <IconButton onClick={handleClose}>
-      <CloseIcon />
+      <icons.EditorIcon />
     </IconButton>
   );
 }
@@ -45,13 +44,12 @@ function MyComponent() {
 ### Icon Button with Effects
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { SaveIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function SaveButton({ onSave }) {
   return (
     <IconButton effect onClick={onSave}>
-      <SaveIcon />
+      <icons.EditorIcon />
     </IconButton>
   );
 }
@@ -60,8 +58,7 @@ function SaveButton({ onSave }) {
 ### Selected Icon Button
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { StarIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function FavoriteButton({ isFavorite, onToggle }) {
   return (
@@ -69,7 +66,7 @@ function FavoriteButton({ isFavorite, onToggle }) {
       select={isFavorite} 
       onClick={onToggle}
     >
-      <StarIcon />
+      <icons.EditorIcon />
     </IconButton>
   );
 }
@@ -78,8 +75,7 @@ function FavoriteButton({ isFavorite, onToggle }) {
 ### Disabled Icon Button
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { DeleteIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function DeleteButton({ canDelete, onDelete }) {
   return (
@@ -87,7 +83,7 @@ function DeleteButton({ canDelete, onDelete }) {
       disabled={!canDelete}
       onClick={onDelete}
     >
-      <DeleteIcon />
+      <icons.EditorIcon />
     </IconButton>
   );
 }
@@ -97,36 +93,37 @@ function DeleteButton({ canDelete, onDelete }) {
 
 ### Visual Effects
 
-When `effect` prop is true, the button shows enhanced visual feedback on hover and click.
+When `effect` is true, the button is highlighted (class `jack-cmp-select`) while the mouse is over it. `select` always highlights it.
 
 ### Icon Support
 
-Designed to work seamlessly with Jack's icon system and any SVG icons.
+Works with any SVG icon component. Only `icons.EditorIcon` is exported by the package; the other examples use it as a placeholder.
 
 ### Keyboard Navigation
 
 Supports keyboard navigation and activation with Space/Enter keys.
 
-### Flexible Sizing
+### CSS Classes
 
-Icons automatically inherit appropriate sizing from the button container.
+- `jack-cmp jack-cmp-button` - Base classes
+- `jack-cmp-select` - Applied when selected or (with `effect`) hovered
+- `jack-cmp-disabled` - Applied when disabled
 
 ## Common Use Cases
 
 ### Header Actions
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { CloseIcon, DetachIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function CardHeader({ onClose, onDetach }) {
   return (
     <div className="header-actions">
       <IconButton onClick={onDetach}>
-        <DetachIcon />
+        <icons.EditorIcon />
       </IconButton>
       <IconButton onClick={onClose}>
-        <CloseIcon />
+        <icons.EditorIcon />
       </IconButton>
     </div>
   );
@@ -136,20 +133,19 @@ function CardHeader({ onClose, onDetach }) {
 ### Toolbar Actions
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { EditIcon, DeleteIcon, CopyIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function ItemToolbar({ onEdit, onDelete, onCopy }) {
   return (
     <div className="toolbar">
       <IconButton effect onClick={onEdit}>
-        <EditIcon />
+        <icons.EditorIcon />
       </IconButton>
       <IconButton effect onClick={onCopy}>
-        <CopyIcon />
+        <icons.EditorIcon />
       </IconButton>
       <IconButton effect onClick={onDelete}>
-        <DeleteIcon />
+        <icons.EditorIcon />
       </IconButton>
     </div>
   );
@@ -159,8 +155,7 @@ function ItemToolbar({ onEdit, onDelete, onCopy }) {
 ### Form Controls
 
 ```tsx
-import { IconButton } from '@priolo/jack';
-import { AddIcon, RemoveIcon } from '@priolo/jack/icons';
+import { IconButton, icons } from '@priolo/jack';
 
 function QuantityControls({ value, onIncrease, onDecrease }) {
   return (
@@ -169,11 +164,11 @@ function QuantityControls({ value, onIncrease, onDecrease }) {
         disabled={value <= 0}
         onClick={onDecrease}
       >
-        <RemoveIcon />
+        <icons.EditorIcon />
       </IconButton>
       <span>{value}</span>
       <IconButton onClick={onIncrease}>
-        <AddIcon />
+        <icons.EditorIcon />
       </IconButton>
     </div>
   );
@@ -201,5 +196,5 @@ IconButton can be styled using CSS classes:
 
 - [`Button`](./button.md) - Standard text button
 - [`FloatButton`](./float-button.md) - Floating action button
-- [`Header`](../core/header.md) - Uses IconButton for actions
-- [`TooltipWrapCmp`](../core/tooltip.md) - Often wraps IconButton
+- [`Header`](../../core/header.md) - Uses IconButton for actions
+- [`TooltipWrapCmp`](../../core/tooltip.md) - Often wraps IconButton

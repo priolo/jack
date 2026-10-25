@@ -50,16 +50,16 @@ docsSo.zenClose();
 
 ### Click to Close
 
-Users can click outside the zen card content to close zen mode.
+Users can click on the overlay outside the zen card content to close zen mode.
 
 ### Portal Rendering
 
-The zen card content is rendered into a designated portal area with ID `zen-card`.
+The zen card content is rendered into the container with ID `zen-card`.
 
 ## CSS Classes
 
-- `open` - Applied when zen mode is active
-- `hide` - Applied when no card is in zen mode
+- `open` - Applied (CSS module class) when `docsSo.state.zenOpen` is true
+- `hide` - Applied when no card is in zen mode (`zenCard` is null)
 
 ## Animation States
 
@@ -96,11 +96,6 @@ const handleZenMode = () => {
 // Double-click the card title to enter zen mode
 ```
 
-## Keyboard Interaction
-
-- **Escape Key**: Closes zen mode (handled by the card content)
-- **Click Outside**: Closes zen mode
-
 ## Related Components
 
 - [`FrameworkCard`](./framework-card.md) - Cards that can be displayed in zen mode
@@ -110,7 +105,7 @@ const handleZenMode = () => {
 ## Example Implementation
 
 ```tsx
-import { ZenCard, FrameworkCard, Header, Button } from '@priolo/jack';
+import { ZenCard, CardsGroup, FrameworkCard, Header, Button, docsSo, icons } from '@priolo/jack';
 
 function MyCard({ store }) {
   const handleZenToggle = () => {
@@ -124,7 +119,7 @@ function MyCard({ store }) {
   return (
     <FrameworkCard
       store={store}
-      headerRender={<Header store={store} icon={<MyIcon />} />}
+      headerRender={<Header store={store} icon={<icons.EditorIcon />} />}
     >
       <div>
         <p>Card content here</p>

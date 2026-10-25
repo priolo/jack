@@ -16,9 +16,9 @@ import { FrameworkCard } from '@priolo/jack';
 | `className` | `string` | No | Additional CSS classes |
 | `style` | `React.CSSProperties` | No | Inline styles |
 | `styleBody` | `React.CSSProperties` | No | Inline styles for the body |
-| `headerRender` | `React.ReactNode` | No | Custom header content |
-| `actionsRender` | `React.ReactNode` | No | Custom actions content |
-| `iconizedRender` | `React.ReactNode` | No | Content for iconized view |
+| `headerRender` | `React.ReactNode` | No | Header content (typically `<Header />`) |
+| `actionsRender` | `React.ReactNode` | No | Content of the actions bar (not shown when iconized) |
+| `iconizedRender` | `React.ReactNode` | No | Content shown instead of the body when iconized |
 | `children` | `React.ReactNode` | Yes | Main card content |
 
 ## Usage
@@ -43,16 +43,16 @@ function MyCard({ store }) {
 ### With Actions
 
 ```tsx
-import { FrameworkCard, Header, IconButton } from '@priolo/jack';
+import { FrameworkCard, Header, IconButton, icons } from '@priolo/jack';
 
 function MyCard({ store }) {
   return (
     <FrameworkCard
       store={store}
-      headerRender={<Header store={store} icon={<MyIcon />} />}
+      headerRender={<Header store={store} icon={<icons.EditorIcon />} />}
       actionsRender={
         <IconButton onClick={handleAction}>
-          <ActionIcon />
+          <icons.EditorIcon />
         </IconButton>
       }
     >
@@ -64,40 +64,32 @@ function MyCard({ store }) {
 
 ## Features
 
-- **Responsive Layout**: Automatically adjusts to different view sizes
-- **Focus Management**: Integrates with Jack's focus system
+- **Focus Management**: Integrates with Jack's focus system (`focusSo`)
 - **Zen Mode Support**: Handles full-screen view mode
-- **Dialog Portal**: Provides portal for dialogs
-- **Error Boundary**: Wraps content in error boundary
-- **Snackbar Integration**: Shows notifications via `SnackbarCmp`
+- **Dialog Portal**: Renders a container with id `dialog_<uuid>` used by dialogs
+- **Snackbar Integration**: Shows notifications set with `store.setSnackbar(...)` (see [Snackbar](../components/cards/snackbar.md))
+- **Iconized view**: In `VIEW_SIZE.COMPACT` only `iconizedRender` and a close button are shown
 
 ## View Sizes
 
-The card adapts to different view sizes:
+`VIEW_SIZE` has three values: `NORMAL`, `COMPACT` and `ICONIZED`. `FrameworkCard` switches to the iconized layout only when `store.state.size == VIEW_SIZE.COMPACT`:
 
-- `VIEW_SIZE.NORMAL` - Full card view
-- `VIEW_SIZE.COMPACT` - Iconized view showing only icon and actions
+- `VIEW_SIZE.NORMAL` - Full card view (actions + body)
+- `VIEW_SIZE.COMPACT` - Iconized view: header, `iconizedRender` and a close button
 
 ## CSS Classes
 
 The component applies several CSS classes for styling:
 
 - `jack-framework` - Main container
+- `jack-framework-linked` - When the card is linked (has a parent) and not in zen mode
 - `jack-framework-focus` - When card has focus
 - `jack-framework-focus-ctrl` - When focus controls are visible
 - `jack-framework-actions` - Actions container
 - `jack-framework-body` - Body container
 
-## Events
-
-The card handles several events automatically:
-
-- Click events for focus management
-- Drag events for card movement
-- Keyboard events for accessibility
-
 ## Related Components
 
 - [`Header`](./header.md) - Card header component
-- [`SnackbarCmp`](../components/cards/snackbar.md) - Notification component
+- [`Snackbar`](../components/cards/snackbar.md) - Notification messages
 - [`ZenCard`](./zen-card.md) - Full-screen card view

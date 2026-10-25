@@ -12,23 +12,22 @@ import { Header } from '@priolo/jack';
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
-| `store` | `ViewStore` | Yes | The view store for this header |
+| `store` | `ViewStore` | No (required in practice) | The view store for this header |
 | `icon` | `React.ReactNode` | No | Icon to display in header |
-| `extraRender` | `React.ReactNode` | No | Additional content in header actions |
+| `extraRender` | `React.ReactNode` | No | Additional buttons, shown only while the mouse hovers the header |
 
 ## Usage
 
 ### Basic Header
 
 ```tsx
-import { Header } from '@priolo/jack';
-import { MyIcon } from './icons';
+import { FrameworkCard, Header, icons } from '@priolo/jack';
 
 function MyCard({ store }) {
   return (
     <FrameworkCard
       store={store}
-      headerRender={<Header store={store} icon={<MyIcon />} />}
+      headerRender={<Header store={store} icon={<icons.EditorIcon />} />}
     >
       {/* Card content */}
     </FrameworkCard>
@@ -39,7 +38,7 @@ function MyCard({ store }) {
 ### Header with Extra Actions
 
 ```tsx
-import { Header, IconButton } from '@priolo/jack';
+import { FrameworkCard, Header, IconButton, icons } from '@priolo/jack';
 
 function MyCard({ store }) {
   return (
@@ -48,10 +47,10 @@ function MyCard({ store }) {
       headerRender={
         <Header 
           store={store} 
-          icon={<MyIcon />}
+          icon={<icons.EditorIcon />}
           extraRender={
             <IconButton onClick={handleCustomAction}>
-              <CustomIcon />
+              <icons.EditorIcon />
             </IconButton>
           }
         />
@@ -67,7 +66,7 @@ function MyCard({ store }) {
 
 ### Dynamic Title & Subtitle
 
-The header automatically displays the title and subtitle from the store:
+The header automatically displays the title and subtitle from the store (`getTitle()` / `getSubTitle()`):
 
 ```typescript
 // In your store setup
@@ -79,27 +78,20 @@ getters: {
 
 ### Size Toggle
 
-Click the icon to toggle between normal and compact view sizes.
+Click the icon to toggle between `VIEW_SIZE.NORMAL` and `VIEW_SIZE.COMPACT` (disabled in zen mode).
 
 ### Drag and Drop
 
-The header is draggable when the card allows dragging:
-
-```typescript
-// In your store state
-state: {
-  draggable: true // Makes the header draggable
-}
-```
+The header is draggable when `store.state.draggable` is true (and not in zen mode).
 
 ### Action Buttons
 
-The header includes several conditional action buttons:
+The header includes several conditional buttons (shown on mouse hover where noted):
 
-- **Close Button**: Closes the card (if `unclosable` is false)
-- **Detach Button**: Detaches linked cards
-- **Expand/Compress**: Controls for linked card views
-- **Navigation**: Left/right navigation for card groups
+- **Close Button**: Closes the card (hidden if `unclosable` is true); in zen mode it closes zen mode
+- **Detach Button**: Detaches a linked card from its parent (hover, linked cards only)
+- **Expand/Compress**: Expands or compresses the whole chain of parent cards (hover, linked cards only)
+- **Extra actions**: `extraRender` is rendered only while the mouse is over the header
 
 ### Zen Mode
 
@@ -109,18 +101,16 @@ Double-click the title area to enter zen (full-screen) mode.
 
 ### Normal View
 - Shows full title and subtitle
-- Displays all action buttons
-- Supports drag and drop
+- Displays the action buttons
 
 ### Compact View
-- Shows only icon with tooltip
-- Icon contains title and subtitle info
-- Minimal action buttons
+- Shows only the icon; a tooltip contains title and subtitle
 
 ## CSS Classes
 
+- `jack-framework-header` - Header root
 - `jack-title` - Applied to title text
-- Various internal classes for styling different states
+- `jack-subtitle` - Applied to subtitle text
 
 ## Store Integration
 
@@ -133,6 +123,7 @@ interface ViewState {
   size: VIEW_SIZE;        // Controls compact/normal view
   linked?: ViewStore;     // Linked card reference
   parent?: ViewStore;     // Parent card reference
+  group: CardsStore;      // Group the card belongs to
 }
 ```
 

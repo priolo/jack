@@ -12,7 +12,7 @@ import { CardsGroup } from '@priolo/jack';
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|
-| `cardsStore` | `CardsStore` | Yes | The store managing the cards collection |
+| `cardsStore` | `CardsStore` | No (in practice always pass it) | The store managing the cards collection |
 | `Render` | `FunctionComponent<RenderProps>` | Yes | Component to render each card |
 
 ## RenderProps Interface
@@ -26,13 +26,16 @@ interface RenderProps {
 ## Usage
 
 ```tsx
-import { CardsGroup, PolymorphicCard } from '@priolo/jack';
+import { CardsGroup, ViewStore } from '@priolo/jack';
+
+// your own component: choose the card to render, e.g. by view.state.type
+const MyRender = ({ view }: { view: ViewStore }) => <MyCardView store={view} />;
 
 function MyApp() {
   return (
     <CardsGroup 
       cardsStore={deckCardsSo} 
-      Render={PolymorphicCard}
+      Render={MyRender}
     />
   );
 }
@@ -40,22 +43,25 @@ function MyApp() {
 
 ## Features
 
-- **Drag & Drop**: Automatically handles drag and drop reordering of cards
-- **Drop Areas**: Provides visual drop zones between cards
-- **Flexible Rendering**: Uses render props pattern for custom card rendering
-- **Z-Index Management**: Automatically manages card stacking order
+- **Drop Areas**: Renders a drop zone before each card and one after the last (drag and drop is driven by `mouseSo` / `DragCmp`)
+- **Flexible Rendering**: Each card is wrapped in an internal `RootCard` that renders it through `Render`
+- **Z-Index Management**: Earlier cards get a higher `zIndex`
 
 ## Related Components
 
 - [`FrameworkCard`](../core/framework-card.md) - Individual card wrapper
-- [`RootCard`](../core/root-card.md) - Root card container
-- [`DropArea`](../core/drop-area.md) - Drop zone component
 
 ## Store Integration
 
 The `CardsGroup` integrates with the Jack store system to manage card state:
 
 ```typescript
+import { createStore } from '@priolo/jon';
+import { cardsSetup, CardsStore } from '@priolo/jack';
+
+import { createStore } from '@priolo/jon';
+import { cardsSetup, CardsStore } from '@priolo/jack';
+
 const cardsStore = createStore(cardsSetup) as CardsStore;
 ```
 

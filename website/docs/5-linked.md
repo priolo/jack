@@ -45,12 +45,13 @@ The interesting thing is when we click on a "user" in the list
 
 ```js
 import { FrameworkCard, Header } from "@priolo/jack"
+import { useStore } from "@priolo/jon"
 
 const UserDetailCard = ({
     store,
 }) => {
 
-    const user = store.state.user
+    const { user } = useStore(store)
 
     return <FrameworkCard
         store={store}
@@ -71,16 +72,19 @@ The interesting thing is when we click on a "user" in the list
 ```jsx title="UsersListCard.jsx"
 import { FrameworkCard, Header } from "@priolo/jack"
 import { createStore } from "@priolo/jon"
+import { useStore } from "@priolo/jon"
 import userDetailSetup from "./UserDetailStore"
 
 const UserListCard = ({
     store,
 }) => {
 
+    const state = useStore(store)
+
     // HANDLER
     const handleUserClick = (user) => {
         const detailStore = createStore(userDetailSetup)
-        detailStore.state.user = user
+        detailStore.setUser(user)
         const deck = store.state.group
         deck.addLink({ 
             parent: store, 
@@ -94,7 +98,7 @@ const UserListCard = ({
         store={store}
         headerRender={<Header store={store} />}
     >
-        {store.state.all.map(user => (
+        {state.all.map(user => (
             <div key={user.id} onClick={() => handleUserClick(user)}>
 				{user.name}
 			</div>

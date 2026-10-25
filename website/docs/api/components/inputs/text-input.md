@@ -1,6 +1,6 @@
 # TextInput
 
-A versatile text input component with validation, labels, and various input types support.
+A text input (or textarea) component. It is a `forwardRef` component: the ref points to the underlying `input`/`textarea` element. `PasswordInput` is another export of the same component.
 
 ## Import
 
@@ -12,25 +12,22 @@ import { TextInput } from "@priolo/jack"
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | - | Current input value |
-| `onChange` | `(value: string) => void` | - | Callback when value changes |
-| `type` | `"text" \| "email" \| "password" \| "tel" \| "url"` | `"text"` | Input type |
+| `value` | `string \| number` | - | Current input value |
+| `onChange` | `(newValue: string) => void` | - | Called with the new text |
 | `placeholder` | `string` | - | Placeholder text |
-| `label` | `string` | - | Input label text |
-| `error` | `string` | - | Error message to display |
-| `disabled` | `boolean` | `false` | Whether input is disabled |
-| `required` | `boolean` | `false` | Whether input is required |
-| `readOnly` | `boolean` | `false` | Whether input is read-only |
-| `autoFocus` | `boolean` | `false` | Whether to auto-focus on mount |
-| `maxLength` | `number` | - | Maximum character length |
-| `pattern` | `string` | - | Regex pattern for validation |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Input size |
-| `variant` | `"outline" \| "filled" \| "ghost"` | `"outline"` | Input style variant |
-| `icon` | `React.ReactNode` | - | Icon to display in input |
-| `iconPosition` | `"left" \| "right"` | `"left"` | Position of the icon |
-| `onFocus` | `() => void` | - | Callback when input gains focus |
-| `onBlur` | `() => void` | - | Callback when input loses focus |
+| `autoFocus` | `boolean` | - | Whether to auto-focus on mount |
+| `tabIndex` | `number` | `0` | Tab index |
+| `readOnly` | `boolean` | - | Renders a read-only `div` (class `jack-lbl-readonly`) instead of the input; password values are shown as `***` |
 | `className` | `string` | - | Additional CSS classes |
+| `style` | `React.CSSProperties` | - | Inline styles |
+| `focus` | `boolean` | - | When it becomes true, the input text is selected |
+| `multiline` | `boolean` | - | Renders a `textarea` that auto-grows with its content |
+| `rows` | `number` | `1` | Rows of the textarea |
+| `type` | `string` | - | HTML input type (e.g. `"password"`) |
+| `onFocus` | `(e: React.FocusEvent) => void` | - | Called when the input gains focus (the text is selected first) |
+| `onBlur` | `(e: React.FocusEvent) => void` | - | Called when the input loses focus |
+| `onKeyDown` | `(e: React.KeyboardEvent) => void` | - | Key down handler |
+| `onKeyEnter` | `(e: React.KeyboardEvent) => void` | - | Called when Enter is pressed |
 
 ## Usage
 
@@ -43,30 +40,17 @@ const [name, setName] = useState("")
   value={name}
   onChange={setName}
   placeholder="Enter your name"
-  label="Full Name"
 />
 ```
 
-### Email Input with Validation
+### Submit on Enter
 
 ```tsx
-const [email, setEmail] = useState("")
-const [emailError, setEmailError] = useState("")
-
-const validateEmail = (value: string) => {
-  const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-  setEmailError(isValid ? "" : "Please enter a valid email")
-}
-
 <TextInput
-  type="email"
   value={email}
   onChange={setEmail}
-  onBlur={() => validateEmail(email)}
+  onKeyEnter={() => submit(email)}
   placeholder="you@example.com"
-  label="Email Address"
-  error={emailError}
-  required
 />
 ```
 
@@ -80,63 +64,33 @@ const [password, setPassword] = useState("")
   value={password}
   onChange={setPassword}
   placeholder="Enter password"
-  label="Password"
-  required
-  minLength={8}
 />
 ```
 
-### Input with Icon
+### Multiline
 
 ```tsx
 <TextInput
-  value={searchQuery}
-  onChange={setSearchQuery}
-  placeholder="Search..."
-  icon={<SearchIcon />}
-  iconPosition="left"
+  multiline
+  rows={3}
+  value={text}
+  onChange={setText}
 />
 ```
 
-### Different Sizes and Variants
+### Read Only
 
 ```tsx
-<div className="space-y-4">
-  <TextInput
-    value={text}
-    onChange={setText}
-    size="sm"
-    variant="filled"
-    placeholder="Small filled input"
-  />
-  
-  <TextInput
-    value={text}
-    onChange={setText}
-    size="md"
-    variant="outline"
-    placeholder="Medium outline input"
-  />
-  
-  <TextInput
-    value={text}
-    onChange={setText}
-    size="lg"
-    variant="ghost"
-    placeholder="Large ghost input"
-  />
-</div>
+<TextInput readOnly value="Not editable" />
 ```
 
 ## Features
 
-- **Multiple Types**: Support for text, email, password, tel, url
-- **Validation**: Built-in and custom validation support
-- **Icons**: Configurable icon placement
-- **Size Variants**: Multiple size options
-- **Style Variants**: Different visual styles
-- **Accessibility**: Full screen reader and keyboard support
-- **Error States**: Visual error indication and messages
+- **Multiline**: Auto-growing textarea with `multiline`
+- **Read-only label**: `readOnly` renders plain text
+- **Select on focus**: Text is selected when the input gains focus
+- **Enter key**: Dedicated `onKeyEnter` callback
+- **Ref forwarding**: The ref gives access to the DOM element
 
 ## Related Components
 
@@ -146,23 +100,8 @@ const [password, setPassword] = useState("")
 
 ## CSS Classes
 
-- `.text-input` - Base input container class
-- `.text-input__label` - Label styling
-- `.text-input__field` - Input field styling
-- `.text-input__icon` - Icon container styling
-- `.text-input__error` - Error message styling
-- `.text-input--sm`, `.text-input--md`, `.text-input--lg` - Size variants
-- `.text-input--outline`, `.text-input--filled`, `.text-input--ghost` - Style variants
-- `.text-input--error` - Error state styling
-- `.text-input--disabled` - Disabled state styling
-
-## Accessibility
-
-- Uses proper `label` associations
-- Includes `aria-describedby` for error messages
-- Supports keyboard navigation
-- Screen reader friendly error announcements
-- Focus management and indicators
+- `jack-cmp jack-cmp-text-input` - Base classes of the input
+- `jack-lbl-readonly` - Read-only rendering
 
 ## Common Patterns
 
@@ -170,46 +109,31 @@ const [password, setPassword] = useState("")
 
 ```tsx
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  })
+  const [formData, setFormData] = useState({ name: "", email: "" })
   
   const updateField = (field: string) => (value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
   
   return (
-    <form className="space-y-4">
+    <form>
       <TextInput
         value={formData.name}
         onChange={updateField("name")}
-        label="Full Name"
-        required
+        placeholder="Full Name"
       />
-      
       <TextInput
         type="email"
         value={formData.email}
         onChange={updateField("email")}
-        label="Email"
-        required
-      />
-      
-      <TextInput
-        type="tel"
-        value={formData.phone}
-        onChange={updateField("phone")}
-        label="Phone Number"
+        placeholder="Email"
       />
     </form>
   )
 }
 ```
 
-### Search Input
+### Debounced Search
 
 ```tsx
 const SearchInput = ({ onSearch }: { onSearch: (query: string) => void }) => {
@@ -228,8 +152,6 @@ const SearchInput = ({ onSearch }: { onSearch: (query: string) => void }) => {
       value={query}
       onChange={setQuery}
       placeholder="Search..."
-      icon={<SearchIcon />}
-      variant="filled"
     />
   )
 }

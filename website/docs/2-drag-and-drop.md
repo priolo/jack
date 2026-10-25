@@ -38,9 +38,10 @@ If we open two CARDs, we can move them by dragging the Header.
 Since each CARD has its own STORE, you can change the TEXT-BOX value to distinguish them.  
 You can also iconify the CARD if you press on ICON.  
 
-It would be nice to see a placeholder of where the dragged CARD will be positioned.  
-This can be done by inserting the `DragCmp` component into the scene.  
-  
+While dragging, it would be nice to see what is being moved.  
+This can be done by inserting the `DragCmp` component into the scene:  
+it follows the mouse and shows the title of the dragged CARD (`store.getTitle()`).  
+The drop zones between the CARDs are rendered by `CardsGroup`.  
 ```tsx title="App.tsx"
 const App: FunctionComponent = () => {
 

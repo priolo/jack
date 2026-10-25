@@ -18,6 +18,7 @@ const sidebars = {
     'quick-start',
     'drag-and-drop',
     'style',
+    'theme',
     'list',
     'linked',
     {

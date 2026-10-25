@@ -43,18 +43,22 @@ Let's create our React component
 
 ```jsx title="UsersListCard.jsx"
 import { FrameworkCard, Header } from "@priolo/jack"
+import { useStore } from "@priolo/jon"
 
 const UserListCard = ({
 	// the instance of the STORE derived from the previous setup
     store,
 }) => {
+    // re-render when the STORE changes
+    const state = useStore(store)
+
     return <FrameworkCard
         store={store}
         headerRender={<Header store={store} />}
     >
 
-        {store.state.all.map(user => (
-            <div>{user.name}</div>
+        {state.all.map(user => (
+            <div key={user.name}>{user.name}</div>
         ))}
 
     </FrameworkCard>
